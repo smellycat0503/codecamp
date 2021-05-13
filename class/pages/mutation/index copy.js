@@ -70,7 +70,7 @@ export default function MutationPage(){
                 비밀번호: <input type="password" name="password" onChange = {onChangeInput}></input><br />
                 제목: <input type="text" name="title"onChange = {onChangeInput}></input><br />
                 내용: <input type="text" name="contents" onChange = {onChangeInput}></input><br />
-                <button onClick={onClickPost}>게시물 등록하기.</button>
+                <button onClick={onClickPost}>게시물 등록하기</button>
             </>
 
         )

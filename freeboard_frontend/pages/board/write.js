@@ -9,12 +9,13 @@ import {Wrapper, Title, UserInfo, Name, NameTitle, NameInput,
     , RegistWrapper, RegistButton, ErrorMessage1} from '../../styles/Board.write'
 
 import {useState} from 'react'
+import {useMutation, gql} from '@apollo/client'
 
-    function boardA(){
+export default function boardA(){
         const [id, setId] = useState("")
         const [pw, setPw] = useState("")
-        const [title, setTitle] = useState("")
-        const [content, setContent] = useState("")
+        const [title1, setTitle] = useState("")
+        const [content2, setContent] = useState("")
         const [address, setAddress] = useState("")
         const [radio, setRadio] = useState("")
         const [error, setError] = useState("")
@@ -27,14 +28,17 @@ import {useState} from 'react'
         function WritePw(event){
             const temp2 = event.target.value
             setPw(temp2)
+            console.log(temp2)
         }
         function WriteTitle(event){
             const temp3 = event.target.value
             setTitle(temp3)
+            console.log(temp3)
         }
         function WriteContent(event){
             const temp4 = event.target.value
             setContent(temp4)
+            console.log(temp4)
         }
         function WriteAddress(event){
             const temp5 = event.target.value
@@ -46,15 +50,55 @@ import {useState} from 'react'
         }
 
         function ErrorMessage(){
-            if (id.length === 0 || pw === "" || title === "" || content === "" || address === "" ){
+            if (id.length === 0 || pw === "" || title1 === "" || content2 === "" || address === "" ){
                 setError("내용을 입력하세요.")
                 
             }
         }
 
 
+        const CREATE_BOARD = gql`
+            mutation zzzzzzzzzz($asdf: String, $bbb: String $ccc: String, $ddd: String){ 
+                createBoard(
+                    writer: $asdf,
+                    password: $bbb,
+                    title: $ccc,
+                    contents: $ddd
+                ){
+                    message
+                }
+            }   
+            `
+            //$
+        const [muta] = useMutation(CREATE_BOARD)
 
+        async function onClickPost(){
+            try{
+                const result = await muta({
+                    variables:{
+                        asdf:id,
+                        bbb:pw,
+                        ccc:title1,
+                        ddd:content2
 
+                    }
+                })
+                // console.log('writer', writer)
+                // console.log('password', password)
+                // console.log('title', title)
+                // console.log('contents', content)
+                // console.log(result)
+                alert(result.data.createBoard.message)
+            } catch(error){
+
+                alert(error.message)
+    
+            }   
+    
+        }
+        
+
+        
 
 
 
@@ -69,20 +113,20 @@ import {useState} from 'react'
                 </Name>
                 <Password>
                     <PasswordTitle>비밀번호</PasswordTitle>
-                    <PasswordInput type = "password" placeholder="비밀번호를 입력해주세요."></PasswordInput>
+                    <PasswordInput type = "password" placeholder="비밀번호를 입력해주세요." onChange = {WritePw}></PasswordInput>
                     <ErrorMessage1>{error}</ErrorMessage1>
                 </Password>
             </UserInfo>
             
             <SubTitleWrapper>
                 <SubTitle>제목</SubTitle>
-                <SubTitleInput type = "text" placeholder="제목을 작성해주세요."></SubTitleInput>
+                <SubTitleInput type = "text" placeholder="제목을 작성해주세요." onChange = {WriteTitle}></SubTitleInput>
                 <ErrorMessage1>{error}</ErrorMessage1>
             </SubTitleWrapper>
 
             <ContentWrapper>
                 <ContentTitle>내용</ContentTitle>
-                <ContentInput type = "text" placeholder= "내용을 작성해주세요."></ContentInput>
+                <ContentInput type = "text" placeholder= "내용을 작성해주세요." onChange = {WriteContent}></ContentInput>
                 <ErrorMessage1>{error}</ErrorMessage1>
             </ContentWrapper>
 
@@ -122,7 +166,7 @@ import {useState} from 'react'
 
 
             <RegistWrapper>
-                <RegistButton onClick = {ErrorMessage}>등록하기</RegistButton>
+                <RegistButton onClick = {ErrorMessage} onClick={onClickPost}>등록하기</RegistButton>
             </RegistWrapper>
 
 
@@ -130,8 +174,6 @@ import {useState} from 'react'
         </Wrapper>
         
   )
-    }
-
-    export default boardA
+}
 
 

@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/mutation": "pages/mutation.js"
+  "/query/[name]": "pages/query/[name].js",
+  "/query": "pages/query.js"
 }

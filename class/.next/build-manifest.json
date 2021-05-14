@@ -24,10 +24,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/mutation": [
+    "/query": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/mutation.js"
+      "static/chunks/pages/query.js"
+    ],
+    "/query/[name]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/query/[name].js"
     ]
   },
   "ampFirstPages": []

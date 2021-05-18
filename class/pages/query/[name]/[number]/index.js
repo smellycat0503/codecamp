@@ -11,7 +11,7 @@ export default function QuaryDetailPage(){
     
     
     return(
-        <div>상세보기 페이지입니다.</div>
+        <div>넘버상세보기 페이지입니다.</div>
         
     ) 
 }

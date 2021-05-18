@@ -53,14 +53,14 @@ function LoginPage(){
                 <MainIcon src='/itsicon.svg'></MainIcon>
                 <ItsloadText>잇츠로드</ItsloadText>
                 <IdWrapper>
-                    <InputId type = "text" onChange={emailChange}></InputId>
+                    <InputId type = "text" onChange={emailChange} />
                     <CancelIcon src ='/cancel.svg'></CancelIcon>
                 </IdWrapper>
                 <UnderLine></UnderLine>
                 <ErrorIdMessage>{errorId}</ErrorIdMessage>
 
                 <PasswordWrapper>
-                    <InputPassword type = "password" onChange={passwordChange}></InputPassword>
+                    <InputPassword type = "password" onChange={passwordChange} />
                     <CancelIcon src ='/cancel.svg'></CancelIcon>
                 </PasswordWrapper>
                 <UnderLine></UnderLine>

@@ -1,51 +1,14 @@
 import {useRouter} from  "next/router"
 import {useQuery, gql} from '@apollo/client'
-
+import Query from "../../../src/components/query/detail/QueryDetail.container"
+//0.playground에서 프로필 조회하기-> query
+//1-1. 라우터 활용.
+//1-2. 조회를 위해 Query,gql 활용.
 
 export default function QuaryDetailPage(){
     
-    const router = useRouter()
-
-    const aaa = gql`
-    query zzz ($aaa: String){
-            fetchProfile(name: $aaa){
-                number
-                name
-                age
-                school
-            }
-        }
-    
-    `
-
-    const { data } = useQuery(aaa, {
-        variables:{
-            aaa:router.query.name   
-        }
-    })
-
-    // const onClickRouting = () => {
-
-    //     // router.push('/query/훈이')
-    // }
-
-    // console.log('data',data.fetchProfile.name)
-    
-    //삼항연산자=>이프냐 엘스냐 둘중 하나일 경우만 사용.
     return(
-        <div>
-            <div>
-               이름:{!data ? '' : data.fetchProfile.name }
-               {/* data앞에!가 들어가므로 data가 없을 때 '', 있을때 : 오른쪽이 적용 */}
-            </div>
-            <div>
-                나이:{data === undefined ? '' : data.fetchProfile.age}
-                
-            </div>
-            <div>
-                학교:{data && data.fetchProfile.school}
-                {/* data가 true면 (있으면)&&뒤가 실행됨. false면 &&뒤가 실행 안됨 */}
-            </div>
-        </div>
-    ) 
+        <Query/>
+    )
+
 }

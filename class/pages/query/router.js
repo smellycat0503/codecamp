@@ -14,7 +14,7 @@ export default function RouterPage(){
     console.log(router.quary)
 
     return (
-        <button onClick = {onClickRouting}>게시글 등록 페이지로 이동</button>
+        <button onClick = {onClickRouting}>라우터파일은뭘해</button>
         
     )
 }

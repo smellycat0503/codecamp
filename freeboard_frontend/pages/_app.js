@@ -8,7 +8,7 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 
 const App = ({ Component, pageProps }) => {
   const aaa = new ApolloClient({
-    uri:"http://example.codebootcamp.co.kr/graphql",
+    uri:"http://backend.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache()
 
   })

@@ -9,33 +9,50 @@ import {Wrapper, Title, UserInfo, Name, NameTitle, NameInput,
     , RegistWrapper, RegistButton, ErrorMessage1} from '../../styles/Board.write'
 
 import {useState} from 'react'
+import {useMutation, gql} from '@apollo/client'
+import {useRouter} from 'next/router'
 
-    function boardA(){
-        const [id, setId] = useState("")
-        const [pw, setPw] = useState("")
-        const [title, setTitle] = useState("")
-        const [content, setContent] = useState("")
-        const [address, setAddress] = useState("")
+export default function boardA(){
+
+        const [qwer, setQwer] = useState(
+            {
+                writer: "",
+                password:"",
+                title: "",
+                contents: ""
+            }           
+        )
+        
         const [radio, setRadio] = useState("")
         const [error, setError] = useState("")
 
-        function WriteId(event){
-            const temp1 = event.target.value
-            setId(temp1)
-            console.log(temp1)
+        // function WriteId(event){
+        //     const temp1 = event.target.value
+        //     setId(temp1)
+        //     console.log(temp1)
+        // }
+        // function WritePw(event){
+        //     const temp2 = event.target.value
+        //     setPw(temp2)
+        //     console.log(temp2)
+        // }
+        // function WriteTitle(event){
+        //     const temp3 = event.target.value
+        //     setTitle(temp3)
+        //     console.log(temp3)
+        // }
+        // function WriteContent(event){
+        //     const temp4 = event.target.value
+        //     setContent(temp4)
+        //     console.log(temp4)
+        // }
+
+        function onChangeInput(event){
+            const iphone = {...qwer, [event.target.writer]:event.target.value}
+            setQwer(iphone)
+
         }
-        function WritePw(event){
-            const temp2 = event.target.value
-            setPw(temp2)
-        }
-        function WriteTitle(event){
-            const temp3 = event.target.value
-            setTitle(temp3)
-        }
-        function WriteContent(event){
-            const temp4 = event.target.value
-            setContent(temp4)
-        }
+
         function WriteAddress(event){
             const temp5 = event.target.value
             setAddress(temp5)
@@ -46,15 +63,74 @@ import {useState} from 'react'
         }
 
         function ErrorMessage(){
-            if (id.length === 0 || pw === "" || title === "" || content === "" || address === "" ){
+            if (id.length === 0 || pw === "" || title1 === "" || content2 === "" || address === "" ){
                 setError("내용을 입력하세요.")
                 
             }
         }
 
+        const router = useRouter()
 
 
+         const CREATE_BOARD = gql`
+         mutation abc($writer: String, $password: String $title: String!, $contents: String!)
+         {
+            createBoard(
+              createBoardInput:{
+                writer: $writer
+                password: $password
+                title: $title
+                contents: $contents
+              })
+                {
+             
+                _id
+            }
+          }
+          `
+        //     mutation zzzzzzzzzz($asdf: String, $bbb: String $ccc: String, $ddd: String){ 
+        //         createBoard(
+        //             writer: $asdf,
+        //             password: $bbb,
+        //             title: $ccc,
+        //             contents: $ddd
+        //         ){
+        //             message
+        //         }
+        //     }   
+        //     
 
+        // const CREATE_BOARD = gql`
+
+        // `
+
+            //$
+        const [muta] = useMutation(CREATE_BOARD)
+
+        async function onClickPost(){
+            try{
+                const result = await muta({
+                    variables:{...qwer
+                        // title:String(qwer.title),
+                        // contents:String(qwer.contents)
+
+                    }
+                    
+                })
+                const id = result.data.createBoard._id
+                alert(result.data.createBoard.message)
+                console.log(result)
+                router.push(`router.query.${id}`)
+            } catch(error){
+
+                alert(error.message)
+    
+            }   
+    
+        }
+        
+
+        
 
 
 
@@ -64,25 +140,26 @@ import {useState} from 'react'
             <UserInfo>
                 <Name>
                     <NameTitle>작성자</NameTitle>
-                    <NameInput type = "text" placeholder="이름을 적어주세요." onChange = {WriteId}></NameInput>
+                    <NameInput type = "text" placeholder="이름을 적어주세요." name = "writer"  onChange = {onChangeInput}></NameInput>
+                    {/* 여기 name은 별 의미가 없는건가 -> 이름 바꿔도 페이지 바뀜. */}
                     <ErrorMessage1>{error}</ErrorMessage1>
                 </Name>
                 <Password>
                     <PasswordTitle>비밀번호</PasswordTitle>
-                    <PasswordInput type = "password" placeholder="비밀번호를 입력해주세요."></PasswordInput>
+                    <PasswordInput type = "password" placeholder="비밀번호를 입력해주세요." name="password" onChange = {onChangeInput}></PasswordInput>
                     <ErrorMessage1>{error}</ErrorMessage1>
                 </Password>
             </UserInfo>
             
             <SubTitleWrapper>
                 <SubTitle>제목</SubTitle>
-                <SubTitleInput type = "text" placeholder="제목을 작성해주세요."></SubTitleInput>
+                <SubTitleInput type = "text" placeholder="제목을 작성해주세요." name = "title" onChange = {onChangeInput}></SubTitleInput>
                 <ErrorMessage1>{error}</ErrorMessage1>
             </SubTitleWrapper>
 
             <ContentWrapper>
                 <ContentTitle>내용</ContentTitle>
-                <ContentInput type = "text" placeholder= "내용을 작성해주세요."></ContentInput>
+                <ContentInput type = "text" placeholder= "내용을 작성해주세요." name = "contents" onChange = {onChangeInput}></ContentInput>
                 <ErrorMessage1>{error}</ErrorMessage1>
             </ContentWrapper>
 
@@ -122,7 +199,7 @@ import {useState} from 'react'
 
 
             <RegistWrapper>
-                <RegistButton onClick = {ErrorMessage}>등록하기</RegistButton>
+                <RegistButton onClick = {ErrorMessage} onClick={onClickPost}>등록하기</RegistButton>
             </RegistWrapper>
 
 
@@ -130,8 +207,6 @@ import {useState} from 'react'
         </Wrapper>
         
   )
-    }
-
-    export default boardA
+}
 
 

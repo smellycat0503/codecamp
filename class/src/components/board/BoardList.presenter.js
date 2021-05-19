@@ -5,11 +5,13 @@ import { Wrapper, HeadLineWrapper, CheckboxInHead, TitleInHead, NumberInHead
         , BodyWrapper, LineWrapper, Checkbox1, Number, Title, Date
         ,Deletebutton} from './BoardList.styles'
 
-
-const BoardListPresenter = () => {
+//! 이 프롭스 과정에서 또 객체화되므로 {}를 넣어줘야함!!!!!!!!!!!!!!
+const BoardListPresenter = ({data}) => {
 // data.filter((data)=>data.fetchBoard.number )
 
     // let a= data.slice(-6)
+
+    console.log(data)
     
 
 
@@ -43,8 +45,14 @@ const BoardListPresenter = () => {
                 <DateInHead>작성일</DateInHead>
             </HeadLineWrapper>
             <BodyWrapper>
-                <LineWrapper>{}</LineWrapper>
-               
+                {/* <LineWrapper>{data?.fetchBoards.map((data) => (<div>ass</div>))}</LineWrapper> */}
+                {data?.fetchBoards.map((board)=>(                
+                <LineWrapper>
+                    <Checkbox1 type = "checkbox"></Checkbox1>
+                    <Number>{board.number}</Number>
+                    <Title>{board.title}</Title>
+                    <Date>{board.createdAt}</Date>
+                </LineWrapper>))}
             </BodyWrapper>
             <Deletebutton>선택 삭제</Deletebutton>
 

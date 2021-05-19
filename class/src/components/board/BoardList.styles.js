@@ -2,7 +2,9 @@ import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
     /* background-color:silver; */
-    width:800px;
+    max-width:800px;
+    width:100%;
+    /* width:800px; */
     height:500px;
     display:flex;
     flex-direction:column;
@@ -11,7 +13,9 @@ export const Wrapper = styled.div`
 export const HeadLineWrapper = styled.div`
     background-color:rgb(240, 240, 240);
     display:flex;
-    width:800px;
+    max-width:800px;
+    width:100%;
+    /* width:800px; */
     height:40px;
     display:flex;
     flex-direction:row;
@@ -48,7 +52,8 @@ export const DateInHead = styled.div`
 `
 
 export const BodyWrapper = styled.div`
-    width:800px;
+    max-width:800px;
+    width:100%;
 `
 
 export const LineWrapper = styled.div`
@@ -56,7 +61,8 @@ export const LineWrapper = styled.div`
     display:flex;
     flex-direction:row;
     align-items: center;
-    width:800px;
+    max-width:800px;
+    width:100%;
     height:40px;
     /* background-color:green; */
 `

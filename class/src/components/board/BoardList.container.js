@@ -2,6 +2,9 @@ import BoardListPresenter from './BoardList.presenter'
 import {gql, useQuery} from '@apollo/client'
 import {raison} from './BoardList.queries'
 
+import {LineWrapper, Checkbox1, Number, Title, Date} from './BoardList.styles'
+
+
 const BoardListContainer = () => {
 
     //필요한 기능 목록.
@@ -19,24 +22,26 @@ const BoardListContainer = () => {
 
     console.log(data)
 
+    console.log(data?.fetchBoards)
+
+    // let a= data.fetchBoards.slice(-6)
 
 
-    // let a= data.fetchBoard.slice(-6)
 
-
-
-    // const list = a.map((data) => {                
+    // const data2 = data?.fetchBoards.map((data) => {                
     //         <LineWrapper>
     //             <Checkbox1 type = "checkbox"></Checkbox1>
-    //             <Number>{data.fetchBoard.number}</Number>
-    //             <Title>{data.fetchBoard.title}</Title>
-    //             <Date>{data.fetchBoard.createdAt}</Date>
-    //         </LineWrapper>})
+    //             <Number>{data.fetchBoards.number}</Number>
+    //             <Title>{data.fetchBoards.title}</Title>
+    //             <Date>{data.fetchBoards.createdAt}</Date>
+    //         </LineWrapper>
+    //         })
 
 
 
     return (
         <BoardListPresenter data={data}/>
+        //! a={data} 에서 a를 프레젠터로 넘기는 것. 
     )
 
 }

@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/0518board": "pages/0518board.js"
+  "/query4/[name]": "pages/query4/[name].js",
+  "/query4": "pages/query4.js"
 }

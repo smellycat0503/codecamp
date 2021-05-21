@@ -4,12 +4,8 @@
 // import {useState} from 'react'
 // import {useRouter} from 'next/router'
 
-import Query from "../../src/components/query/write/QueryWrite.container";
+import Query from '../../src/components/query/write/QueryWrite.container';
 
-
-export default function ProfilePage(){
-    return(
-        <Query />
-
-    )
+export default function ProfilePage() {
+  return <Query />;
 }

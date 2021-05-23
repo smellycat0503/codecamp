@@ -177,7 +177,7 @@ export default function QuaryDetailPage() {
         </Writer__Info__Wrapper>
         <Content__textbox
           type="text"
-          placeholder="개인정보 어쩌고"
+          placeholder="개인정보 어쩌고고"
         ></Content__textbox>
         <Replyed__Contents__Wrapper>
           <UserIcon src="/useri.png"></UserIcon>

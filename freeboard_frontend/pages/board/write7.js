@@ -1,3 +1,7 @@
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import {
   Wrapper,
   Title,
@@ -39,73 +43,18 @@ import {
   ErrorMessage1,
 } from "../../styles/Board.write";
 
-import { useState } from "react";
-import { useMutation, gql } from "@apollo/client";
-import { useRouter } from "next/router";
-
 export default function boardA() {
-  const [qwer, setQwer] = useState({
+  const [raison, setRaison] = useState({
     writer: "",
     password: "",
     title: "",
     contents: "",
   });
 
-  const [radio, setRadio] = useState("");
   const [error, setError] = useState("");
 
-  // function WriteId(event){
-  //     const temp1 = event.target.value
-  //     setId(temp1)
-  //     console.log(temp1)
-  // }
-  // function WritePw(event){
-  //     const temp2 = event.target.value
-  //     setPw(temp2)
-  //     console.log(temp2)
-  // }
-  // function WriteTitle(event){
-  //     const temp3 = event.target.value
-  //     setTitle(temp3)
-  //     console.log(temp3)
-  // }
-  // function WriteContent(event){
-  //     const temp4 = event.target.value
-  //     setContent(temp4)
-  //     console.log(temp4)
-  // }
-
-  function onChangeInput(event) {
-    const iphone = { ...qwer, [event.target.name]: event.target.value };
-    setQwer(iphone);
-    console.log(iphone);
-  }
-
-  // function WriteAddress(event) {
-  //   const temp5 = event.target.value;
-  //   setAddress(temp5);
-  // }
-  // function WriteRadio(event) {
-  //   const temp6 = event.target.value;
-  //   setRadio(temp6);
-  // }
-
-  function ErrorMessage() {
-    if (
-      writer === "" ||
-      password === "" ||
-      title1 === "" ||
-      content2 === "" ||
-      address === ""
-    ) {
-      setError("내용을 입력하세요.");
-    }
-  }
-
-  const router = useRouter();
-
-  const CREATE_BOARD = gql`
-    mutation abc(
+  const SEVENSTAR = gql`
+    mutation ZZZ(
       $writer: String
       $password: String
       $title: String!
@@ -126,35 +75,49 @@ export default function boardA() {
       }
     }
   `;
-  //     mutation zzzzzzzzzz($asdf: String, $bbb: String $ccc: String, $ddd: String){
-  //         createBoard(
-  //             writer: $asdf,
-  //             password: $bbb,
-  //             title: $ccc,
-  //             contents: $ddd
-  //         ){
-  //             message
-  //         }
-  //     }
-  //
+  //! gql에서 받아와야 하는 부분에 _id가 빠졌었음. 식별을 위해 반드시 필요하므로 확인할 것.
+  //! 클릭 후 접속이 안됬던 이유 => 받아오는 부분에 write'r'이 빠져있었음. 오타 주의.
 
-  // const CREATE_BOARD = gql`
+  const router = useRouter();
+  const [mildseven] = useMutation(SEVENSTAR);
 
-  // `
+  console.log("라우터", router);
 
-  //$
-  const [muta] = useMutation(CREATE_BOARD);
+  function onChangeInput(event) {
+    const marlboro = {
+      ...raison,
+      [event.target.name]: event.target.value,
+    };
+    // const marlboro = {
+    //    writer: "",
+    //    password: "",
+    //    title: "",
+    //    contents: "",
+    //    [event.target.name]: event.target.value
+    // }
+
+    setRaison(marlboro);
+    console.log(marlboro);
+
+    if (
+      !raison.writer ||
+      !raison.password ||
+      !raison.title ||
+      !raison.contents
+    ) {
+      setError("내용을 입력해주세요.");
+    } else {
+      setError("");
+    }
+  }
 
   async function onClickPost() {
     try {
-      const result = await muta({
-        variables: { ...qwer },
+      const result = await mildseven({
+        variables: { ...raison },
       });
-      // const id = result.data.createBoard._id;
-      // alert(result.data.createBoard.message);
-      console.log("리절트", result);
+      // console.log("result", result); //*얘는 콘솔에 안나옴.
       router.push(`/board/${result.data.createBoard._id}`);
-      //! push 경로 파악하기.
     } catch (error) {
       alert(error.message);
     }
@@ -260,7 +223,7 @@ export default function boardA() {
       </MainSettingWrapper>
 
       <RegistWrapper>
-        <RegistButton onClick={ErrorMessage} onClick={onClickPost}>
+        <RegistButton onClick={error} onClick={onClickPost}>
           등록하기
         </RegistButton>
       </RegistWrapper>

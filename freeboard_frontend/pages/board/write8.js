@@ -1,3 +1,7 @@
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import {
   Wrapper,
   Title,
@@ -39,85 +43,25 @@ import {
   ErrorMessage1,
 } from "../../styles/Board.write";
 
-import { useState } from "react";
-import { useMutation, gql } from "@apollo/client";
-import { useRouter } from "next/router";
-
 export default function boardA() {
-  const [qwer, setQwer] = useState({
+  const [wendy, setWendy] = useState({
     writer: "",
     password: "",
     title: "",
     contents: "",
   });
 
-  const [radio, setRadio] = useState("");
   const [error, setError] = useState("");
 
-  // function WriteId(event){
-  //     const temp1 = event.target.value
-  //     setId(temp1)
-  //     console.log(temp1)
-  // }
-  // function WritePw(event){
-  //     const temp2 = event.target.value
-  //     setPw(temp2)
-  //     console.log(temp2)
-  // }
-  // function WriteTitle(event){
-  //     const temp3 = event.target.value
-  //     setTitle(temp3)
-  //     console.log(temp3)
-  // }
-  // function WriteContent(event){
-  //     const temp4 = event.target.value
-  //     setContent(temp4)
-  //     console.log(temp4)
-  // }
-
-  function onChangeInput(event) {
-    console.log(event.target);
-
-    const iphone = { ...qwer, [event.target.name]: event.target.value };
-    //name  부분 틀렸었음. 기존에 writer로 적었음!! 주의!!
-    setQwer(iphone);
-  }
-
-  function WriteAddress(event) {
-    const temp5 = event.target.value;
-    setAddress(temp5);
-  }
-  function WriteRadio(event) {
-    const temp6 = event.target.value;
-    setRadio(temp6);
-  }
-
-  function ErrorMessage() {
-    if (
-      id.length === 0 ||
-      pw === "" ||
-      title1 === "" ||
-      content2 === "" ||
-      address === ""
-    ) {
-      setError("내용을 입력하세요.");
-    }
-  }
-
-  const CREATE_BOARD = gql`
-    mutation grandfather(
+  const JOY = gql`
+    mutation ZZZ(
       $writer: String
       $password: String
-      $title: String!
-      $contents: String!
+      $title: String
+      $content: String
     ) {
       createBoard(
-        createBoardInput: {
-          writer: $writer
-          password: $password
-          title: $title
-          contents: $contents
-        }
+        createBoardInput: { writer: "", password: "", title: "", contents: "" }
       ) {
         _id
         writer
@@ -126,54 +70,26 @@ export default function boardA() {
       }
     }
   `;
-  //     mutation zzzzzzzzzz($asdf: String, $bbb: String $ccc: String, $ddd: String){
-  //         createBoard(
-  //             writer: $asdf,
-  //             password: $bbb,
-  //             title: $ccc,
-  //             contents: $ddd
-  //         ){
-  //             message
-  //         }
-  //     }
-  //
 
-  // const CREATE_BOARD = gql`
-
-  // `
-
-  //$
-  const [grandma] = useMutation(CREATE_BOARD);
+  const [fresh] = useMutation(JOY);
 
   const router = useRouter();
 
+  function onChangeInput(event) {
+    const cheeze = { ...wendy, [event.target.name]: event.target.value };
+
+    setWendy(cheeze);
+    if (!wendy.writer || !wendy.password || !wendy.title || !wendy.contents) {
+      setError("내용을 입력해주세요.");
+    } else {
+      setError("");
+    }
+  }
+
   async function onClickPost() {
     try {
-      console.log({ ...qwer });
-      //콘솔로그 안에도 배열 형태로 들어가야함!!
-      const result = await grandma({
-        variables: {
-          ...qwer,
-          //아래가 생략된 것임!!
-          //익숙해질때까지 스프레드 자제하자. 생략 안해고 해야겠다.
-          // writer: qwer.writer,
-          // password: qwer.password,
-          // title: qwer.title,
-          // contents: qwer.contents
-
-          //요거 없어도 됨!
-          // ,title:String(qwer.title),
-          //  contents:String(qwer.contents)
-        },
-      });
-      // const id = result.data.createBoard._id
-      // alert(result.data.createBoard.message)
-      alert("성공");
-      console.log(result);
-      console.log(qwer.id);
-      //콘솔로그로 qwer 안에 뭐가 들어가는지 확인.
-      router.push(`/board/${result.data.createBoard._id}`);
-      // 콘솔로그로 조회를 해보고 ${}안의 경로를 탐색해야함.
+      const result = await fresh({ variables: { ...wendy } });
+      router.push(``);
     } catch (error) {
       alert(error.message);
     }
@@ -279,9 +195,7 @@ export default function boardA() {
       </MainSettingWrapper>
 
       <RegistWrapper>
-        <RegistButton onClick={ErrorMessage} onClick={onClickPost}>
-          등록하기
-        </RegistButton>
+        <RegistButton onClick={onClickPost}>등록하기</RegistButton>
       </RegistWrapper>
     </Wrapper>
   );

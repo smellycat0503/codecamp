@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 
 import {
   Wrapper,
@@ -49,12 +49,14 @@ import {
   Id__And__Star__Wrapper,
   Writed__Date,
 } from "../../../styles/id.index";
-import { useState } from "react";
 
 export default function QuaryDetailPage() {
-  const PILLOWS = gql`
-    query ZZZ($boardId: ID!) {
-      fetchBoard(boardId: $boardId) {
+  const router = useRouter();
+  //여기서의 라우터는 이동 용도가 아닌 프론트 쪽의 데이터를 가져오기 위한 용도.
+
+  const glass = gql`
+    query family($dad: ID!) {
+      fetchBoard(boardId: $dad) {
         _id
         writer
         title
@@ -63,51 +65,15 @@ export default function QuaryDetailPage() {
     }
   `;
 
-  // const STROKES = gql`
-  //   mutation ZZZ(
-  //     $title: String
-  //     $contents: String
-  //     $password: String
-  //     $boardId: ID!
-  //   ) {
-  //     updateBoard(
-  //       updateBoardInput: { title: $title, contents: $contents }
-  //       password: $password
-  //       boardId: $boardId
-  //     ) {
-  //       _id
-  //       writer
-  //       title
-  //       contents
-  //     }
-  //   }
-  // `;
-
-  const router = useRouter();
-
-  // console.log("라우터", router);
-
-  // const { data2 } = useQuery(STROKES, {
-  //   variables: { boardId: router.query.ID },
-  // });
-
-  const { data } = useQuery(PILLOWS, {
-    variables: { boardId: router.query.ID },
+  // console.log("router.query", router.query);
+  console.log("라우터", router);
+  const { data } = useQuery(glass, {
+    variables: { dad: router.query.ID },
+    //여기 경로는 서버가 아니 우리쪽 기준.
   });
+  console.log("데이타", data);
+  // console.log(router.query)
 
-  console.log("데이터", data);
-
-  // const [smellycat] = useMutation(PILLOWS);
-
-  async function onClickUpdate() {
-    try {
-      // const { data } = await smellycat();
-      router.push(`/board/${data.fetchBoard._id}/edit/`);
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-  // {data?.updateBoard.contents}
   return (
     <Wrapper>
       <FreeboardWrapper>
@@ -116,8 +82,7 @@ export default function QuaryDetailPage() {
             <Icon></Icon>
             <IdAndDateWrapper>
               <WriterID>
-                {data?.fetchBoard.writer}
-                {/* {data2?.updateBoard.writer} */}
+                {data === undefined ? "" : data.fetchBoard.writer}
               </WriterID>
               <CreateDate type="text">Date:2021.02.18</CreateDate>
             </IdAndDateWrapper>
@@ -136,10 +101,7 @@ export default function QuaryDetailPage() {
         <BodyWrapper>
           <BoardTitle>{data && data.fetchBoard.title}</BoardTitle>
           <Picture></Picture>
-          <Contents>
-            {data === undefined ? "" : data.fetchBoard.contents}
-            {/* {data?.updateBoard.contents} */}
-          </Contents>
+          <Contents>{!data ? "" : data.fetchBoard.contents}</Contents>
           <Movie></Movie>
           <BottomWrapper>
             <GoodWrapper>
@@ -157,7 +119,7 @@ export default function QuaryDetailPage() {
       <Bottom2Wrapper>
         <Bottom__Button__Wrapper>
           <ListButton>목록으로</ListButton>
-          <ModifyButton onClick={onClickUpdate}>수정하기</ModifyButton>
+          <ModifyButton>수정하기</ModifyButton>
         </Bottom__Button__Wrapper>
 
         <ReplyTopWrapper>

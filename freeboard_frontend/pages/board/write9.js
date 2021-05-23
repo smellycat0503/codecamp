@@ -1,3 +1,7 @@
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import {
   Wrapper,
   Title,
@@ -39,73 +43,18 @@ import {
   ErrorMessage1,
 } from "../../styles/Board.write";
 
-import { useState } from "react";
-import { useMutation, gql } from "@apollo/client";
-import { useRouter } from "next/router";
-
 export default function boardA() {
-  const [qwer, setQwer] = useState({
+  const [ben, setBen] = useState({
     writer: "",
-    password: "",
     title: "",
     contents: "",
+    password: "",
   });
 
-  const [radio, setRadio] = useState("");
   const [error, setError] = useState("");
 
-  // function WriteId(event){
-  //     const temp1 = event.target.value
-  //     setId(temp1)
-  //     console.log(temp1)
-  // }
-  // function WritePw(event){
-  //     const temp2 = event.target.value
-  //     setPw(temp2)
-  //     console.log(temp2)
-  // }
-  // function WriteTitle(event){
-  //     const temp3 = event.target.value
-  //     setTitle(temp3)
-  //     console.log(temp3)
-  // }
-  // function WriteContent(event){
-  //     const temp4 = event.target.value
-  //     setContent(temp4)
-  //     console.log(temp4)
-  // }
-
-  function onChangeInput(event) {
-    console.log(event.target);
-
-    const iphone = { ...qwer, [event.target.name]: event.target.value };
-    //name  부분 틀렸었음. 다시 확인해보기.
-    setQwer(iphone);
-  }
-
-  function WriteAddress(event) {
-    const temp5 = event.target.value;
-    setAddress(temp5);
-  }
-  function WriteRadio(event) {
-    const temp6 = event.target.value;
-    setRadio(temp6);
-  }
-
-  function ErrorMessage() {
-    if (
-      id.length === 0 ||
-      pw === "" ||
-      title1 === "" ||
-      content2 === "" ||
-      address === ""
-    ) {
-      setError("내용을 입력하세요.");
-    }
-  }
-
-  const CREATE_BOARD = gql`
-    mutation grandfather(
+  const PROFILE = gql`
+    mutation ZZZ(
       $writer: String
       $password: String
       $title: String!
@@ -126,46 +75,41 @@ export default function boardA() {
       }
     }
   `;
-  //     mutation zzzzzzzzzz($asdf: String, $bbb: String $ccc: String, $ddd: String){
-  //         createBoard(
-  //             writer: $asdf,
-  //             password: $bbb,
-  //             title: $ccc,
-  //             contents: $ddd
-  //         ){
-  //             message
-  //         }
-  //     }
-  //
 
-  // const CREATE_BOARD = gql`
-
-  // `
-
-  //$
-  const [grandma] = useMutation(CREATE_BOARD);
-
+  const [ann] = useMutation(PROFILE);
   const router = useRouter();
+
+  function onChangeInput(event) {
+    const jackson = {
+      // ...ben,
+      writer: ben.writer,
+      title: ben.title,
+      contents: ben.contents,
+      password: ben.password,
+      [event.target.name]: event.target.value,
+    };
+
+    // console.log(jackson);
+    setBen(jackson);
+    if (!ben.writer || !ben.title || !ben.contents || !ben.password) {
+      setError("내용을 입력해주세요.");
+    } else {
+      setError("");
+    }
+  }
 
   async function onClickPost() {
     try {
-      console.log({ ...qwer });
-      const result = await grandma({
+      const result = await ann({
         variables: {
-          // ...qwer
-          writer: qwer.writer,
-          password: qwer.password,
-          title: qwer.title,
-          contents: qwer.contents,
-
-          // ,title:String(qwer.title),
-          //  contents:String(qwer.contents)
+          writer: ben.writer,
+          title: ben.title,
+          contents: ben.contents,
+          password: ben.password,
         },
       });
-      // const id = result.data.createBoard._id
-      alert(result.data.createBoard.message);
-      console.log(result);
-      router.push(`/board/${qwer._id}`);
+      router.push(`/board/${result.data.createBoard._id}`);
+      //! push(``) 안 맨 처음 '/' 를 빼먹었었음!!
     } catch (error) {
       alert(error.message);
     }
@@ -271,9 +215,7 @@ export default function boardA() {
       </MainSettingWrapper>
 
       <RegistWrapper>
-        <RegistButton onClick={ErrorMessage} onClick={onClickPost}>
-          등록하기
-        </RegistButton>
+        <RegistButton onClick={onClickPost}>등록하기</RegistButton>
       </RegistWrapper>
     </Wrapper>
   );

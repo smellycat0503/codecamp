@@ -25,7 +25,7 @@ const Container = () => {
     setQwer(iphone);
 
     if (!qwer.writer || !qwer.title || !qwer.password || !qwer.contents) {
-      setError("내용을 입력하세요");
+      setError("내용을 작성해주세요");
     } else {
       setError("");
     }
@@ -57,6 +57,10 @@ const Container = () => {
       setError("내용을 입력하세요.");
     }
   }
+
+  // async function onClickUpdate(){
+
+  // }
 
   return (
     <Presenter

@@ -56,8 +56,7 @@ export default function MutationPage() {
     };
     setAaa(data);
 
-    console.log(data);
-  };
+
 
   return (
     <>

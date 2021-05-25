@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Wrapper,
   Title,
@@ -39,19 +40,12 @@ import {
   ErrorMessage1,
 } from "./QueryWrite.styles";
 
-interface IProps {
-  onChangeInput: any;
-  onClickPost: any;
-  error: any;
-  ErrorMessage: any;
-  //*여기는 컨테이너에서 넘어온 것들을 그대로 가져오면 됨.
-  //*임의로 any 설정.
-}
+import { IProps } from "./QueryWrite.types";
 
 const Presenter = (props: IProps) => {
   return (
     <Wrapper>
-      <Title>게시물 등록</Title>
+      {!props.data ? <Title>게시물 등록</Title> : <Title>게시물 수정</Title>}
       <UserInfo>
         <Name>
           <NameTitle>작성자</NameTitle>
@@ -59,6 +53,7 @@ const Presenter = (props: IProps) => {
             type="text"
             placeholder="이름을 적어주세요."
             name="writer"
+            defaultValue={!props.data ? "" : props.data.fetchBoard.writer}
             onChange={props.onChangeInput}
           ></NameInput>
           {/* 여기 name은 별 의미가 없는건가 -> 이름 바꿔도 페이지 바뀜. */}
@@ -118,6 +113,8 @@ const Presenter = (props: IProps) => {
         <YoutubeInput
           type="text"
           placeholder="링크를 복사해주세요."
+          name="youtubeUrl"
+          onChange={props.onChangeInput}
         ></YoutubeInput>
         <ErrorMessage1>{props.error}</ErrorMessage1>
       </YoutubeWrapper>
@@ -312,4 +309,8 @@ export default Presenter;
 // };
 
 // export default QueryUI;
+
+// useEffect(()=>{
+//   asdfdasfdsf
+// },[data])
 //*끝

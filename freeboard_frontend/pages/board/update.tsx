@@ -1,4 +1,4 @@
-import Query from "../../src/components/updateboard/Update.container";
+import Query from "../../src/components/query/updateboard/Update.container";
 
 const UpdateBoard = () => {
   return <Query />;

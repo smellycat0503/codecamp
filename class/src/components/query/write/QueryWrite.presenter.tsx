@@ -1,6 +1,8 @@
 import {RegisterButton} from './QueryWrite.styles';
 
 const QueryUI = (props) => {
+
+  
   return (
     <div>
       <span>이름: </span>

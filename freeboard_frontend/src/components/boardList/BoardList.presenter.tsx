@@ -74,7 +74,10 @@ const QueryUI = (Props) => {
         {Props.data?.fetchBoards.slice(-10).map((abc, index) => (
           <Board__Content__Wrapper key={abc._id}>
             <Board__Number__Content>{index + 1}</Board__Number__Content>
-            <Board__Title__Content>{abc.title}</Board__Title__Content>
+            <Board__Title__Content onClick={Props.onClickBoard} id={abc._id}>
+              {/* //여기서 id=의 id는 container의 event.target.id로 들어간다. */}
+              {abc.title}
+            </Board__Title__Content>
             <Board__Writer__Content>{abc.writer}</Board__Writer__Content>
             <Board__Date__Content>{abc.createdAt}</Board__Date__Content>
           </Board__Content__Wrapper>

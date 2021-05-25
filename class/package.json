@@ -18,7 +18,9 @@
     "graphql": "^15.5.0",
     "next": "10.2.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-daum-postcode": "^2.0.6",
+    "react-dom": "17.0.2",
+    "react-player": "^2.9.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.4",
@@ -31,7 +33,19 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.23.2",
+    "husky": "4",
+    "lint-staged": "^11.0.0",
     "prettier": "2.3.0",
     "typescript": "^4.2.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "npx eslint ."
+    ]
   }
 }

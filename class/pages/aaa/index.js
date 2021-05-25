@@ -7,7 +7,7 @@ import {
   Wrapper,
   Wrapper2,
 } from '../../styles/aaa';
-// import {Email } from "../../styles/aaa2"
+// import {Email } froßm "../../styles/aaa2"
 
 export default function BBB() {
   //자바스크립트

@@ -6,6 +6,7 @@ export const CREATE_BOARD = gql`
     $password: String
     $title: String!
     $contents: String!
+    $youtubeUrl: String
   ) {
     createBoard(
       createBoardInput: {
@@ -13,12 +14,16 @@ export const CREATE_BOARD = gql`
         password: $password
         title: $title
         contents: $contents
+        youtubeUrl: $youtubeUrl
       }
     ) {
       _id
       writer
       title
       contents
+      youtubeUrl
+      likeCount
+      dislikeCount
     }
   }
 `;
@@ -48,3 +53,17 @@ export const CREATE_BOARD = gql`
 //     }
 //   }
 //*끝
+
+export const PILLOWS = gql`
+  query ZZZ($boardId: ID!) {
+    fetchBoard(boardId: $boardId) {
+      _id
+      writer
+      title
+      contents
+      youtubeUrl
+      likeCount
+      dislikeCount
+    }
+  }
+`;

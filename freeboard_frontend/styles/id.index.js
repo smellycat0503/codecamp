@@ -144,10 +144,18 @@ export const Contents = styled.div`
 export const Movie = styled.div`
   width: 486px;
   height: 240px;
-  background-color: gray;
+  /* background-color: gray; */
   align-self: center;
   margin-top: 120px;
 `;
+
+// export const ReactPlayer = styled.input`
+//   width: 486px;
+//   height: 240px;
+//   /* background-color: gray; */
+//   align-self: center;
+//   margin-top: 120px;
+// `;
 
 export const BottomWrapper = styled.div`
   width: 120px;

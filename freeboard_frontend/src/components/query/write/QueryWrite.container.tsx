@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-import { CREATE_BOARD } from "./QueryWrite.queries";
+import { CREATE_BOARD, PILLOWS } from "./QueryWrite.queries";
 import Presenter from "./QueryWrite.presenter";
 
 // interface IErrorMessage{
@@ -10,29 +10,40 @@ import Presenter from "./QueryWrite.presenter";
 // }
 
 const Container = () => {
+  const router = useRouter();
   const [qwer, setQwer] = useState({
     writer: "",
     password: "",
     title: "",
     contents: "",
+    youtubeUrl: "",
   });
 
   const [radio, setRadio] = useState("");
   const [error, setError] = useState("");
 
+  const { data } = useQuery(PILLOWS, {
+    variables: { boardId: router.query.ID },
+  });
+  console.log(data, "asdsadsada");
+
   function onChangeInput(event) {
     const iphone = { ...qwer, [event.target.name]: event.target.value };
     setQwer(iphone);
 
-    if (!qwer.writer || !qwer.title || !qwer.password || !qwer.contents) {
+    if (
+      !qwer.writer ||
+      !qwer.title ||
+      !qwer.password ||
+      !qwer.contents ||
+      !qwer.youtubeUrl
+    ) {
       setError("내용을 작성해주세요");
     } else {
       setError("");
     }
     console.log(iphone);
   }
-
-  const router = useRouter();
 
   const [muta] = useMutation(CREATE_BOARD);
 
@@ -51,13 +62,6 @@ const Container = () => {
     }
   }
 
-  function ErrorMessage(event) {
-    if ({ ...qwer, writer: "", password: "", title: "", contents: "" }) {
-    } else {
-      setError("내용을 입력하세요.");
-    }
-  }
-
   // async function onClickUpdate(){
 
   // }
@@ -67,7 +71,7 @@ const Container = () => {
       onChangeInput={onChangeInput}
       onClickPost={onClickPost}
       error={error}
-      ErrorMessage={ErrorMessage}
+      data={data}
     />
   );
 };

@@ -2,7 +2,7 @@ import Presenter from "./QueryDetail.presenter";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import { PILLOWS } from "./Query.Detail.queries";
-import { GOOD, CREATEREPLY, HATE, REPLY } from "./Query.Detail.queries";
+import { GOOD, HATE } from "./Query.Detail.queries";
 import { useState } from "react";
 import { Password } from "../updateboard/Update.styles";
 
@@ -62,41 +62,7 @@ const Container = () => {
     }
   }
 
-  const { data: datareply } = useQuery(REPLY, {
-    variables: { boardId: router.query.ID },
-  });
-
-  console.log("리플쿼리", datareply);
-  //! 결과 안나옴. 애초에 적은게 없어서 그런가?
-
-  const [writereply] = useMutation(CREATEREPLY);
-
-  const [reply, setReply] = useState({
-    writer: "",
-    password: "",
-    contents: "",
-  });
-
-  function onChangeReplyInput(event) {
-    const viva = { ...reply, [event.target.name]: event.target.value };
-    setReply(viva);
-    console.log("댓글", viva);
-  }
-
-  async function onClickReplyInput() {
-    try {
-      // const result = await writereply({
-      //   variables: { ...reply, boardId: router.query.ID },
-      // });
-      await writereply({
-        variables: { ...reply, boardId: router.query.ID },
-      });
-      //! 여기 보드ID를 어디껄 가져와야하는지 모르겠음.
-      refetch();
-    } catch (error) {
-      alert("땡");
-    }
-  }
+  // }
 
   return (
     <Presenter
@@ -104,9 +70,6 @@ const Container = () => {
       data={data}
       onClickLike={onClickLike}
       onClickHate={onClickHate}
-      datareply={datareply}
-      onChangeReplyInput={onChangeReplyInput}
-      onClickReplyInput={onClickReplyInput}
     />
   );
 };

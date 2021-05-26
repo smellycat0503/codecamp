@@ -1,7 +1,7 @@
 import {useMutation, gql} from '@apollo/client'
 import {assertAbstractType} from 'graphql'
 import {argsToArgsConfig} from 'graphql/type/definition'
-import {useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import {useRouter} from 'next/router'
 import QueryUI from './QueryWrite.presenter'
 import {PROFILE} from './QueryWrite.queries'
@@ -50,12 +50,34 @@ const Query = () => {
     setOpen(false)
   }
 
+  const [testState, setTestState] = useState(1)
+
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const [ccc, setCcc] = useState(123)
+
+  // useEffect(() => {
+  //   inputRef.current.focus()
+  //   // setTestState((prev) => prev + 1)
+  //   // console.log(testState)
+  //   // console.log('useEffect가 실행되었습니다.')
+  // }, [])
+
+  //셋ccc사용함수
+  const handleChangeCcc = () => {
+    setCcc(345)
+  }
+
+  console.log('1111111111111111111111')
+
   return (
     <>
-      {open && <Modal handleClose={handleClose} />}
+      {/* {open && <Modal handleClose={handleClose} />} */}
       <QueryUI
+        inputRef={inputRef}
         onClickRegist={onClickRegist}
         onChangeInput={onChangeInput}
+        handleChangeCcc={handleChangeCcc}
         isTrue={isTrue}
       />
     </>

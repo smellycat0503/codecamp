@@ -26,40 +26,6 @@ export const HATE = gql`
   }
 `;
 
-export const REPLY = gql`
-  query ZZZ($boardId: ID!) {
-    fetchBoardComments(boardId: $boardId)
-  }
-`;
-
-export const CREATEREPLY = gql`
-  mutation QWE(
-    $writer: String
-    $password: String
-    $contents: String
-    $rating: Float!
-    $boardId: ID!
-  ) {
-    createBoardComment(
-      createBoardCommentInput: {
-        writer: $writer
-        password: $password
-        contents: $contents
-        rating: $rating
-      }
-      boardId: $boardId
-    ) {
-      _id
-      writer
-      contents
-      rating
-      user
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
 // const STROKES = gql`
 //   mutation ZZZ(
 //     $title: String

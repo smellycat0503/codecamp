@@ -3,7 +3,7 @@ import {RegisterButton} from './QueryWrite.styles'
 const QueryUI = (props) => {
   return (
     <div>
-      <span>이름: </span>
+      <span>apple: </span>
       <input
         type="text"
         name="name"

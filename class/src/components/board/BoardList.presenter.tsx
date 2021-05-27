@@ -1,6 +1,6 @@
 // import { Checkbox } from '@material-ui/core'
-import {delBasePath} from 'next/dist/next-server/lib/router/router';
-import {getDate} from '../commons/libraries/utils';
+import {delBasePath} from 'next/dist/next-server/lib/router/router'
+import {getDate} from '../commons/libraries/utils'
 import {
   Wrapper,
   HeadLineWrapper,
@@ -15,7 +15,7 @@ import {
   Title,
   Date,
   Deletebutton,
-} from './BoardList.styles';
+} from './BoardList.styles'
 
 //! 이 프롭스 과정에서 또 객체화되므로 {}를 넣어줘야함!!!!!!!!!!!!!!
 const BoardListPresenter = ({data}) => {
@@ -23,7 +23,7 @@ const BoardListPresenter = ({data}) => {
 
   // let a= data.slice(-6)
 
-  console.log(data);
+  console.log(data)
 
   // a.map((data) => {
   //         <LineWrapper>
@@ -58,13 +58,13 @@ const BoardListPresenter = ({data}) => {
             <Checkbox1 type="checkbox"></Checkbox1>
             <Number>{board.number}</Number>
             <Title>{board.title}</Title>
-            {/* <Date>{getDate(board.createdAt)}</Date> */}
+            <Date>{board.createdAt}</Date>
           </LineWrapper>
         ))}
       </BodyWrapper>
       <Deletebutton>선택 삭제</Deletebutton>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default BoardListPresenter;
+export default BoardListPresenter

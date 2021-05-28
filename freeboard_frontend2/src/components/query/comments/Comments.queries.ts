@@ -32,14 +32,13 @@ export const CREATEREPLY = gql`
 `;
 
 export const UPDATAREPLY = gql`
-  mutation DFG(
-    $contents: String
-    $rating: Float
-    $password: String
+  mutation UPDATE(
+    $updateBoardCommentInput: UpdateBoardCommentInput!
+    $password: String!
     $boardCommentId: ID!
   ) {
     updateBoardComment(
-      updateBoardCommentInput: { contents: $contents, rating: $rating }
+      updateBoardCommentInput: $updateBoardCommentInput
       password: $password
       boardCommentId: $boardCommentId
     ) {
@@ -48,7 +47,6 @@ export const UPDATAREPLY = gql`
       contents
       rating
       createdAt
-      updatedAt
     }
   }
 `;

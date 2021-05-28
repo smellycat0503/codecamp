@@ -151,7 +151,7 @@ export const Movie = styled.div`
 
 export const BottomWrapper = styled.div`
   width: 120px;
-  height: 40px;
+  height: 50px;
   /* background-color: green; */
   align-self: center;
   margin-top: 123px;
@@ -162,23 +162,24 @@ export const BottomWrapper = styled.div`
 export const GoodWrapper = styled.div`
   width: 40px;
   height: 40px;
-  /* background-color:red; */
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const GoodIcon = styled.div`
+export const LikeOutlined = styled.div`
   width: 20px;
   height: 18px;
-  background-color: gold;
+  /* background-color: gold; */
+  cursor: pointer;
 `;
 
 export const GoodNumber = styled.div`
   width: 40px;
   height: 27px;
   font-size: 18px;
-  color: gold;
+  /* color: gold; */
 `;
 
 export const HateWrapper = styled.div`
@@ -190,17 +191,18 @@ export const HateWrapper = styled.div`
   align-items: center;
 `;
 
-export const HateIcon = styled.div`
-  width: 20px;
-  height: 18px;
-  background-color: silver;
+export const DislikeOutlined = styled.div`
+  /* width: 20px; */
+  /* height: 18px; */
+  /* background-color: silver; */
+  cursor: pointer;
 `;
 
 export const HateNumber = styled.div`
   width: 40px;
   height: 27px;
   font-size: 18px;
-  color: silver;
+  /* color: silver; */
 `;
 
 export const Bottom2Wrapper = styled.div`

@@ -73,6 +73,7 @@ const ReplyCommentUI = (props) => {
             등록하기
           </Reply__Write__button>
         </Reply__Text__Bottom__Wrapper>
+
         {/* <Writer__Info__Wrapper>
           <ReplyWriter
             name="writer"

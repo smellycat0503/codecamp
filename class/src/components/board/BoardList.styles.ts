@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
   /* background-color:silver; */
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   height: 500px;
   display: flex;
   flex-direction: column;
-`;
+`
 export const HeadLineWrapper = styled.div`
   background-color: rgb(240, 240, 240);
   display: flex;
@@ -21,37 +21,37 @@ export const HeadLineWrapper = styled.div`
   align-items: center;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
-`;
+`
 
 export const CheckboxInHead = styled.input`
   /* margin-left:15px; */
   width: 4%;
   zoom: 1.2;
-`;
+`
 
 export const NumberInHead = styled.div`
   /* background-color:red; */
   width: 16%;
   text-align: center;
   font-size: 14px;
-`;
+`
 
 export const TitleInHead = styled.div`
   width: 60%;
   text-align: center;
   font-size: 14px;
-`;
+`
 
 export const DateInHead = styled.div`
   width: 20%;
   text-align: center;
   font-size: 14px;
-`;
+`
 
 export const BodyWrapper = styled.div`
   max-width: 800px;
   width: 100%;
-`;
+`
 
 export const LineWrapper = styled.div`
   border-bottom: 1px solid gray;
@@ -62,31 +62,31 @@ export const LineWrapper = styled.div`
   width: 100%;
   height: 40px;
   /* background-color:green; */
-`;
+`
 export const Checkbox1 = styled.input`
   /* margin-left:15px; */
   width: 4%;
   zoom: 1.2;
-`;
+`
 
 export const Number = styled.div`
   /* background-color:red; */
   text-align: center;
   width: 16%;
   font-size: 14px;
-`;
+`
 
 export const Title = styled.div`
   /* background-color:gold; */
   width: 60%;
   font-size: 14px;
-`;
+`
 
 export const Date = styled.div`
   width: 20%;
   text-align: center;
   font-size: 14px;
-`;
+`
 export const Deletebutton = styled.button`
   background-color: rgba(255, 22, 88, 0.9);
   color: white;
@@ -96,4 +96,15 @@ export const Deletebutton = styled.button`
   border-radius: 20px;
   border: solid 0;
   font-size: 15px;
-`;
+`
+
+interface IProps {
+  isActive: boolean
+}
+
+export const Page = styled.span`
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  color: ${(props: IProps) => (props.isActive ? 'red' : 'black')};
+`

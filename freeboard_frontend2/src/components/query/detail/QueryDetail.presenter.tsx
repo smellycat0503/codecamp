@@ -1,4 +1,5 @@
 import ReactPlayer from "react-player";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 import {
   Wrapper,
@@ -21,10 +22,8 @@ import {
   Movie,
   BottomWrapper,
   GoodWrapper,
-  GoodIcon,
   GoodNumber,
   HateWrapper,
-  HateIcon,
   HateNumber,
   Bottom__Button__Wrapper,
   ListButton,
@@ -78,17 +77,18 @@ const Presenter = (props) => {
           </Movie>
           <BottomWrapper>
             <GoodWrapper>
-              <GoodIcon
+              <LikeOutlined
                 id={props.data?.fetchBoard._id}
                 onClick={props.onClickLike}
-              ></GoodIcon>
+              />
+
               <GoodNumber>{props.data?.fetchBoard.likeCount}</GoodNumber>
             </GoodWrapper>
             <HateWrapper>
-              <HateIcon
+              <DislikeOutlined
                 onClick={props.onClickHate}
                 id={props.data?.fetchBoard._id}
-              ></HateIcon>
+              />
               <HateNumber>{props.data?.fetchBoard.dislikeCount}</HateNumber>
             </HateWrapper>
           </BottomWrapper>

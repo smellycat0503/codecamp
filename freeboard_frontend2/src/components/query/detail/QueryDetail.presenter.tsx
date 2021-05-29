@@ -1,5 +1,6 @@
-import ReactPlayer from "react-player";
-import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import ReactPlayer from 'react-player'
+import {LikeOutlined, DislikeOutlined} from '@ant-design/icons'
+import {ThumbUp} from '@material-ui/icons'
 
 import {
   Wrapper,
@@ -28,11 +29,11 @@ import {
   Bottom__Button__Wrapper,
   ListButton,
   ModifyButton,
-} from "./Query.Detail.Styles";
+} from './Query.Detail.Styles'
 
 interface IProps {
-  onClickUpdate: any;
-  data: any;
+  onClickUpdate: any
+  data: any
   // type: any;
 }
 // {data}:Iprops로 하면 안됬음.\
@@ -40,6 +41,7 @@ interface IProps {
 //! js한 파일에서 관리할 떄에는 넘겨줄 필요가 없었던 data가 컴포넌트가 나눠지면서 이 페이지에서도 필요하게 ㄷ함!!
 
 const Presenter = (props) => {
+  // console.log('asdfasdf', props.data?.fetchBoard._id)
   return (
     <Wrapper>
       <FreeboardWrapper>
@@ -66,7 +68,7 @@ const Presenter = (props) => {
           <BoardTitle>{props.data && props.data.fetchBoard.title}</BoardTitle>
           <Picture></Picture>
           <Contents>
-            {props.data === undefined ? "" : props.data.fetchBoard.contents}
+            {props.data === undefined ? '' : props.data.fetchBoard.contents}
           </Contents>
           <Movie>
             <ReactPlayer
@@ -77,11 +79,9 @@ const Presenter = (props) => {
           </Movie>
           <BottomWrapper>
             <GoodWrapper>
-              <LikeOutlined
-                id={props.data?.fetchBoard._id}
-                onClick={props.onClickLike}
+              <ThumbUp
+                onClick={props.onClickLike(props.data?.fetchBoard._id)}
               />
-
               <GoodNumber>{props.data?.fetchBoard.likeCount}</GoodNumber>
             </GoodWrapper>
             <HateWrapper>
@@ -95,11 +95,11 @@ const Presenter = (props) => {
         </BodyWrapper>
       </FreeboardWrapper>
       <Bottom__Button__Wrapper>
-        <ListButton>목록으로</ListButton>
+        <ListButton onClick={props.onClickBoardList}>목록으로</ListButton>
         <ModifyButton onClick={props.onClickUpdate}>수정하기</ModifyButton>
       </Bottom__Button__Wrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Presenter;
+export default Presenter

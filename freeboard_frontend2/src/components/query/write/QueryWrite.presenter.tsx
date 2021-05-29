@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect} from 'react'
 import {
   Wrapper,
   Title,
@@ -38,9 +38,17 @@ import {
   RegistWrapper,
   RegistButton,
   ErrorMessage1,
-} from "./QueryWrite.styles";
+} from './QueryWrite.styles'
 
-import { IProps } from "./QueryWrite.types";
+import {IProps} from './QueryWrite.types'
+
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 const Presenter = (props: IProps) => {
   return (
@@ -53,7 +61,7 @@ const Presenter = (props: IProps) => {
             type="text"
             placeholder="이름을 적어주세요."
             name="writer"
-            defaultValue={!props.data ? "" : props.data.fetchBoard.writer}
+            defaultValue={!props.data ? '' : props.data.fetchBoard.writer}
             onChange={props.onChangeInput}
           ></NameInput>
           {/* 여기 name은 별 의미가 없는건가 -> 이름 바꿔도 페이지 바뀜. */}
@@ -146,13 +154,46 @@ const Presenter = (props: IProps) => {
       </MainSettingWrapper>
 
       <RegistWrapper>
-        <RegistButton onClick={props.onClickPost}>등록하기</RegistButton>
+        <RegistButton
+          onClick={props.onClickPost}
+          // variant="outlined"
+          color="primary"
+        >
+          등록하기
+        </RegistButton>
+        //!모달 시도
+        {props.open && (
+          <Dialog
+            open={props.open}
+            onClose={props.handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Use Google's location service?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                게시물이 정상적으로 등록되었습니다.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              {/* <Button onClick={props.handleClose} color="primary">
+            Disagree
+          </Button> */}
+              <Button onClick={props.handleClose} color="primary" autoFocus>
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+        //!모달 시도
       </RegistWrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Presenter;
+export default Presenter
 //*시작
 // import {
 //   Wrapper,

@@ -1,35 +1,35 @@
-import { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
+import {useState} from 'react'
+import {useMutation, useQuery} from '@apollo/client'
+import {useRouter} from 'next/router'
 
-import { CREATE_BOARD, PILLOWS } from "./QueryWrite.queries";
-import Presenter from "./QueryWrite.presenter";
+import {CREATE_BOARD, PILLOWS} from './QueryWrite.queries'
+import Presenter from './QueryWrite.presenter'
 
 // interface IErrorMessage{
 
 // }
 
 const Container = () => {
-  const router = useRouter();
+  const router = useRouter()
   const [qwer, setQwer] = useState({
-    writer: "",
-    password: "",
-    title: "",
-    contents: "",
-    youtubeUrl: "",
-  });
+    writer: '',
+    password: '',
+    title: '',
+    contents: '',
+    youtubeUrl: '',
+  })
 
-  const [radio, setRadio] = useState("");
-  const [error, setError] = useState("");
+  const [radio, setRadio] = useState('')
+  const [error, setError] = useState('')
 
-  const { data } = useQuery(PILLOWS, {
-    variables: { boardId: router.query.ID },
-  });
-  console.log(data, "asdsadsada");
+  const {data} = useQuery(PILLOWS, {
+    variables: {boardId: router.query.ID},
+  })
+  console.log(data, 'asdsadsada')
 
   function onChangeInput(event) {
-    const iphone = { ...qwer, [event.target.name]: event.target.value };
-    setQwer(iphone);
+    const iphone = {...qwer, [event.target.name]: event.target.value}
+    setQwer(iphone)
 
     if (
       !qwer.writer ||
@@ -38,33 +38,51 @@ const Container = () => {
       !qwer.contents ||
       !qwer.youtubeUrl
     ) {
-      setError("내용을 작성해주세요");
+      setError('내용을 작성해주세요')
     } else {
-      setError("");
+      setError('')
     }
-    console.log(iphone);
+    console.log(iphone)
   }
 
-  const [muta] = useMutation(CREATE_BOARD);
+  const [muta] = useMutation(CREATE_BOARD)
+
+  const [a, setA] = useState('')
+  //!! 모달 작업 과정.
 
   async function onClickPost() {
     try {
       const result = await muta({
-        variables: { ...qwer },
-      });
+        variables: {...qwer},
+      })
       // const id = result.data.createBoard._id;
       // alert(result.data.createBoard.message);
-      console.log("리절트", result);
-      router.push(`/board/${result.data.createBoard._id}`);
+      setA(result.data.createBoard._id)
+      handleClickOpen()
+      console.log('리절트', result)
+      // router.push(`/board/${result.data.createBoard._id}`)
+      //! 리절트를 밖으로 꺼내기 위해 1. 유즈스테이트 사용. 기본값 별도로 필요치 않으므로 '' 사용. 2. 여기서의 결과를 셋A로 꺼내어 a에 넣는다.
       //* push 경로 파악하기.
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
   }
 
-  // async function onClickUpdate(){
+  //! 모달 시도.
 
-  // }
+  const [open, setOpen] = useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    router.push(`/board/${a}`)
+    //! 3. 팝업 뜬 후 확인 버튼 누른 다음에 다음 화면으로 넘어가야 하기 때문에 셋오픈이 false가 될 때 라우터푸쉬 적용.
+  }
+
+  //!
 
   return (
     <Presenter
@@ -72,10 +90,13 @@ const Container = () => {
       onClickPost={onClickPost}
       error={error}
       data={data}
+      handleClickOpen={handleClickOpen}
+      handleClose={handleClose}
+      open={open}
     />
-  );
-};
-export default Container;
+  )
+}
+export default Container
 
 //*시작
 // import QueryUI from "./QueryWrite.presenter";

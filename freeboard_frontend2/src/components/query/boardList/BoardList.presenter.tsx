@@ -22,7 +22,7 @@ import {
   Board__Title__Content,
   Board__Writer__Content,
   Board__Date__Content,
-} from "./BoardList.styles";
+} from './BoardList.styles'
 
 //*뮤테이션 떄는 첫 함수 ()에 props를 썼는데, 쿼리 시 사용하지 않는 이유? 써도 되나? 뮤테이션떄는 함수 기능을 가져올때 씀.
 //! =>props와 {}의 차이는 없음. 어떤걸 써도 됨. 선택할 때 이유만 있으면 됨, 본인이 편한 것. 기능적인 차이는 없음.
@@ -37,6 +37,18 @@ import {
 
 const QueryUI = (Props) => {
   //   console.log("프롭스", Props);
+
+  const getDate = (date) => {
+    // if (!date || typeof date !== 'string') return ''
+
+    const value = new Date(date)
+    const yyyy = value.getFullYear()
+    const mm = String(value.getMonth() + 1).padStart(2, '0')
+    const dd = String(value.getDate()).padStart(2, '0')
+
+    return `${yyyy}.${mm}.${dd}`
+  }
+
   return (
     <Wrapper>
       <Title>베스트 게시글</Title>
@@ -79,15 +91,17 @@ const QueryUI = (Props) => {
               {abc.title}
             </Board__Title__Content>
             <Board__Writer__Content>{abc.writer}</Board__Writer__Content>
-            <Board__Date__Content>{abc.createdAt}</Board__Date__Content>
+            <Board__Date__Content>
+              {getDate(abc.createdAt)}
+            </Board__Date__Content>
           </Board__Content__Wrapper>
         ))}
       </Board__Wrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default QueryUI;
+export default QueryUI
 
 // 시작
 // {data?.fetchBoards.slice(-10).map((abc, index) => (

@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import {gql} from '@apollo/client'
 
 export const REPLY = gql`
   query ZZZ($boardId: ID!) {
@@ -10,7 +10,7 @@ export const REPLY = gql`
       createdAt
     }
   }
-`;
+`
 
 export const CREATEREPLY = gql`
   mutation createBoardComment(
@@ -29,7 +29,7 @@ export const CREATEREPLY = gql`
       updatedAt
     }
   }
-`;
+`
 
 export const UPDATAREPLY = gql`
   mutation UPDATE(
@@ -49,4 +49,10 @@ export const UPDATAREPLY = gql`
       createdAt
     }
   }
-`;
+`
+
+export const DELETEREPLY = gql`
+  mutation DELETE($password: String, $boardCommentId: ID!) {
+    deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
+  }
+`

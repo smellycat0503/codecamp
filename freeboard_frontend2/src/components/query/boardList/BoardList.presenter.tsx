@@ -1,3 +1,4 @@
+import {fromPromise} from '@apollo/client'
 import {
   Wrapper,
   Title,
@@ -22,7 +23,13 @@ import {
   Board__Title__Content,
   Board__Writer__Content,
   Board__Date__Content,
+  Page,
+  Page__And__Write__Wrapper,
+  Write__Button,
+  FONT,
 } from './BoardList.styles'
+
+import {IProps} from './BoardList.types'
 
 //*뮤테이션 떄는 첫 함수 ()에 props를 썼는데, 쿼리 시 사용하지 않는 이유? 써도 되나? 뮤테이션떄는 함수 기능을 가져올때 씀.
 //! =>props와 {}의 차이는 없음. 어떤걸 써도 됨. 선택할 때 이유만 있으면 됨, 본인이 편한 것. 기능적인 차이는 없음.
@@ -35,7 +42,9 @@ import {
 //! => 구조분해할당 개념으로 파악하기.
 //map 사용 시 {data.fetchBoards}가 아닌 data?.의 ?를 붙이는 이유.=> 옵셔널 체이닝. 사용 판단 기준이 뭘까.
 
-const QueryUI = (Props) => {
+// import {IProps} from './BoardList.types'
+
+const QueryUI = (Props: IProps) => {
   //   console.log("프롭스", Props);
 
   const getDate = (date) => {
@@ -83,7 +92,7 @@ const QueryUI = (Props) => {
           <Board__Writer__Content>{data.fetchBoards.writer}</Board__Writer__Content>
           <Board__Date__Content>{data.fetchBoards.createdAt}</Board__Date__Content>
         </Board__Content__Wrapper> */}
-        {Props.data?.fetchBoards.slice(-10).map((abc, index) => (
+        {Props.dataComments?.fetchBoards.slice(-10).map((abc, index) => (
           <Board__Content__Wrapper key={abc._id}>
             <Board__Number__Content>{index + 1}</Board__Number__Content>
             <Board__Title__Content onClick={Props.onClickBoard} id={abc._id}>
@@ -97,6 +106,20 @@ const QueryUI = (Props) => {
           </Board__Content__Wrapper>
         ))}
       </Board__Wrapper>
+      <Page__And__Write__Wrapper>
+        {new Array(10).fill(1).map((_, index) => (
+          <Page
+            id={String(index + 1)}
+            onClick={Props.onClickPageNumber}
+            isActive={Props.currentPage === index + 1}
+          >
+            {index + 1}
+          </Page>
+        ))}
+        <Write__Button onClick={Props.onClickPostButton}>
+          게시물 등록하기
+        </Write__Button>
+      </Page__And__Write__Wrapper>
     </Wrapper>
   )
 }

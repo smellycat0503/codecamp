@@ -1,20 +1,22 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
-  height: 1200px;
+  height: 1592px;
   width: 1200px;
   /* background-color: gold; */
   display: flex;
   flex-direction: column;
-`;
+  /* background-color: yellow; */
+`
 
 export const Title = styled.div`
+  margin-top: 80px;
   font-size: 36px;
   font-weight: bold;
   /* display: flex;
   flex-direction: row; */
   align-self: center;
-`;
+`
 
 export const Best__List__Wrapper = styled.div`
   height: 257px;
@@ -24,14 +26,14 @@ export const Best__List__Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 39.57px;
-`;
+`
 
 export const Best__Post = styled.div`
   height: 257px;
   width: 282px;
   background-color: silver;
   border-radius: 30px;
-`;
+`
 
 export const Search__Wrapper = styled.div`
   height: 52px;
@@ -40,7 +42,7 @@ export const Search__Wrapper = styled.div`
   margin-top: 80px;
   display: flex;
   flex-direction: row;
-`;
+`
 
 export const Search__Input = styled.input`
   height: 52px;
@@ -50,7 +52,7 @@ export const Search__Input = styled.input`
   font-size: 16px;
   background-color: rgb(230, 230, 230);
   margin-right: 24px;
-`;
+`
 
 export const Date__Range__Wrapper = styled.div`
   height: 52px;
@@ -61,17 +63,17 @@ export const Date__Range__Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-right: 212px;
-`;
+`
 
 export const Calendar__Img = styled.img`
   height: 22px;
   width: 20px;
-`;
-export const DateStart = styled.div``;
+`
+export const DateStart = styled.div``
 
-export const From__To = styled.div``;
+export const From__To = styled.div``
 
-export const DateEnd = styled.div``;
+export const DateEnd = styled.div``
 
 export const Search__Button = styled.button`
   height: 52px;
@@ -81,7 +83,7 @@ export const Search__Button = styled.button`
   color: white;
 
   /* align-self: flex-end; */
-`;
+`
 
 export const Board__Wrapper = styled.div`
   width: 1200px;
@@ -89,8 +91,8 @@ export const Board__Wrapper = styled.div`
   /* background-color: gray; */
   margin-top: 40px;
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
-`;
+  /* border-bottom: 1px solid black; */
+`
 
 export const Board__Title__Wrapper = styled.div`
   height: 52px;
@@ -99,7 +101,7 @@ export const Board__Title__Wrapper = styled.div`
   display: flex;
   flex: row;
   border-bottom: 1px solid silver;
-`;
+`
 
 export const Board__Content__Wrapper = styled.div`
   height: 52px;
@@ -108,7 +110,7 @@ export const Board__Content__Wrapper = styled.div`
   display: flex;
   flex: row;
   border-bottom: 1px solid silver;
-`;
+`
 
 export const Board__Number = styled.div`
   height: 52px;
@@ -119,7 +121,7 @@ export const Board__Number = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-`;
+`
 export const Board__Title = styled.div`
   height: 52px;
   width: 65%;
@@ -129,7 +131,7 @@ export const Board__Title = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-`;
+`
 export const Board__Writer = styled.div`
   height: 52px;
   width: 15%;
@@ -139,7 +141,7 @@ export const Board__Writer = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-`;
+`
 export const Board__Date = styled.div`
   height: 52px;
   width: 15%;
@@ -149,7 +151,7 @@ export const Board__Date = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-`;
+`
 
 export const Board__Number__Content = styled.div`
   height: 52px;
@@ -159,7 +161,7 @@ export const Board__Number__Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const Board__Title__Content = styled.div`
   height: 52px;
@@ -169,7 +171,7 @@ export const Board__Title__Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const Board__Writer__Content = styled.div`
   height: 52px;
@@ -179,7 +181,7 @@ export const Board__Writer__Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const Board__Date__Content = styled.div`
   height: 52px;
@@ -190,4 +192,43 @@ export const Board__Date__Content = styled.div`
   justify-content: center;
   align-items: center;
   /* font-weight: bold; */
-`;
+`
+export const Page__And__Write__Wrapper = styled.div`
+  height: 52px;
+  width: 1200px;
+  /* background-color: gray; */
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+export const Write__Button = styled.button`
+  height: 52px;
+  width: 171px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: bold;
+  align-items: center;
+  border: 1px solid silver;
+  cursor: pointer;
+  /* align-self: flex-end; */
+`
+interface IProps {
+  isActive: boolean
+}
+
+export const Page = styled.div`
+  /* background-color: green; */
+  height: 30px;
+  width: 70px;
+  cursor: pointer;
+  align-self: center;
+  color: ${(Props: IProps) => (Props.isActive ? 'red' : 'black')};
+  font-weight: bold;
+  font-size: 16px;
+`
+export const FONT = styled.span`
+  font-family: 'testfont';
+`

@@ -38,6 +38,7 @@ import {
   RegistWrapper,
   RegistButton,
   ErrorMessage1,
+  FONT,
 } from './QueryWrite.styles'
 
 import {IProps} from './QueryWrite.types'
@@ -53,7 +54,14 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 const Presenter = (props: IProps) => {
   return (
     <Wrapper>
-      {!props.data ? <Title>게시물 등록</Title> : <Title>게시물 수정</Title>}
+      {!props.data ? (
+        <Title>
+          {/* <FONT></FONT> */}
+          게시물 등록
+        </Title>
+      ) : (
+        <Title>게시물 수정</Title>
+      )}
       <UserInfo>
         <Name>
           <NameTitle>작성자</NameTitle>
@@ -156,12 +164,12 @@ const Presenter = (props: IProps) => {
       <RegistWrapper>
         <RegistButton
           onClick={props.onClickPost}
-          // variant="outlined"
+          // variant="outlined" //!얘는 필요 없어서 생략해봄. 문제 없었음.
           color="primary"
         >
           등록하기
         </RegistButton>
-        //!모달 시도
+        {/* //모달 시도 1. 프롭스 앞에 넣기. 2. */}
         {props.open && (
           <Dialog
             open={props.open}
@@ -169,9 +177,7 @@ const Presenter = (props: IProps) => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
-            <DialogTitle id="alert-dialog-title">
-              {"Use Google's location service?"}
-            </DialogTitle>
+            <DialogTitle id="alert-dialog-title">{'등록 완료'}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
                 게시물이 정상적으로 등록되었습니다.
@@ -187,7 +193,7 @@ const Presenter = (props: IProps) => {
             </DialogActions>
           </Dialog>
         )}
-        //!모달 시도
+        {/* //모달 시도 */}
       </RegistWrapper>
     </Wrapper>
   )

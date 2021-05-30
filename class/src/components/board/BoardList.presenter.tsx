@@ -53,7 +53,7 @@ const BoardListPresenter = ({data, onClickPage, currentPage}) => {
         <TitleInHead>제목</TitleInHead>
         <DateInHead>작성일</DateInHead>
       </HeadLineWrapper>
-      <InfiniteScroll
+      {/* <InfiniteScroll
         pageStart={0}
         loadMore={() => {
           console.log('123')
@@ -64,7 +64,7 @@ const BoardListPresenter = ({data, onClickPage, currentPage}) => {
             Loading ...
           </div>
         }
-      ></InfiniteScroll>
+      ></InfiniteScroll> */}
       <BodyWrapper>
         {/* <LineWrapper>{data?.fetchBoards.map((data) => (<div>ass</div>))}</LineWrapper> */}
         {data?.fetchBoards.map((board) => (
@@ -73,8 +73,8 @@ const BoardListPresenter = ({data, onClickPage, currentPage}) => {
             <Number>{board.number}</Number>
             <Title>{board.title}</Title>
             <Date>{board.createdAt}</Date>
-            <div>현재 인덱스:</div>
-            <button id={board.number}>삭제</button>
+            {/* <div>현재 인덱스:</div>
+            <button id={board.number}>삭제</button> */}
           </LineWrapper>
         ))}
         {new Array(10).fill(1).map((___, index) => (

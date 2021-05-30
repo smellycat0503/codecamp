@@ -1,7 +1,7 @@
-// import LayoutUI from "./Layout.presenter";
+import LayoutUI from './Layout.presenter'
 
-// const LayoutContainer = ({ children }) => {
-//   return <LayoutUI children={children} />;
-// };
+const Layout = ({children}) => {
+  return <LayoutUI children={children} />
+}
 
-// export default LayoutContainer;
+export default Layout

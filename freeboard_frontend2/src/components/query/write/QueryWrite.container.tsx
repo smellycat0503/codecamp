@@ -47,9 +47,6 @@ const Container = () => {
 
   const [muta] = useMutation(CREATE_BOARD)
 
-  const [a, setA] = useState('')
-  //!! 모달 작업 과정.
-
   async function onClickPost() {
     try {
       const result = await muta({
@@ -69,6 +66,9 @@ const Container = () => {
   }
 
   //! 모달 시도.
+
+  const [a, setA] = useState('')
+  //!! 모달 작업 과정.
 
   const [open, setOpen] = useState(false)
 

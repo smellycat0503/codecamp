@@ -26,3 +26,15 @@ export const COMMENTS = gql`
     }
   }
 `
+export const BEST_POST = gql`
+  query {
+    fetchBoardsOfTheBest {
+      _id
+      writer
+      title
+      contents
+      likeCount
+      createdAt
+    }
+  }
+`

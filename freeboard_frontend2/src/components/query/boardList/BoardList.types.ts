@@ -8,4 +8,5 @@ export interface IProps {
   // QueryUI: any;
   Page: String
   onClickPostButton: any
+  bestPostList: any
 }

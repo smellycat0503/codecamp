@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {UPDATAREPLY, DELETEREPLY, REPLY} from './Comments.queries'
-import {useMutation} from '@apollo/client'
+import {useMutation, useQuery} from '@apollo/client'
 import {
   ReplyWriter,
   ReplyPassword,
@@ -28,11 +28,9 @@ import {
 } from '../../../commons/types/generated/types'
 import {useRouter} from 'next/router'
 
-// const router = useRouter()
-
 const ReplyMapUI = ({data}) => {
   const [rewriteReply] = useMutation(UPDATAREPLY)
-
+  const router = useRouter()
   const [replyRewrite, SetreplyRewrite] = useState({
     writer: '',
     password: '',
@@ -62,6 +60,12 @@ const ReplyMapUI = ({data}) => {
         },
         //!updateBoardCommentInput: 이 부분은 gql에서 요구하는 부분만 넣어줘야함!
         //!boardCommentId의 경로 -> 쿼리
+        refetchQueries: [
+          {
+            query: REPLY,
+            variables: {boardId: router.query.ID},
+          },
+        ],
       })
       // refetchQueries:[{query:REPLY,variables: {boardId: String(router.query.id) } }]
       //! 리패치쿼리 쓰는 법 파악하기!
@@ -97,6 +101,13 @@ const ReplyMapUI = ({data}) => {
           boardCommentId: event.target.id,
           password: replyRewrite.password,
         },
+
+        refetchQueries: [
+          {
+            query: REPLY,
+            variables: {boardId: router.query.ID},
+          },
+        ],
         // variables: {
         // deleteBoardComment: {
         //   password: replyRewrite.password,
@@ -104,6 +115,7 @@ const ReplyMapUI = ({data}) => {
         // },
         // },
       })
+      setIsDelete((prev) => !prev)
     } catch (error) {
       alert('땡')
     }

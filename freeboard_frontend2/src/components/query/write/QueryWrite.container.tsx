@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {useMutation, useQuery} from '@apollo/client'
 import {useRouter} from 'next/router'
 
@@ -84,8 +84,23 @@ const Container = () => {
 
   //!
 
+  //! useEffect 도전!
+
+  const inputRef = useRef(null)
+  //* 1.
+  console.log('inputRef', inputRef)
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+  // 빈 배열은 페이지가 나온 후 한번만 실행되는것
+  //언제 쓰는가 => 화면이 그려진 이후에 실행되어야 할 때.
+  //ex) 페이지가 길거나, 스크롤을 어느위치에 고정시키거나, 스크롤 바 없애기 등.
+  // 지금은 화면이 나오고 나서 커서를 깜빡이고 싶음
+  // 여기서 useRef를 사용했는데 용도는 좀 더 지켜보자
+
   return (
     <Presenter
+      inputRef={inputRef}
       onChangeInput={onChangeInput}
       onClickPost={onClickPost}
       error={error}

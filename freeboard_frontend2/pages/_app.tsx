@@ -4,7 +4,7 @@ import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client'
 
 import GlobalStyles from '../src/commons/styles/globalStyles'
 
-import Layout from '../src/commons/layout/Layout.container'
+import Layout from '../src/components/commons/layout'
 
 import {config} from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above

@@ -2,7 +2,7 @@
 //2. map사용하여 게시물 추가.
 //3. 쿼리로 조회한 data를 presenter로 넘기자
 import {useQuery} from '@apollo/client'
-import {CONTENTS, COMMENTS} from './BoardList.queries'
+import {CONTENTS, COMMENTS, BEST_POST} from './BoardList.queries'
 
 import QueryUI from './BoardList.presenter'
 import {useRouter} from 'next/router'
@@ -49,6 +49,9 @@ const Query = () => {
     router.push(`/board/write.tsx`)
   }
 
+  //!베스트 도전
+  const {data: bestPostList} = useQuery(BEST_POST)
+  console.log('bestPostList', bestPostList)
   return (
     <QueryUI
       data={data}
@@ -57,6 +60,7 @@ const Query = () => {
       onClickPageNumber={onClickPageNumber}
       currentPage={currentPage}
       onClickPostButton={onClickPostButton}
+      bestPostList={bestPostList}
     />
   )
   // {

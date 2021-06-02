@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
-  height: 1592px;
+  height: 100%;
   width: 1200px;
   /* background-color: gold; */
   display: flex;
@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `
 
 export const Title = styled.div`
-  margin-top: 80px;
+  /* margin-top: 80px; */
   font-size: 36px;
   font-weight: bold;
   /* display: flex;
@@ -28,11 +28,88 @@ export const Best__List__Wrapper = styled.div`
   margin-top: 39.57px;
 `
 
-export const Best__Post = styled.div`
+export const Best__Post__Wrapper = styled.div`
   height: 257px;
   width: 282px;
-  background-color: silver;
+  /* background-color: red; */
   border-radius: 30px;
+  box-shadow: 5px 5px 5px silver;
+`
+export const Best__Post__IMG = styled.img`
+  height: 120px;
+  width: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+`
+export const Best__Post__Title = styled.div`
+  margin-top: 20px;
+  padding-left: 20px;
+  height: 27px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+`
+
+export const Best__Name__And__Icon__Wrapper = styled.div`
+  height: 24px;
+  /* width: 70%; */
+  display: flex;
+  flex-direction: row;
+  /* background-color: gold; */
+  margin-top: 22px;
+  margin-left: 22px;
+`
+export const Best__Post__Icon = styled.img`
+  height: 20px;
+  width: 20px;
+  /* border-right: 23.5px; */
+`
+export const Best__Post__Name = styled.div`
+  height: 24px;
+  padding-left: 6px;
+  font-size: 16px;
+`
+export const Best__Post__Date = styled.div`
+  height: 18px;
+  margin-top: 8px;
+  padding-left: 20px;
+  /* padding-right: 23.5px; */
+  font-size: 12px;
+  color: #828282;
+  /* background-color: blue; */
+`
+export const Best__Name__And__Icon__And__Date__Wrapper = styled.div`
+  height: 70px;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: blue; */
+`
+export const Best__Post__Good__And__Counter__Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: green; */
+`
+
+export const Best__Post__Bottom__Content__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  /* background-color: green; */
+  width: 282px;
+  height: 70px;
+`
+
+export const Best__Post__GoodIcon = styled.img`
+  height: 18px;
+  width: 20px;
+  margin-top: 22px;
+`
+export const Best__Post__GoodNumber = styled.div`
+  height: 27px;
+  margin-top: 6px;
+  font-size: 16px;
 `
 
 export const Search__Wrapper = styled.div`
@@ -171,6 +248,7 @@ export const Board__Title__Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `
 
 export const Board__Writer__Content = styled.div`

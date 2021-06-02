@@ -1,9 +1,10 @@
 import {fromPromise} from '@apollo/client'
+import {getDate} from '../../../commons/libraries/utils'
 import {
   Wrapper,
   Title,
   Best__List__Wrapper,
-  Best__Post,
+  Best__Post__Wrapper,
   Search__Wrapper,
   Search__Input,
   Date__Range__Wrapper,
@@ -27,6 +28,17 @@ import {
   Page__And__Write__Wrapper,
   Write__Button,
   FONT,
+  Best__Post__IMG,
+  Best__Post__Title,
+  Best__Post__Icon,
+  Best__Post__Name,
+  Best__Post__Date,
+  Best__Post__GoodIcon,
+  Best__Post__GoodNumber,
+  Best__Name__And__Icon__Wrapper,
+  Best__Post__Good__And__Counter__Wrapper,
+  Best__Name__And__Icon__And__Date__Wrapper,
+  Best__Post__Bottom__Content__Wrapper,
 } from './BoardList.styles'
 
 import {IProps} from './BoardList.types'
@@ -45,27 +57,35 @@ import {IProps} from './BoardList.types'
 // import {IProps} from './BoardList.types'
 
 const QueryUI = (Props: IProps) => {
-  //   console.log("프롭스", Props);
-
-  const getDate = (date) => {
-    // if (!date || typeof date !== 'string') return ''
-
-    const value = new Date(date)
-    const yyyy = value.getFullYear()
-    const mm = String(value.getMonth() + 1).padStart(2, '0')
-    const dd = String(value.getDate()).padStart(2, '0')
-
-    return `${yyyy}.${mm}.${dd}`
-  }
-
   return (
     <Wrapper>
       <Title>베스트 게시글</Title>
       <Best__List__Wrapper>
-        <Best__Post></Best__Post>
-        <Best__Post></Best__Post>
-        <Best__Post></Best__Post>
-        <Best__Post></Best__Post>
+        {Props.bestPostList?.fetchBoardsOfTheBest.map((bestfour) => (
+          <Best__Post__Wrapper>
+            <Best__Post__IMG src="/rocky.jpeg"></Best__Post__IMG>
+            <Best__Post__Title onClick={Props.onClickBoard} id={bestfour._id}>
+              {bestfour.title}
+            </Best__Post__Title>
+            <Best__Post__Bottom__Content__Wrapper>
+              <Best__Name__And__Icon__And__Date__Wrapper>
+                <Best__Name__And__Icon__Wrapper>
+                  <Best__Post__Icon src="/icon2.png"></Best__Post__Icon>
+                  <Best__Post__Name>{bestfour.writer}</Best__Post__Name>
+                </Best__Name__And__Icon__Wrapper>
+                <Best__Post__Date>
+                  {getDate(bestfour.createdAt)}
+                </Best__Post__Date>
+              </Best__Name__And__Icon__And__Date__Wrapper>
+              <Best__Post__Good__And__Counter__Wrapper>
+                <Best__Post__GoodIcon src="/good2.png"></Best__Post__GoodIcon>
+                <Best__Post__GoodNumber>
+                  {bestfour.likeCount}
+                </Best__Post__GoodNumber>
+              </Best__Post__Good__And__Counter__Wrapper>
+            </Best__Post__Bottom__Content__Wrapper>
+          </Best__Post__Wrapper>
+        ))}
       </Best__List__Wrapper>
       <Search__Wrapper>
         <Search__Input></Search__Input>

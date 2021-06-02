@@ -5,7 +5,13 @@ const reset = css`
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: 'hanna';
+    /* color:white; */
     /* font-size: 20px; */
+
+    /* background-image: url('/bg.jpeg');
+    width: 100%;
+    height: 100%; */
   }
 
   @font-face {

@@ -97,6 +97,8 @@ const ReplyMapUI = ({data}) => {
           boardCommentId: event.target.id,
           password: replyRewrite.password,
         },
+
+        // refetchQueries: [{query: REPLY, variables: {boardId: router.query.id}}],
         // variables: {
         // deleteBoardComment: {
         //   password: replyRewrite.password,

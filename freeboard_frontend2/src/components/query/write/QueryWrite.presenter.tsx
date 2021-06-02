@@ -56,8 +56,8 @@ const Presenter = (props: IProps) => {
     <Wrapper>
       {!props.data ? (
         <Title>
-          {/* <FONT></FONT> */}
-          게시물 등록
+          <FONT>게시물 등록</FONT>
+          {/* 게시물 등록 */}
         </Title>
       ) : (
         <Title>게시물 수정</Title>
@@ -71,6 +71,7 @@ const Presenter = (props: IProps) => {
             name="writer"
             defaultValue={!props.data ? '' : props.data.fetchBoard.writer}
             onChange={props.onChangeInput}
+            ref={props.inputRef}
           ></NameInput>
           {/* 여기 name은 별 의미가 없는건가 -> 이름 바꿔도 페이지 바뀜. */}
           <ErrorMessage1>{props.error}</ErrorMessage1>

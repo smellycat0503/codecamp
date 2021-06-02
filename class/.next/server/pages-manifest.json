@@ -2,6 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/0518board": "pages/0518board.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/image": "pages/image.js"
 }

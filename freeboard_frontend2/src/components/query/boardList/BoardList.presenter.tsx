@@ -39,6 +39,8 @@ import {
   Best__Post__Good__And__Counter__Wrapper,
   Best__Name__And__Icon__And__Date__Wrapper,
   Best__Post__Bottom__Content__Wrapper,
+  Prev__Page,
+  Next_Page,
 } from './BoardList.styles'
 
 import {IProps} from './BoardList.types'
@@ -57,6 +59,15 @@ import {IProps} from './BoardList.types'
 // import {IProps} from './BoardList.types'
 
 const QueryUI = (Props: IProps) => {
+  // const commentNumber = () => {
+
+  //   if(Props.currentPage === 1){
+  //   } 글넘버 = index+1;
+  //   else if(Props.currentPage > 1){
+  //     글넘버 = String(currentPage-1) + String(index+1)
+  //   }
+  // }
+
   return (
     <Wrapper>
       <Title>베스트 게시글</Title>
@@ -112,9 +123,13 @@ const QueryUI = (Props: IProps) => {
           <Board__Writer__Content>{data.fetchBoards.writer}</Board__Writer__Content>
           <Board__Date__Content>{data.fetchBoards.createdAt}</Board__Date__Content>
         </Board__Content__Wrapper> */}
-        {Props.dataComments?.fetchBoards.slice(-10).map((abc, index) => (
+        {Props.dataComments?.fetchBoards.map((abc, index) => (
           <Board__Content__Wrapper key={abc._id}>
-            <Board__Number__Content>{index + 1}</Board__Number__Content>
+            <Board__Number__Content>
+              {Props.currentPage === 1
+                ? index + 1
+                : index + 1 + (Props.currentPage - 1) * 10}
+            </Board__Number__Content>
             <Board__Title__Content onClick={Props.onClickBoard} id={abc._id}>
               {/* //여기서 id=의 id는 container의 event.target.id로 들어간다. */}
               {abc.title}
@@ -127,6 +142,7 @@ const QueryUI = (Props: IProps) => {
         ))}
       </Board__Wrapper>
       <Page__And__Write__Wrapper>
+        <Prev__Page src="/left.png"></Prev__Page>
         {new Array(10).fill(1).map((_, index) => (
           <Page
             id={String(index + 1)}
@@ -136,6 +152,7 @@ const QueryUI = (Props: IProps) => {
             {index + 1}
           </Page>
         ))}
+        <Next_Page src="/right2.png"></Next_Page>
         <Write__Button onClick={Props.onClickPostButton}>
           게시물 등록하기
         </Write__Button>

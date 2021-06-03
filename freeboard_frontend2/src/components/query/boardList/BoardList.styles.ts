@@ -269,6 +269,7 @@ export const Board__Date__Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   /* font-weight: bold; */
 `
 export const Page__And__Write__Wrapper = styled.div`
@@ -279,7 +280,28 @@ export const Page__And__Write__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 `
+
+export const Prev__Page = styled.img`
+  height: 12px;
+  width: 7.41px;
+  cursor: pointer;
+  /* background-color: yellow; */
+  margin-right: 28.59px;
+
+  /* font-weight: bold; */
+  /* font-size: 16px; */
+`
+
+export const Next_Page = styled.img`
+  height: 12px;
+  width: 7.41px;
+  cursor: pointer;
+  /* background-color: yellow; */
+  /* margin-left: 28.59px; */
+`
+
 export const Write__Button = styled.button`
   height: 52px;
   width: 171px;
@@ -291,7 +313,9 @@ export const Write__Button = styled.button`
   align-items: center;
   border: 1px solid silver;
   cursor: pointer;
+  /* margin-left: 100px; */
   /* align-self: flex-end; */
+  margin-left: 100px;
 `
 interface IProps {
   isActive: boolean
@@ -299,13 +323,17 @@ interface IProps {
 
 export const Page = styled.div`
   /* background-color: green; */
-  height: 30px;
-  width: 70px;
+  height: 12px;
+  width: 45px;
+  /* width:100% */
   cursor: pointer;
-  align-self: center;
-  color: ${(Props: IProps) => (Props.isActive ? 'red' : 'black')};
   font-weight: bold;
   font-size: 16px;
+  align-self: center;
+  color: ${(Props: IProps) => (Props.isActive ? 'red' : 'black')};
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: row;
 `
 export const FONT = styled.span`
   font-family: 'testfont';

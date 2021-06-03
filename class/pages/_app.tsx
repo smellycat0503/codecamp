@@ -17,7 +17,7 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 //   })
 function MyApp({Component, pageProps}) {
   const uploadLink = createUploadLink({
-    uri: 'http://backend.codebootcamp.co.kr/graphql',
+    uri: 'http://example.codebootcamp.co.kr/graphql',
   })
 
   const client = new ApolloClient({

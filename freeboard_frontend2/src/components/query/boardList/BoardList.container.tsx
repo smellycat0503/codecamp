@@ -39,6 +39,8 @@ const Query = () => {
     variables: {page: currentPage},
   })
 
+  // console.log('게시글목록', dataComments.fetchBoards)
+
   //!페이지네이션의 숫자를 클릭했을 시 함수 작성.
   const onClickPageNumber = (event) => {
     setCurrentPage(Number(event.target.id))
@@ -52,6 +54,13 @@ const Query = () => {
   //!베스트 도전
   const {data: bestPostList} = useQuery(BEST_POST)
   console.log('bestPostList', bestPostList)
+  //!
+
+  //! 페이지네이션 도전
+  // const onClickextPage = () => {
+
+  // }
+
   return (
     <QueryUI
       data={data}

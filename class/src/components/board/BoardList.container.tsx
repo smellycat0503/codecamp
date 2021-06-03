@@ -45,6 +45,8 @@ const BoardListContainer = () => {
     setCurrentPage(a)
   }
 
+  //!무한스크롤러 무작정 따라해보자
+
   return (
     <BoardListPresenter
       data={data}

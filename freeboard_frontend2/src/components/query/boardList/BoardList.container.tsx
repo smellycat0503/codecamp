@@ -2,11 +2,11 @@
 //2. map사용하여 게시물 추가.
 //3. 쿼리로 조회한 data를 presenter로 넘기자
 import {useQuery} from '@apollo/client'
-import {CONTENTS, COMMENTS, BEST_POST} from './BoardList.queries'
+import {CONTENTS, COMMENTS, BEST_POST, BOARDCOUNT} from './BoardList.queries'
 
 import QueryUI from './BoardList.presenter'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 const Query = () => {
   const {data} = useQuery(CONTENTS)
 
@@ -33,15 +33,18 @@ const Query = () => {
 
   //! 기본값 1로 넣기? 어떻게 활용될지 작성하면서 알아보자.
   const [currentPage, setCurrentPage] = useState(1)
+  const [nextPage, SetNextPage] = useState(0)
+  const [prevPage, setPrevPage] = useState(0)
+
+  // const clickNumber = 1
 
   //! 페이지 쿼리 만들기.  클릭 시의 경로를 넣어야 할 것 같음.  page의 경로 만들어보기.
   const {data: dataComments} = useQuery(COMMENTS, {
     variables: {page: currentPage},
   })
 
-  // console.log('게시글목록', dataComments.fetchBoards)
+  // console.log('게시글목록', dataComments)
 
-  //!페이지네이션의 숫자를 클릭했을 시 함수 작성.
   const onClickPageNumber = (event) => {
     setCurrentPage(Number(event.target.id))
     //!여기서는 숫자로 받아야 하고 프레젠터에서는 문자로 받아야 하기 떄문.
@@ -57,9 +60,28 @@ const Query = () => {
   //!
 
   //! 페이지네이션 도전
-  // const onClickextPage = () => {
 
-  // }
+  const {data: boardcount} = useQuery(BOARDCOUNT)
+
+  // console.
+  console.log('글몇개냐', boardcount?.fetchBoardsCount)
+
+  //!페이지네이션 이전페이지 숫자 클릭 시 함수 작성
+  const onClickPrevPage = () => {
+    if (prevPage * 10 >= 1) {
+      setPrevPage(prevPage - 1)
+    }
+    console.log('prev잘되나', prevPage)
+  }
+
+  //!페이지네이션의 다음페이지 숫자를 클릭했을 시 함수 작성.
+  const onClickextPage = () => {
+    if (nextPage * 10 < Math.floor(boardcount?.fetchBoardsCount / 10)) {
+      SetNextPage(nextPage + 1)
+    }
+
+    console.log(nextPage)
+  }
 
   return (
     <QueryUI
@@ -70,6 +92,11 @@ const Query = () => {
       currentPage={currentPage}
       onClickPostButton={onClickPostButton}
       bestPostList={bestPostList}
+      onClickextPage={onClickextPage}
+      // clickNumber={clickNumber}
+      nextPage={nextPage}
+      boardcount={boardcount}
+      onClickPrevPage={onClickPrevPage}
     />
   )
   // {

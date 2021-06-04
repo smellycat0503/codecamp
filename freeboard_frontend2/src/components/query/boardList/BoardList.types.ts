@@ -9,4 +9,9 @@ export interface IProps {
   Page: String
   onClickPostButton: any
   bestPostList: any
+  onClickextPage: any
+  clickNumber: number
+  nextPage: number
+  boardcount: any
+  onClickPrevPage: any
 }

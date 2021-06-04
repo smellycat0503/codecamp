@@ -12,6 +12,12 @@ export const CONTENTS = gql`
   }
 `
 
+export const BOARDCOUNT = gql`
+  query {
+    fetchBoardsCount
+  }
+`
+
 export const COMMENTS = gql`
   query COMMENTS($page: Int) {
     fetchBoards(page: $page) {

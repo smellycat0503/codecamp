@@ -17,10 +17,17 @@ import {config} from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const App = ({Component, pageProps}) => {
-  const aaa = new ApolloClient({
+  const uploadLink = createUploadLink({
     uri: 'http://backend.codebootcamp.co.kr/graphql',
+  })
+
+  const aaa = new ApolloClient({
+    link: ApolloLink.from([uploadLink]),
+    //uploadLink만 있어도 되나 추후 주소 합치기 위해 .from미리 기재
     cache: new InMemoryCache(),
     // link: ApolloLink.from([createUploadLink as unknown as ApolloLink]),
+    //!아폴로 클라이언트로 통신기능 사용됨
+    //! cache가 아폴로의 스테이트 데이터 저장 용도
   })
 
   return (

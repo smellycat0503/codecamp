@@ -67,7 +67,7 @@ const QueryUI = (Props: IProps) => {
   //     글넘버 = String(currentPage-1) + String(index+1)
   //   }
   // }
-
+  console.log(Props.nextPage)
   return (
     <Wrapper>
       <Title>베스트 게시글</Title>
@@ -142,17 +142,27 @@ const QueryUI = (Props: IProps) => {
         ))}
       </Board__Wrapper>
       <Page__And__Write__Wrapper>
-        <Prev__Page src="/left.png"></Prev__Page>
-        {new Array(10).fill(1).map((_, index) => (
-          <Page
-            id={String(index + 1)}
-            onClick={Props.onClickPageNumber}
-            isActive={Props.currentPage === index + 1}
-          >
-            {index + 1}
-          </Page>
-        ))}
-        <Next_Page src="/right2.png"></Next_Page>
+        <Prev__Page
+          onClick={Props.onClickPrevPage}
+          src="/left.png"
+        ></Prev__Page>
+        {new Array(10)
+          .fill(1)
+          .filter(
+            (_, index) =>
+              index + 1 + Props.nextPage * 10 <
+              Props.boardcount?.fetchBoardsCount / 10
+          )
+          .map((_, index) => (
+            <Page
+              id={String(index + 1 + Props.nextPage * 10)}
+              onClick={Props.onClickPageNumber}
+              isActive={Props.currentPage === index + 1}
+            >
+              {index + Props.nextPage * 10 + 1}
+            </Page>
+          ))}
+        <Next_Page onClick={Props.onClickextPage} src="/right2.png"></Next_Page>
         <Write__Button onClick={Props.onClickPostButton}>
           게시물 등록하기
         </Write__Button>

@@ -18,7 +18,7 @@ import {
 } from './Comments.styles'
 
 const ReplyCommentUI = (props) => {
-  console.log(props?.datareply?.fetchBoardComments)
+  // console.log(props?.datareply?.fetchBoardComments)
 
   return (
     <Wrapper>
@@ -37,15 +37,20 @@ const ReplyCommentUI = (props) => {
           <ReplyPassword
             name="password"
             type="password"
-            placeholder="비밀번호"
+            placeholder="비밀번호1"
             onChange={props.onChangeReplyInput}
           ></ReplyPassword>
           <Star__Wrapper>
-            <Star src="/Star.png"></Star>
-            <Star src="/Star.png"></Star>
-            <Star src="/Star.png"></Star>
-            <Star src="/Star.png"></Star>
-            <Star src="/Star.png"></Star>
+            {[1, 2, 3, 4, 5].map((index) => (
+              <Star
+                id={String(index)}
+                src={props.reply.rating >= index ? '/ystar.png' : '/star.png'}
+                onMouseEnter={props.onMouseEnterHover}
+                onMouseLeave={props.onMouseLeaveHover}
+                onClick={props.onSaveRating}
+                //!()=> 형태는 인자가 event일때 줄여서 쓸 수 있다. event가 아닌 다른 인자일 경우에 저 형태를 사용.
+              ></Star>
+            ))}
           </Star__Wrapper>
         </Writer__Info__Wrapper>
         <Content__textbox

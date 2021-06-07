@@ -305,6 +305,10 @@ export const Star = styled.img`
   height: 20px;
   width: 20px;
   margin-right: 4px;
+  /* background: url('../Star.png') no-repeat;
+  &:hover {
+    background: url('../ystar.png') no-repeat;
+  } */
 `
 
 export const Rewrite__And__Delete__Wrapper = styled.div`

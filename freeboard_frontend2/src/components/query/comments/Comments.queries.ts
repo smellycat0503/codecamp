@@ -1,7 +1,7 @@
 import {gql} from '@apollo/client'
 
 export const REPLY = gql`
-  query ZZZ($boardId: ID!) {
+  query REPLY($boardId: ID!) {
     fetchBoardComments(boardId: $boardId) {
       _id
       writer

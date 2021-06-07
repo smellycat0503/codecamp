@@ -2,12 +2,16 @@ import ReplyCommentUI from './Comments.presenter'
 import {useRouter} from 'next/router'
 import {useMutation, useQuery} from '@apollo/client'
 import {CREATEREPLY, REPLY} from './Comments.queries'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {relayStylePagination} from '@apollo/client/utilities'
+import {RadiusSettingOutlined} from '@ant-design/icons'
+import {ReplayOutlined} from '@material-ui/icons'
+import {Password} from '../updateboard/Update.styles'
 
 export default function ReplyComment() {
   const router = useRouter()
 
-  console.log('라우터33', router)
+  // console.log('라우터33', router)
 
   const {data: datareply, refetch} = useQuery(REPLY, {
     variables: {boardId: router.query.ID},
@@ -22,7 +26,7 @@ export default function ReplyComment() {
     writer: '',
     password: '',
     contents: '',
-    rating: 5,
+    rating: 0,
   })
 
   // const [re__reply, setRe__reply] = useState(
@@ -37,7 +41,7 @@ export default function ReplyComment() {
   function onChangeReplyInput(event) {
     const viva = {...reply, [event.target.name]: event.target.value}
     setReply(viva)
-    console.log('댓글', viva)
+    // console.log('댓글', viva)
   }
 
   async function onClickReplyInput() {
@@ -51,7 +55,7 @@ export default function ReplyComment() {
             writer: reply.writer,
             contents: reply.contents,
             password: reply.password,
-            rating: 5,
+            rating: Number(reply.rating),
           },
           boardId: router.query.ID,
         },
@@ -96,12 +100,38 @@ export default function ReplyComment() {
   //   }
   // }
 
+  //!별점 도전!
+
+  // useEffect(() => {
+  //   console.log(reply)
+  // }, [reply])
+
+  // 마우스 호버 됬을때 함수
+  const onMouseEnterHover = (event) => {
+    setReply({...reply, rating: event.target.id})
+    // console.log(reply, "호버")
+  }
+
+  //마우스가 별에서 떠났을 시 함수
+  const onMouseLeaveHover = () => {
+    // setReply({...reply, rating: 0})
+  }
+
+  //마우스로 별을 클릭했을 시
+  const onSaveRating = (event) => {
+    setReply({...reply, rating: event.target.id})
+    console.log(reply)
+  }
+
   return (
     <ReplyCommentUI
+      reply={reply}
       onChangeReplyInput={onChangeReplyInput}
       onClickReplyInput={onClickReplyInput}
       datareply={datareply}
-
+      onMouseEnterHover={onMouseEnterHover}
+      onMouseLeaveHover={onMouseLeaveHover}
+      onSaveRating={onSaveRating}
       // onChangeReplyRewrite={onChangeReplyRewrite}
       // onClickReplyRewrite={onClickReplyRewriteInput}
     />

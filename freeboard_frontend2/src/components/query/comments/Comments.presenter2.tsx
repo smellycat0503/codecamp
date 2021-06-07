@@ -35,7 +35,7 @@ const ReplyMapUI = ({data}) => {
     writer: '',
     password: '',
     contents: '',
-    rating: 5,
+    rating: 0,
   })
 
   function onChangeReplyRewrite(event) {
@@ -44,7 +44,7 @@ const ReplyMapUI = ({data}) => {
       [event.target.name]: event.target.value,
     }
     SetreplyRewrite(ReplyRewriteInput)
-    console.log('댓글수정', ReplyRewriteInput)
+    // console.log('댓글수정', ReplyRewriteInput)
   }
 
   async function onClickReplyRewritePost(event) {
@@ -132,6 +132,20 @@ const ReplyMapUI = ({data}) => {
     return `${yyyy}.${mm}.${dd}`
   }
 
+  //!별점
+
+  const onMouseEnterHover = (event) => {
+    SetreplyRewrite({...replyRewrite, rating: event.target.id})
+    console.log(replyRewrite, '수정호버')
+  }
+
+  const onMouseLeaveHover = () => {}
+
+  const onSaveRating = (event) => {
+    SetreplyRewrite({...replyRewrite, rating: event.target.id})
+    console.log(replyRewrite, '수정클릭')
+  }
+
   return (
     <>
       {isUpdate ? (
@@ -150,11 +164,17 @@ const ReplyMapUI = ({data}) => {
               onChange={onChangeReplyRewrite}
             ></ReplyPassword>
             <Star__Wrapper>
-              <Star src="/Star.png"></Star>
-              <Star src="/Star.png"></Star>
-              <Star src="/Star.png"></Star>
-              <Star src="/Star.png"></Star>
-              <Star src="/Star.png"></Star>
+              {[1, 2, 3, 4, 5].map((index) => (
+                <Star
+                  id={String(index)}
+                  src={
+                    replyRewrite.rating >= index ? '/ystar.png' : '/Star.png'
+                  }
+                  onMouseEnter={onMouseEnterHover}
+                  onMouseLeave={onMouseLeaveHover}
+                  onClick={onSaveRating}
+                ></Star>
+              ))}
             </Star__Wrapper>
           </Writer__Info__Wrapper>
           <Content__textbox
@@ -180,11 +200,12 @@ const ReplyMapUI = ({data}) => {
             <Id__And__Star__Wrapper>
               <Writed__UserID>{data.writer}</Writed__UserID>
               <Star__Wrapper>
-                <Star src="/Star.png"></Star>
-                <Star src="/Star.png"></Star>
-                <Star src="/Star.png"></Star>
-                <Star src="/Star.png"></Star>
-                <Star src="/Star.png"></Star>
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <Star
+                    id={data.rating}
+                    src={data.rating >= index ? '/ystar.png' : '/star.png'}
+                  ></Star>
+                ))}
               </Star__Wrapper>
               <Rewrite__And__Delete__Wrapper>
                 <Rewrite__Button

@@ -21,7 +21,7 @@ const Query = () => {
     //! 온클릭.
   }
 
-  console.log('데이타 리스,트', data)
+  // console.log('데이타 리스,트', data)
 
   //   const aaavvvvv = "123123";
   //   const bbbqqqqqq = {
@@ -56,7 +56,7 @@ const Query = () => {
 
   //!베스트 도전
   const {data: bestPostList} = useQuery(BEST_POST)
-  console.log('bestPostList', bestPostList)
+  // console.log('bestPostList', bestPostList)
   //!
 
   //! 페이지네이션 도전
@@ -68,19 +68,28 @@ const Query = () => {
 
   //!페이지네이션 이전페이지 숫자 클릭 시 함수 작성
   const onClickPrevPage = () => {
-    if (prevPage * 10 >= 1) {
-      setPrevPage(prevPage - 1)
+    if (nextPage > 0) {
+      SetNextPage(nextPage - 1)
     }
-    console.log('prev잘되나', prevPage)
+    // if (prevPage * 10 >= 1) {
+    //   setPrevPage(prevPage - 1)
+    // }
+    // // console.log('prev잘되나', prevPage)
   }
+
+  useEffect(() => {
+    console.log(nextPage, 'nextPage')
+  }, [nextPage])
+  //useEffect 는 화면이 랜더링 된 후에 [  ]를 실행해주는 것.
+  //이 경우는 nextpage가 바뀔 경우에 해당 nextpage가 랜더링!!
 
   //!페이지네이션의 다음페이지 숫자를 클릭했을 시 함수 작성.
   const onClickextPage = () => {
-    if (nextPage * 10 < Math.floor(boardcount?.fetchBoardsCount / 10)) {
+    if (nextPage * 10 < Math.ceil(boardcount?.fetchBoardsCount / 10)) {
       SetNextPage(nextPage + 1)
     }
 
-    console.log(nextPage)
+    // console.log(nextPage)
   }
 
   return (

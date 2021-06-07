@@ -150,17 +150,20 @@ const QueryUI = (Props: IProps) => {
           .fill(1)
           .filter(
             (_, index) =>
-              index + 1 + Props.nextPage * 10 <
-              Props.boardcount?.fetchBoardsCount / 10
+              index + 1 + Props.nextPage * 10 <=
+              Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
           )
           .map((_, index) => (
-            <Page
-              id={String(index + 1 + Props.nextPage * 10)}
-              onClick={Props.onClickPageNumber}
-              isActive={Props.currentPage === index + 1}
-            >
-              {index + Props.nextPage * 10 + 1}
-            </Page>
+            <>
+              {console.log(index + 1 + Props.nextPage * 10, 'INDEX')}
+              <Page
+                id={String(index + 1 + Props.nextPage * 10)}
+                onClick={Props.onClickPageNumber}
+                isActive={Props.currentPage === index + 1 + Props.nextPage * 10}
+              >
+                {index + Props.nextPage * 10 + 1}
+              </Page>
+            </>
           ))}
         <Next_Page onClick={Props.onClickextPage} src="/right2.png"></Next_Page>
         <Write__Button onClick={Props.onClickPostButton}>

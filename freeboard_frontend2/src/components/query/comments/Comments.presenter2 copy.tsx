@@ -47,26 +47,22 @@ const ReplyMapUI = ({data}) => {
     rating: 0,
   })
 
-  //!삭제 모달
-  const [open, setOpen] = useState(false)
+  //   //!삭제 모달
+  //   const [open, setOpen] = useState(false);
 
-  const [ID, setID] = useState('')
-  const handleClickOpen = (event) => {
-    setID(event.target.id)
-    setOpen(true)
-    console.log(event.target.id)
-  }
+  //   const handleClickOpen = () => {
+  //     setOpen(true);
+  //   };
 
-  const handleClose = () => {
-    setOpen(false)
-  }
-  //!
+  //   const handleClose = () => {
+  //     setOpen(false);
+  //   };
+  //  //!
   function onChangeReplyRewrite(event) {
     const ReplyRewriteInput = {
       ...replyRewrite,
       [event.target.name]: event.target.value,
     }
-    console.log(ReplyRewriteInput)
     SetreplyRewrite(ReplyRewriteInput)
     // console.log('댓글수정', ReplyRewriteInput)
   }
@@ -117,12 +113,12 @@ const ReplyMapUI = ({data}) => {
 
   async function onClickReplyDelete(event) {
     // console.log('=============')
-    console.log(event.target.id)
+    // console.log(event.target.id)
     // console.log('=============')
     try {
       await deletecomment({
         variables: {
-          boardCommentId: ID,
+          boardCommentId: event.target.id,
           password: replyRewrite.password,
         },
 
@@ -238,7 +234,7 @@ const ReplyMapUI = ({data}) => {
                   src="/rewrite.png"
                 ></Rewrite__Button>
                 <Delete__Button
-                  onClick={handleClickOpen}
+                  onClick={handleIsDelete}
                   id={data._id}
                   src="/delete.png"
                 ></Delete__Button>
@@ -249,91 +245,77 @@ const ReplyMapUI = ({data}) => {
           </Comment__Rignt>
         </Replyed__Contents__Wrapper>
       )}
-      {open && (
+      {isDelete ? (
         <>
-          <div>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
+          <Writer__Info__Wrapper>
+            <ReplyWriter
+              name="writer"
+              type="text"
+              onChange={onChangeReplyRewrite}
+              placeholder="작성자"
+            ></ReplyWriter>
+            <ReplyPassword
+              name="password"
+              type="password"
+              placeholder="비밀번호"
+              onChange={onChangeReplyRewrite}
+            ></ReplyPassword>
+            <Star__Wrapper>
+              <Star src="/Star.png"></Star>
+              <Star src="/Star.png"></Star>
+              <Star src="/Star.png"></Star>
+              <Star src="/Star.png"></Star>
+              <Star src="/Star.png"></Star>
+            </Star__Wrapper>
+          </Writer__Info__Wrapper>
+          <Content__textbox
+            type="text"
+            placeholder="개인정보 어쩌고고"
+            name="contents"
+            onChange={onChangeReplyRewrite}
+          ></Content__textbox>
+          <Reply__Text__Bottom__Wrapper>
+            <TextCount type="text"></TextCount>
+            <Reply__Rewrite__Post__Button
+              id={data._id}
+              onClick={onClickReplyDelete}
             >
-              <DialogTitle id="alert-dialog-title">
-                {'이 글을 삭제합니다.'}
-              </DialogTitle>
-              <DialogContent>
-                <ReplyPassword
-                  name="password"
-                  type="password"
-                  placeholder="비밀번호"
-                  onChange={onChangeReplyRewrite}
-                ></ReplyPassword>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  아니오
-                </Button>
-                <Button
-                  onClick={(e) => {
-                    handleClose()
-                    onClickReplyDelete(e)
-                  }}
-                  color="primary"
-                  autoFocus
-                  id={data._id}
-                >
-                  네
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
+              삭제하기
+            </Reply__Rewrite__Post__Button>
+          </Reply__Text__Bottom__Wrapper>
         </>
+      ) : (
+        <></>
+        // <Replyed__Contents__Wrapper>
+        //   <UserIcon src="/useri.png"></UserIcon>
+        //   <Comment__Rignt>
+        //     <Id__And__Star__Wrapper>
+        //       <Writed__UserID>{data.writer}</Writed__UserID>
+        //       <Star src="/Star.png"></Star>
+        //       <Star src="/Star.png"></Star>
+        //       <Star src="/Star.png"></Star>
+        //       <Star src="/Star.png"></Star>
+        //       <Star src="/Star.png"></Star>
+        //       <Rewrite__And__Delete__Wrapper>
+        //         <Rewrite__Button
+        //           onClick={handleIsUpdate}
+        //           id={data._id}
+        //           src="/rewrite.png"
+        //         ></Rewrite__Button>
+        //         <Delete__Button
+        //           onClick={handleIsDelete}
+        //           id={data._id}
+        //           src="/delete.png"
+        //         ></Delete__Button>
+        //       </Rewrite__And__Delete__Wrapper>
+        //     </Id__And__Star__Wrapper>
+        //     <User__Comment>{data.contents}</User__Comment>
+        //     <Writed__Date>{data.createdAt}</Writed__Date>
+        //   </Comment__Rignt>
+        // </Replyed__Contents__Wrapper>
       )}
     </>
   )
 }
 
 export default ReplyMapUI
-
-// {open ? (
-//   <>
-//     <Writer__Info__Wrapper>
-//       <ReplyWriter
-//         name="writer"
-//         type="text"
-//         onChange={onChangeReplyRewrite}
-//         placeholder="작성자"
-//       ></ReplyWriter>
-// <ReplyPassword
-//   name="password"
-//   type="password"
-//   placeholder="비밀번호"
-//   onChange={onChangeReplyRewrite}
-// ></ReplyPassword>
-//       <Star__Wrapper>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//       </Star__Wrapper>
-//     </Writer__Info__Wrapper>
-//     <Content__textbox
-//       type="text"
-//       placeholder="개인정보 어쩌고고"
-//       name="contents"
-//       onChange={onChangeReplyRewrite}
-//     ></Content__textbox>
-//     <Reply__Text__Bottom__Wrapper>
-//       <TextCount type="text"></TextCount>
-//       <Reply__Rewrite__Post__Button
-//         id={data._id}
-//         onClick={onClickReplyDelete}
-//       >
-//         삭제하기
-//       </Reply__Rewrite__Post__Button>
-//     </Reply__Text__Bottom__Wrapper>
-//   </>
-// ) : (
-//   <></>
-// )}

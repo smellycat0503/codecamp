@@ -1,6 +1,5 @@
 import React from 'react'
 import Slider from 'react-slick'
-import {Component} from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import {Wrapper, BackImg} from './LayoutHeader.styles'
@@ -98,7 +97,7 @@ const LayoutHeaderUI = () => {
 
     .slick-prev {
       /* left: -25px; */
-      left: 3% !important;
+      left: 7% !important;
       z-index: 1;
     }
     [dir='rtl'] .slick-prev {
@@ -114,7 +113,7 @@ const LayoutHeaderUI = () => {
 
     .slick-next {
       /* right: -25px; */
-      right: 3% !important;
+      right: 8% !important;
       z-index: 1;
     }
     [dir='rtl'] .slick-next {

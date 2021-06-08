@@ -1,17 +1,24 @@
+import {ReactNativeFile} from 'extract-files'
+import React from 'react'
+import {IQuery} from '../../../commons/types/generated/types'
+
 export interface IProps {
-  data: any
+  data: IQuery
   onClickBoard: any
-  dataComments: any
+  dataComments: IQuery
   onClickPageNumber: any
-  currentPage: any
+  currentPage: number
   isActive: boolean
   // QueryUI: any;
   Page: String
-  onClickPostButton: any
+  onClickPostButton: () => void
   bestPostList: any
   onClickextPage: any
   clickNumber: number
   nextPage: number
   boardcount: any
-  onClickPrevPage: any
+  onClickPrevPage: () => void
+  InputSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
+  search: string
+  onClickSearch: any
 }

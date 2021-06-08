@@ -7,11 +7,15 @@ import {CONTENTS, COMMENTS, BEST_POST, BOARDCOUNT} from './BoardList.queries'
 import QueryUI from './BoardList.presenter'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
+import {
+  IQuery,
+  IQueryFetchBoardsArgs,
+} from '../../../commons/types/generated/types'
 const Query = () => {
-  const {data} = useQuery(CONTENTS)
+  const {data} = useQuery<IQuery, IQueryFetchBoardsArgs>(CONTENTS)
 
   const router = useRouter()
-
+  const [search, setSearch] = useState('')
   function onClickBoard(event) {
     router.push(`/board/${event.target.id}`)
     //! 내가 전에 적었던 글로 이동해야함-> _id를 찾으려면 ?
@@ -29,6 +33,17 @@ const Query = () => {
   //     age: 13,
   //   };
 
+  // const [pageArr, setPageArr] = useState([1,2,3,4,5,6,7,8,9,10])
+  // useEffect(() => {
+  //   if (count < 10) {
+  //     let newArr = []
+  //     for (let i = 1; i < count / 10; i++) {
+  //       newArr.push(i)
+  //     }
+  //     setPageArr(newArr)
+  //   }
+  // }, [count])
+
   //*페이지네이션 도전
 
   //! 기본값 1로 넣기? 어떻게 활용될지 작성하면서 알아보자.
@@ -39,8 +54,12 @@ const Query = () => {
   // const clickNumber = 1
 
   //! 페이지 쿼리 만들기.  클릭 시의 경로를 넣어야 할 것 같음.  page의 경로 만들어보기.
-  const {data: dataComments} = useQuery(COMMENTS, {
-    variables: {page: currentPage},
+  const {data: dataComments} = useQuery<IQuery>(COMMENTS, {
+    variables: {
+      page: currentPage,
+      search: search,
+      //! 서치 두링 이름 같으니 생략 가능!!
+    },
   })
 
   // console.log('게시글목록', dataComments)
@@ -55,16 +74,23 @@ const Query = () => {
   }
 
   //!베스트 도전
-  const {data: bestPostList} = useQuery(BEST_POST)
+  const {data: bestPostList} =
+    useQuery<IQuery, IQueryFetchBoardsArgs>(BEST_POST)
   // console.log('bestPostList', bestPostList)
-  //!
 
   //! 페이지네이션 도전
 
-  const {data: boardcount} = useQuery(BOARDCOUNT)
-
+  const {data: boardcount} = useQuery<IQuery, IQueryFetchBoardsArgs>(
+    BOARDCOUNT,
+    {
+      variables: {
+        search: search,
+      },
+    }
+  )
+  //!검색 결과 찾기-> 쿼리를 처음에 보드카운트가 아닌 커맨츠를 불렀음. 글 수를 기준으로 계산해야 하므로 얘를 사용!!
   // console.
-  console.log('글몇개냐', boardcount?.fetchBoardsCount)
+  // console.log('글몇개냐', boardcount?.fetchBoardsCount)
 
   //!페이지네이션 이전페이지 숫자 클릭 시 함수 작성
   const onClickPrevPage = () => {
@@ -77,9 +103,9 @@ const Query = () => {
     // // console.log('prev잘되나', prevPage)
   }
 
-  useEffect(() => {
-    console.log(nextPage, 'nextPage')
-  }, [nextPage])
+  // useEffect(() => {
+  //   console.log(nextPage, 'nextPage')
+  // }, [nextPage])
   //useEffect 는 화면이 랜더링 된 후에 [  ]를 실행해주는 것.
   //이 경우는 nextpage가 바뀔 경우에 해당 nextpage가 랜더링!!
 
@@ -92,6 +118,27 @@ const Query = () => {
     // console.log(nextPage)
   }
 
+  //! 검색 도전
+
+  const [inputForSearch, setInputForSearch] = useState('')
+
+  const InputSearch = (event) => {
+    setInputForSearch(event.target.value)
+    // console.log(search)
+  }
+  //!여기서 셋서치를 하나 더 만들어서 변수에 담아서,온클릭서치에 담아야 한다 이유는
+  //! 셋 서치(스테이트)는 바뀌는 순간 바로 렌더링이 되므로! 스테이트 변수에 한번 더 따로 담아야 한다
+  const onClickSearch = () => {
+    setSearch(inputForSearch)
+
+    //   try {
+    //     await bestPostList(search)
+    //   } catch (error) {
+    //     alert(error.message)
+    //   }
+  }
+  console.log(boardcount?.fetchBoardsCount / 10)
+  //!뮤테이션은 어싱크어웨이트 써야함. 쿼리는 보통 옵셔널체에닝을 쓴다
   return (
     <QueryUI
       data={data}
@@ -106,6 +153,8 @@ const Query = () => {
       nextPage={nextPage}
       boardcount={boardcount}
       onClickPrevPage={onClickPrevPage}
+      InputSearch={InputSearch}
+      onClickSearch={onClickSearch}
     />
   )
   // {

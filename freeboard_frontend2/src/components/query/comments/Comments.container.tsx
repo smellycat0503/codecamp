@@ -120,7 +120,7 @@ export default function ReplyComment() {
   //마우스로 별을 클릭했을 시
   const onSaveRating = (event) => {
     setReply({...reply, rating: event.target.id})
-    console.log(reply)
+    // console.log(reply)
   }
 
   return (

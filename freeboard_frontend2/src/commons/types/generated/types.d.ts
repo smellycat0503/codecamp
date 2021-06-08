@@ -11,6 +11,8 @@ export type Scalars = {
   Float: number;
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
 export type IBoard = {
@@ -22,6 +24,7 @@ export type IBoard = {
   youtubeUrl?: Maybe<Scalars['String']>;
   likeCount: Scalars['Int'];
   dislikeCount: Scalars['Int'];
+  images?: Maybe<Array<Scalars['String']>>;
   boardAddress?: Maybe<IBoardAddress>;
   user?: Maybe<IUser>;
   createdAt: Scalars['DateTime'];
@@ -65,6 +68,7 @@ export type ICreateBoardInput = {
   title: Scalars['String'];
   contents: Scalars['String'];
   youtubeUrl?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<Scalars['String']>>;
 };
 
 export type ICreateUseditemInput = {
@@ -90,6 +94,17 @@ export type ICreateUserInput = {
 };
 
 
+export type IFileManager = {
+  __typename?: 'FileManager';
+  _id: Scalars['ID'];
+  url: Scalars['String'];
+  size?: Maybe<Scalars['Float']>;
+  isUsed: Scalars['Boolean'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+};
+
 export type IMutation = {
   __typename?: 'Mutation';
   createBoard: IBoard;
@@ -101,8 +116,10 @@ export type IMutation = {
   createBoardComment: IBoardComment;
   deleteBoardComment: Scalars['ID'];
   updateBoardComment: IBoardComment;
+  uploadFile: IFileManager;
   createPointTransactionOfBuyingAndSelling: IUseditem;
   createPointTransactionOfLoading: IPointTransaction;
+  restoreAccessToken: IToken;
   createUseditem: IUseditem;
   updateUseditem: IUseditem;
   toggleUseditemPick: Scalars['Int'];
@@ -113,7 +130,8 @@ export type IMutation = {
   deleteUseditemQuestionAnswer: Scalars['String'];
   updateUseditemQuestionAnswer: IUseditemQuestionAnswer;
   createUser: IUser;
-  logoutUser: Scalars['Boolean'];
+  loginUser: IToken;
+  loginUserExample: IToken;
   resetUserPassword: Scalars['Boolean'];
   updateUser: Scalars['Boolean'];
 };
@@ -167,6 +185,11 @@ export type IMutationUpdateBoardCommentArgs = {
   updateBoardCommentInput: IUpdateBoardCommentInput;
   password?: Maybe<Scalars['String']>;
   boardCommentId: Scalars['ID'];
+};
+
+
+export type IMutationUploadFileArgs = {
+  file: Scalars['Upload'];
 };
 
 
@@ -234,6 +257,18 @@ export type IMutationCreateUserArgs = {
   createUserInput: ICreateUserInput;
 };
 
+
+export type IMutationLoginUserArgs = {
+  password: Scalars['String'];
+  email: Scalars['String'];
+};
+
+
+export type IMutationLoginUserExampleArgs = {
+  password: Scalars['String'];
+  email: Scalars['String'];
+};
+
 export type IPointTransaction = {
   __typename?: 'PointTransaction';
   _id: Scalars['ID'];
@@ -285,7 +320,13 @@ export type IQueryFetchBoardArgs = {
 
 
 export type IQueryFetchBoardsArgs = {
+  search?: Maybe<Scalars['String']>;
   page?: Maybe<Scalars['Int']>;
+};
+
+
+export type IQueryFetchBoardsCountArgs = {
+  search?: Maybe<Scalars['String']>;
 };
 
 
@@ -309,6 +350,11 @@ export type IQueryFetchUseditemQuestionAnswersArgs = {
   useditemQuestionId: Scalars['ID'];
 };
 
+export type IToken = {
+  __typename?: 'Token';
+  accessToken: Scalars['String'];
+};
+
 export type IUpdateBoardCommentInput = {
   contents?: Maybe<Scalars['String']>;
   rating?: Maybe<Scalars['Float']>;
@@ -318,6 +364,7 @@ export type IUpdateBoardInput = {
   title?: Maybe<Scalars['String']>;
   contents?: Maybe<Scalars['String']>;
   youtubeUrl?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<Scalars['String']>>;
 };
 
 export type IUpdateUseditemInput = {
@@ -335,6 +382,7 @@ export type IUpdateUseditemQuestionAnswerInput = {
 export type IUpdateUseditemQuestionInput = {
   contents: Scalars['String'];
 };
+
 
 export type IUseditem = {
   __typename?: 'Useditem';

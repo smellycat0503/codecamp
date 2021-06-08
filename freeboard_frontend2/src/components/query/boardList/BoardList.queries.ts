@@ -8,19 +8,20 @@ export const CONTENTS = gql`
       writer
       title
       createdAt
+      contents
     }
   }
 `
 
 export const BOARDCOUNT = gql`
-  query {
-    fetchBoardsCount
+  query fetchBoardsCount($search: String) {
+    fetchBoardsCount(search: $search)
   }
 `
 
 export const COMMENTS = gql`
-  query COMMENTS($page: Int) {
-    fetchBoards(page: $page) {
+  query COMMENTS($page: Int, $search: String) {
+    fetchBoards(page: $page, search: $search) {
       _id
       writer
       title

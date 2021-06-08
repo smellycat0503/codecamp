@@ -67,7 +67,7 @@ const QueryUI = (Props: IProps) => {
   //     글넘버 = String(currentPage-1) + String(index+1)
   //   }
   // }
-  console.log(Props.nextPage)
+  // console.log(Props.nextPage)
   return (
     <Wrapper>
       <Title>베스트 게시글</Title>
@@ -99,7 +99,10 @@ const QueryUI = (Props: IProps) => {
         ))}
       </Best__List__Wrapper>
       <Search__Wrapper>
-        <Search__Input></Search__Input>
+        <Search__Input
+          name="search"
+          onChange={Props.InputSearch}
+        ></Search__Input>
         <Date__Range__Wrapper>
           <Calendar__Img src="/cal.png"></Calendar__Img>
           <DateStart>2020.12.02</DateStart>
@@ -107,7 +110,7 @@ const QueryUI = (Props: IProps) => {
           <Calendar__Img src="/cal.png"></Calendar__Img>
           <DateEnd>2020.12.02</DateEnd>
         </Date__Range__Wrapper>
-        <Search__Button>검색하기</Search__Button>
+        <Search__Button onClick={Props.onClickSearch}>검색하기</Search__Button>
       </Search__Wrapper>
 
       <Board__Wrapper>
@@ -146,25 +149,48 @@ const QueryUI = (Props: IProps) => {
           onClick={Props.onClickPrevPage}
           src="/left.png"
         ></Prev__Page>
-        {new Array(10)
-          .fill(1)
-          .filter(
-            (_, index) =>
-              index + 1 + Props.nextPage * 10 <=
-              Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
-          )
-          .map((_, index) => (
-            <>
-              {console.log(index + 1 + Props.nextPage * 10, 'INDEX')}
-              <Page
-                id={String(index + 1 + Props.nextPage * 10)}
-                onClick={Props.onClickPageNumber}
-                isActive={Props.currentPage === index + 1 + Props.nextPage * 10}
-              >
-                {index + Props.nextPage * 10 + 1}
-              </Page>
-            </>
-          ))}
+        {Props.boardcount?.fetchBoardsCount < 10
+          ? //글 수 자체가 10개보다 적을 때메만 적용되야함
+            new Array(10)
+              .fill(1)
+              .filter(
+                (_, index) =>
+                  index + 1 <=
+                  Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
+              )
+              .map((_, index) => (
+                <>
+                  {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
+                  <Page
+                    id={String(index + 1)}
+                    onClick={Props.onClickPageNumber}
+                    isActive={Props.currentPage === index + 1}
+                  >
+                    {index + 1}
+                  </Page>
+                </>
+              ))
+          : new Array(10)
+              .fill(1)
+              .filter(
+                (_, index) =>
+                  index + 1 + Props.nextPage * 10 <=
+                  Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
+              )
+              .map((_, index) => (
+                <>
+                  {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
+                  <Page
+                    id={String(index + 1 + Props.nextPage * 10)}
+                    onClick={Props.onClickPageNumber}
+                    isActive={
+                      Props.currentPage === index + 1 + Props.nextPage * 10
+                    }
+                  >
+                    {index + Props.nextPage * 10 + 1}
+                  </Page>
+                </>
+              ))}
         <Next_Page onClick={Props.onClickextPage} src="/right2.png"></Next_Page>
         <Write__Button onClick={Props.onClickPostButton}>
           게시물 등록하기
@@ -176,13 +202,62 @@ const QueryUI = (Props: IProps) => {
 
 export default QueryUI
 
-// 시작
-// {data?.fetchBoards.slice(-10).map((abc, index) => (
-//     <Board__Content__Wrapper>
-//       <Board__Number__Content>{index + 1}</Board__Number__Content>
-//       <Board__Title__Content>{abc.title}</Board__Title__Content>
-//       <Board__Writer__Content>{abc.writer}</Board__Writer__Content>
-//       <Board__Date__Content>{abc.createdAt}</Board__Date__Content>
-//     </Board__Content__Wrapper>
+// {new Array(10)
+//   .fill(1)
+//   .filter(
+//     (_, index) =>
+//       index + 1 + Props.nextPage * 10 <=
+//       Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
+//   )
+//   .map((_, index) => (
+//     <>
+//       {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
+//       <Page
+//         id={String(index + 1 + Props.nextPage * 10)}
+//         onClick={Props.onClickPageNumber}
+//         isActive={Props.currentPage === index + 1 + Props.nextPage * 10}
+//       >
+//         {index + Props.nextPage * 10 + 1}
+//       </Page>
+//     </>
 //   ))}
-//끝
+
+// {
+//   Props.boardcount?.fetchBoardsCount / 10 < 10 ? new Array(10)
+//         .fill(1)
+//         .filter(
+//           (_, index) =>
+//             index + 1 <= Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
+//         )
+//         .map((_, index) => (
+//           <>
+//             {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
+//             <Page
+//               id={String(index + 1)}
+//               onClick={Props.onClickPageNumber}
+//               isActive={Props.currentPage === index + 1}
+//             >
+//               {index + 1}
+//             </Page>
+//           </>
+//         ))
+//     : new Array(10)
+//         .fill(1)
+//         .filter(
+//           (_, index) =>
+//             index + 1 + Props.nextPage * 10 <=
+//             Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
+//         )
+//         .map((_, index) => (
+//           <>
+//             {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
+//             <Page
+//               id={String(index + 1 + Props.nextPage * 10)}
+//               onClick={Props.onClickPageNumber}
+//               isActive={Props.currentPage === index + 1 + Props.nextPage * 10}
+//             >
+//               {index + Props.nextPage * 10 + 1}
+//             </Page>
+//           </>
+//         ))
+// }

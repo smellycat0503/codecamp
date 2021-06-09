@@ -1,12 +1,13 @@
-import { gql } from "@apollo/client";
+import {gql} from '@apollo/client'
 
 export const CREATE_BOARD = gql`
-  mutation abc(
+  mutation CREATE_BOARD(
     $writer: String
     $password: String
     $title: String!
     $contents: String!
     $youtubeUrl: String
+    $images: [String!]
   ) {
     createBoard(
       createBoardInput: {
@@ -15,6 +16,7 @@ export const CREATE_BOARD = gql`
         title: $title
         contents: $contents
         youtubeUrl: $youtubeUrl
+        images: $images
       }
     ) {
       _id
@@ -24,10 +26,19 @@ export const CREATE_BOARD = gql`
       youtubeUrl
       likeCount
       dislikeCount
+      images
+      createdAt
     }
   }
-`;
+`
 
+export const UPLOAD_FILE = gql`
+  mutation UPLOADFILE($file: Upload!) {
+    uploadFile(file: $file) {
+      url
+    }
+  }
+`
 //*시작
 // import { gql } from "@apollo/client";
 
@@ -66,4 +77,4 @@ export const PILLOWS = gql`
       dislikeCount
     }
   }
-`;
+`

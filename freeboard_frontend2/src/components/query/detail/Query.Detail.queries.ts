@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
+import {gql} from '@apollo/client'
 
 export const PILLOWS = gql`
-  query ZZZ($boardId: ID!) {
+  query FETCHBOARD($boardId: ID!) {
     fetchBoard(boardId: $boardId) {
       _id
       writer
@@ -10,18 +10,20 @@ export const PILLOWS = gql`
       youtubeUrl
       likeCount
       dislikeCount
+      images
+      createdAt
     }
   }
-`;
+`
 
 export const GOOD = gql`
-  mutation ZZZ($boardId: ID!) {
+  mutation LIKEBOARD($boardId: ID!) {
     likeBoard(boardId: $boardId)
   }
-`;
+`
 
 export const HATE = gql`
-  mutation ZXC($boardId: ID!) {
+  mutation DISLIKEBOARD($boardId: ID!) {
     dislikeBoard(boardId: $boardId)
   }
-`;
+`

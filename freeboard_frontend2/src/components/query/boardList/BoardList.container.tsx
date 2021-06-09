@@ -122,23 +122,31 @@ const Query = () => {
 
   const [inputForSearch, setInputForSearch] = useState('')
 
+  //! 디바운싱 적용
   const InputSearch = (event) => {
-    setInputForSearch(event.target.value)
+    let timer
+    if (timer) {
+      // 이전 요청의 timer가 남아있다면 지우기
+      clearTimeout(timer)
+    }
+
+    timer = setTimeout(() => {
+      setSearch(event.target.value)
+    }, 700)
+
     // console.log(search)
   }
+  //!디바운싱 범위
+
   //!여기서 셋서치를 하나 더 만들어서 변수에 담아서,온클릭서치에 담아야 한다 이유는
   //! 셋 서치(스테이트)는 바뀌는 순간 바로 렌더링이 되므로! 스테이트 변수에 한번 더 따로 담아야 한다
+
   const onClickSearch = () => {
     setSearch(inputForSearch)
-
-    //   try {
-    //     await bestPostList(search)
-    //   } catch (error) {
-    //     alert(error.message)
-    //   }
   }
   console.log(boardcount?.fetchBoardsCount / 10)
   //!뮤테이션은 어싱크어웨이트 써야함. 쿼리는 보통 옵셔널체에닝을 쓴다
+
   return (
     <QueryUI
       data={data}

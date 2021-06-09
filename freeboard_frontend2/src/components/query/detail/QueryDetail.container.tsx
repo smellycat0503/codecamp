@@ -23,7 +23,7 @@ const Container = () => {
 
   const [bob] = useMutation(HATE)
 
-  console.log('데이터2', data)
+  console.log('쿼리데이터', data)
 
   // const [smellycat] = useMutation(PILLOWS);
 

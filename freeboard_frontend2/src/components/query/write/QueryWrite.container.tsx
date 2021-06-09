@@ -2,21 +2,30 @@ import {useEffect, useRef, useState} from 'react'
 import {useMutation, useQuery} from '@apollo/client'
 import {useRouter} from 'next/router'
 
-import {CREATE_BOARD, PILLOWS} from './QueryWrite.queries'
+import {CREATE_BOARD, PILLOWS, UPLOAD_FILE} from './QueryWrite.queries'
 import Presenter from './QueryWrite.presenter'
+import {IMutation} from '../../../commons/types/generated/types'
 
 // interface IErrorMessage{
 
 // }
 
 const Container = () => {
+  const [uploadimage] = useMutation(UPLOAD_FILE)
+
   const router = useRouter()
+
+  const [myImg, setMyImg] = useState('')
+
+  const [isTrue, setIsTrue] = useState(false)
+
   const [qwer, setQwer] = useState({
     writer: '',
     password: '',
     title: '',
     contents: '',
     youtubeUrl: '',
+    image: [],
   })
 
   const [radio, setRadio] = useState('')
@@ -87,7 +96,7 @@ const Container = () => {
   //! useEffect 도전!
 
   const inputRef = useRef(null)
-  //* 1.
+
   console.log('inputRef', inputRef)
   useEffect(() => {
     inputRef.current.focus()
@@ -97,6 +106,46 @@ const Container = () => {
   //ex) 페이지가 길거나, 스크롤을 어느위치에 고정시키거나, 스크롤 바 없애기 등.
   // 지금은 화면이 나오고 나서 커서를 깜빡이고 싶음
   // 여기서 useRef를 사용했는데 용도는 좀 더 지켜보자
+
+  //! 이미지 도전
+
+  const onChangeImage = async (event) => {
+    const image = event.target.files[0]
+    // console.log(image, '이미지')
+
+    const reader = new FileReader() // 파일 읽어주기 기능
+    reader.readAsDataURL(image) //파일 읽기
+    reader.onload = (event) => {
+      console.log(event.target.result, '파일리더') // result는 어디서 나온걸까
+      setMyImg(String(event.target.result))
+      setIsTrue((prev) => !prev)
+    }
+    //result는 로컬에서 접근 가능한 주소. onload가 읽은 결과를 보여주는건가
+    //onload 에서 스테이트에 담기.-> presenter에서 원하는 곳에 뱉어내기.
+    //String 안넣으면 에러남. 이유가 머지
+
+    try {
+      const {data} = await uploadimage({
+        variables: {file: image},
+      }) //! 여기 왜 안됨? ->   variables: {file: 여기}, '여기' 부분이 image,
+      //! 즉 const image = event.target.files[0] 이거가 들어가야함!!!
+      // console.log(data, '업로드잘되나')
+      setMyImg(`https://storage.cloud.google.com/${data.uploadFile.url}`) //state에 저장
+      // console.log(myImg, '이미지 잘 들어갔니')
+      setQwer({
+        ...qwer,
+        image: [data.uploadFile.url],
+      })
+      console.log(qwer, '이미지 잘 들어가니')
+      console.log(data.uploadFile, '업로드뮤테이션결과')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const onClickdeleteImage = () => {
+    setIsTrue((prev) => !prev)
+  }
 
   return (
     <Presenter
@@ -108,94 +157,11 @@ const Container = () => {
       handleClickOpen={handleClickOpen}
       handleClose={handleClose}
       open={open}
+      onChangeImage={onChangeImage}
+      isTrue={isTrue}
+      myImg={myImg}
+      onClickdeleteImage={onClickdeleteImage}
     />
   )
 }
 export default Container
-
-//*시작
-// import QueryUI from "./QueryWrite.presenter";
-// import { useState } from "react";
-// import { useMutation, gql } from "@apollo/client";
-// import { Router, useRouter } from "next/router";
-// import { DRAGONBALL } from "./QueryWrite.queries";
-
-// const Query = () => {
-//   const [isTrue, setIsTrue] = useState(false);
-
-//   const [radio, setRadio] = useState("");
-//   const [error, setError] = useState("");
-
-//   const [kakarot, setKakarot] = useState({
-//     writer: "",
-//     password: "",
-//     title: "",
-//     contents: "",
-//   });
-
-//   const [buruma] = useMutation(DRAGONBALL);
-//   //const 뒤에 [] 잊지말기. []는 state처럼 그냥 약속인가?
-
-//   function onChangeInput(event) {
-//     const begita = { ...kakarot, [event.target.name]: event.target.value };
-//     setKakarot(begita);
-
-//     if (
-//       kakarot.writer &&
-//       kakarot.password &&
-//       kakarot.title &&
-//       kakarot.contents
-//     ) {
-//       setKakarot(true);
-//     } else {
-//       setKakarot(false);
-//     }
-//     // const begita = {...kakarot, [event.target.name]:event.target.value}
-//     // setKakarot(begita) //value 입력값을 kakarot에 넣어라?
-//   }
-
-//   const router = useRouter();
-
-//   async function onClickPost() {
-//     try {
-//       const result = await buruma({
-//         variables: { ...kakarot },
-//       });
-//       console.log(result);
-//       router.push(`/board/${result.data.createBoard._id}`);
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//   }
-
-//   function WriteAddress(event) {
-//     const temp5 = event.target.value;
-//     setAddress(temp5);
-//   }
-//   function WriteRadio(event) {
-//     const temp6 = event.target.value;
-//     setRadio(temp6);
-//   }
-
-//   function ErrorMessage() {
-//     if (
-//       id.length === 0 ||
-//       pw === "" ||
-//       title1 === "" ||
-//       content2 === "" ||
-//       address === ""
-//     ) {
-//       setError("내용을 입력하세요.");
-//     }
-//   }
-
-//   return (
-//     <QueryUI
-//       onChangeInput={onChangeInput}
-//       onClickPost={onClickPost}
-//       isTrue={isTrue}
-//     />
-//   );
-// };
-
-// export default Query;

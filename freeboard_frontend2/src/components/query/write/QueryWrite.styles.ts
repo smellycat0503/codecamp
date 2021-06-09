@@ -142,12 +142,62 @@ export const PhotoContent = styled.div`
   flex-direction: row;
   justify-content: start;
 `
-export const Photo1 = styled.span`
+export const Photo_Wrapper = styled.label`
   width: 78px;
   height: 78px;
-  background-color: gray;
+  background-color: silver;
   margin-right: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `
+
+export const PhotoInput = styled.input`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`
+
+export const PreviewImg = styled.img`
+  width: 78px;
+  height: 78px;
+`
+
+export const PlusIcon = styled.img`
+  width: 14px;
+  height: 14px;
+`
+
+export const Img__Del__Button = styled.button`
+  width: 18px;
+  height: 17px;
+  background-color: silver;
+  border-radius: 50px;
+  opacity: 0.7;
+  border: 0;
+  position: absolute;
+  margin-left: 66px;
+  margin-top: -3px;
+  cursor: pointer;
+`
+
+export const PreviewImg__Wrapper = styled.div``
+
+export const UploadButton = styled.div`
+  width: 42px;
+  height: 18px;
+  font-size: 15px;
+  color: #4f4f4f;
+  padding-top: 5px;
+`
+
 export const MainSettingWrapper = styled.div`
   margin-top: 16px;
   padding-left: 40px;

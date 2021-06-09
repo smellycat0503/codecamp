@@ -1,3 +1,4 @@
+import {IProps} from './Comments.types'
 import {useState} from 'react'
 import {UPDATAREPLY, DELETEREPLY, REPLY} from './Comments.queries'
 import {useMutation, useQuery} from '@apollo/client'
@@ -37,7 +38,7 @@ import {
 } from '../../../commons/types/generated/types'
 import {useRouter} from 'next/router'
 
-const ReplyMapUI = ({data}) => {
+const ReplyMapUI = ({data}: IProps) => {
   const [rewriteReply] = useMutation(UPDATAREPLY)
   const router = useRouter()
   const [replyRewrite, SetreplyRewrite] = useState({
@@ -48,13 +49,24 @@ const ReplyMapUI = ({data}) => {
   })
 
   //!삭제 모달
+  const [page, setPage] = useState(1)
+
+  const {data: datareply, fetchMore} = useQuery(REPLY, {
+    variables: {
+      boardId: router.query.ID,
+      // page: page,
+    },
+  })
+  // console.log(datareply)
+  // console.log('댓글쿼리를 보자')
+
   const [open, setOpen] = useState(false)
 
   const [ID, setID] = useState('')
   const handleClickOpen = (event) => {
     setID(event.target.id)
     setOpen(true)
-    console.log(event.target.id)
+    // console.log(event.target.id)
   }
 
   const handleClose = () => {
@@ -66,7 +78,7 @@ const ReplyMapUI = ({data}) => {
       ...replyRewrite,
       [event.target.name]: event.target.value,
     }
-    console.log(ReplyRewriteInput)
+    // console.log(ReplyRewriteInput)
     SetreplyRewrite(ReplyRewriteInput)
     // console.log('댓글수정', ReplyRewriteInput)
   }
@@ -117,7 +129,7 @@ const ReplyMapUI = ({data}) => {
 
   async function onClickReplyDelete(event) {
     // console.log('=============')
-    console.log(event.target.id)
+    // console.log(event.target.id)
     // console.log('=============')
     try {
       await deletecomment({

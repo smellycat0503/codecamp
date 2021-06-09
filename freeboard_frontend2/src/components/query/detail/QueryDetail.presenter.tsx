@@ -18,7 +18,7 @@ import {
   WriterID,
   BodyWrapper,
   BoardTitle,
-  Picture,
+  NoPicture,
   Contents,
   Movie,
   BottomWrapper,
@@ -29,6 +29,7 @@ import {
   Bottom__Button__Wrapper,
   ListButton,
   ModifyButton,
+  Picture,
 } from './Query.Detail.Styles'
 
 interface IProps {
@@ -66,7 +67,9 @@ const Presenter = (props) => {
         </HeadWrapper>
         <BodyWrapper>
           <BoardTitle>{props.data && props.data.fetchBoard.title}</BoardTitle>
-          <Picture></Picture>
+
+          <Picture src={props.data?.fetchBoard.image}></Picture>
+
           <Contents>
             {props.data === undefined ? '' : props.data.fetchBoard.contents}
           </Contents>

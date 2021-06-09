@@ -131,10 +131,14 @@ export const BoardTitle = styled.div`
   font-weight: bold;
   padding-top: 80px;
 `
-export const Picture = styled.div`
+export const NoPicture = styled.div`
   width: 996px;
   height: 480px;
   background-color: gray;
+`
+export const Picture = styled.img`
+  width: 996px;
+  height: 480px;
 `
 export const Contents = styled.div`
   width: 996px;

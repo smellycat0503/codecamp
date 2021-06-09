@@ -28,7 +28,7 @@ import {
   PhotoWrapper,
   PhotoTitle,
   PhotoContent,
-  Photo1,
+  Photo_Wrapper,
   MainSettingWrapper,
   MainSettingTitle,
   MainSettingRadio1,
@@ -39,6 +39,12 @@ import {
   RegistButton,
   ErrorMessage1,
   FONT,
+  PlusIcon,
+  UploadButton,
+  PhotoInput,
+  PreviewImg,
+  Img__Del__Button,
+  PreviewImg__Wrapper,
 } from './QueryWrite.styles'
 
 import {IProps} from './QueryWrite.types'
@@ -138,11 +144,28 @@ const Presenter = (props: IProps) => {
 
       <PhotoWrapper>
         <PhotoTitle>사진 첨부</PhotoTitle>
-        <PhotoContent>
-          <Photo1></Photo1>
-          <Photo1></Photo1>
-          <Photo1></Photo1>
-        </PhotoContent>
+
+        {!props.isTrue ? (
+          <PhotoContent>
+            <Photo_Wrapper htmlFor="photo">
+              <div style={{fontSize: '20px'}}>+</div>upload
+              <PhotoInput
+                id="photo"
+                type="file"
+                onChange={props.onChangeImage}
+              ></PhotoInput>{' '}
+            </Photo_Wrapper>
+          </PhotoContent>
+        ) : (
+          <>
+            <PreviewImg__Wrapper>
+              <Img__Del__Button onClick={props.onClickdeleteImage}>
+                X
+              </Img__Del__Button>
+              <PreviewImg src={props.myImg}></PreviewImg>
+            </PreviewImg__Wrapper>
+          </>
+        )}
       </PhotoWrapper>
 
       <MainSettingWrapper>

@@ -1,5 +1,5 @@
 import ReplyMapUI from './Comments.presenter2'
-
+import {REPLY} from './Comments.queries'
 import {
   Bottom2Wrapper,
   Wrapper,
@@ -16,9 +16,44 @@ import {
   Reply__Write__button,
   Reply__Text__Bottom__Wrapper,
 } from './Comments.styles'
+import InfiniteScroll from 'react-infinite-scroller'
+import {useQuery} from '@apollo/client'
+import {useState} from 'react'
+import {useRouter} from 'next/router'
+import {IQuery} from '../../../commons/types/generated/types'
 
 const ReplyCommentUI = (props) => {
   // console.log(props?.datareply?.fetchBoardComments)
+  const router = useRouter()
+
+  const {data: datareply, fetchMore} = useQuery<IQuery>(REPLY, {
+    variables: {
+      boardId: String(router.query.ID),
+    },
+  })
+  // console.log(datareply)
+  console.log(datareply?.fetchBoardComments, '댓글쿼리를 보자')
+
+  //!무한스크롤 도전
+  const onLoadMore = () => {
+    if (datareply?.fetchBoardComments.length % 10 !== 0) return
+    //! 페이지가 1일때는 로드모어하지마/ 글 10개미만
+
+    fetchMore({
+      variables: {
+        page: Math.floor(datareply?.fetchBoardComments.length / 10) + 1,
+        // boardId: router.query.ID,
+        // console.log(datareply?.fetchBoardComments.length / 10, '댓글길이를보자')
+      },
+
+      updateQuery: (prev, {fetchMoreResult}) => ({
+        fetchBoardComments: [
+          ...prev.fetchBoardComments,
+          ...fetchMoreResult.fetchBoardComments,
+        ],
+      }),
+    })
+  }
 
   return (
     <Wrapper>
@@ -65,10 +100,11 @@ const ReplyCommentUI = (props) => {
             등록하기
           </Reply__Write__button>
         </Reply__Text__Bottom__Wrapper>
-
-        {props?.datareply?.fetchBoardComments.map((data) => (
-          <ReplyMapUI data={data}></ReplyMapUI>
-        ))}
+        <InfiniteScroll loadMore={onLoadMore} hasMore={true} height={400}>
+          {props?.datareply?.fetchBoardComments.map((data) => (
+            <ReplyMapUI data={data}></ReplyMapUI>
+          ))}
+        </InfiniteScroll>
       </Bottom2Wrapper>
     </Wrapper>
   )

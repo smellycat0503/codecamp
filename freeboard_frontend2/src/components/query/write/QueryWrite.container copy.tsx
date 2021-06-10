@@ -16,8 +16,8 @@ const Container = () => {
 
   const router = useRouter()
 
-  const [myImg, setMyImg] = useState([])
-  //! 얘 원래 ('')였음.
+  const [myImg, setMyImg] = useState('')
+
   const [isTrue, setIsTrue] = useState(false)
 
   const [qwer, setQwer] = useState({
@@ -58,23 +58,9 @@ const Container = () => {
   const [muta] = useMutation(CREATE_BOARD)
 
   async function onClickPost() {
-    const res = await Promise.all(
-      qwer.images.map((___, index) =>
-        uploadimage({
-          variables: {file: qwer.images[index]},
-        })
-      )
-    )
-    //!res = [{a:b~url}] 콘솔로그 찍어보자
-    console.log(res, 'res')
-    let images = []
-    for (let i = 0; i < res.length; i++) {
-      images.push(res[i].data.uploadFile.url)
-    }
-
     try {
       const result = await muta({
-        variables: {...qwer, images}, //! 여기에 이미지 추가!!!!!
+        variables: {...qwer},
       })
       // const id = result.data.createBoard._id;
       // alert(result.data.createBoard.message);
@@ -82,8 +68,7 @@ const Container = () => {
       handleClickOpen()
       console.log('리절트', result)
       // router.push(`/board/${result.data.createBoard._id}`)
-      //! 리절트를 밖으로 꺼내기 위해 1. 유즈스테이트 사용. 기본값 별도로 필요치 않으므로 '' 사용.
-      //! 2. 여기서의 결과를 셋A로 꺼내어 a에 넣는다.
+      //! 리절트를 밖으로 꺼내기 위해 1. 유즈스테이트 사용. 기본값 별도로 필요치 않으므로 '' 사용. 2. 여기서의 결과를 셋A로 꺼내어 a에 넣는다.
       //* push 경로 파악하기.
     } catch (error) {
       alert(error.message)
@@ -125,38 +110,46 @@ const Container = () => {
 
   //! 이미지 도전
 
-  const [imgArr, setImgaArr] = useState([])
-
   const onChangeImage = async (event) => {
-    const file = event.target.files
-    //map을 쓰려했으나 안됨. 파일 자체의 속성떄무ㅡㄴ에 배열 형태일지라도 안됨 그렇게 알기
+    const image = event.target.files[0]
 
-    let fileURLs = []
-    let newFileArr = []
-    //미리보ㅓ기를 위해 미리 담아두기.
-    for (let i = 0; i < file.length; i++) {
-      newFileArr.push(file[i])
-      const reader = new FileReader()
-      reader.readAsDataURL(file[i]) //읽기만
-      reader.onload = (event) => {
-        //읽은거 업로드용
-        fileURLs[i] = event.target.result
-        // console.log(event.target.result, 'event.target.result')
-        setMyImg([...fileURLs])
-        console.log(myImg, 'myImg')
-        setIsTrue((prev) => !prev)
-      }
+    console.log(event.target.files, 'event.target.files')
+
+    const reader = new FileReader() // 파일 읽어주기 기능
+    reader.readAsDataURL(image) //파일 읽기
+    reader.onload = (event) => {
+      console.log(event.target.result, '파일리더') // result는 어디서 나온걸까
+      setMyImg(String(event.target.result))
+      setIsTrue((prev) => !prev)
     }
-    setQwer({...qwer, images: newFileArr})
+    console.log(reader, 'reader')
+    //result는 로컬에서 접근 가능한 주소. onload가 읽은 결과를 보여주는건가
+    //onload 에서 스테이트에 담기.-> presenter에서 원하는 곳에 뱉어내기.
+    //String 안넣으면 에러남. 이유가 머지
+
+    try {
+      const {data} = await uploadimage({
+        variables: {file: image},
+      }) //! 여기 왜 안됨? ->   variables: {file: 여기}, '여기' 부분이 image,
+      //! 즉 const image = event.target.files[0] 이거가 들어가야함!!!
+      // console.log(data, '업로드잘되나')
+      setMyImg(`https://storage.cloud.google.com/${data.uploadFile.url}`) //state에 저장
+      // console.log(myImg, '이미지 잘 들어갔니')
+      setQwer({
+        ...qwer,
+        images: [data.uploadFile.url],
+      })
+      //!실제로 값이 들어가는 건 한박자 늦게 들어감. 모든 셋 함수가 그러함/
+      //! 여기의 함수가 끝나고  qwer로 값이 들어가는거임.
+      console.log(qwer, '이미지 잘 들어가니')
+      console.log(data.uploadFile, '업로드뮤테이션결과')
+    } catch (error) {
+      alert(error.message)
+    }
   }
 
-  const onClickdeleteImage = (event) => {
-    // setIsTrue((prev) => !prev)
-    // const newArrForDel = new Array(myImg.length).fill(1)
-    const del = String(event.target.id)
-    console.log(del, 'del') //!내가 클릭한 놈의 id가 찍힘.
-    const newArrForDel = new Array(myImg.length).fill([...myImg, del])
-    console.log(newArrForDel, 'newArrForDel')
+  const onClickdeleteImage = () => {
+    setIsTrue((prev) => !prev)
   }
 
   return (
@@ -177,27 +170,3 @@ const Container = () => {
   )
 }
 export default Container
-
-// try {
-//   const {data} = Promise.all(
-//     new Array(3)
-//     .fill(1)
-//     .map(()=>(    await uploadimage({
-//       variables: {file: img1},
-//     })) ))
-// //! 여기 왜 안됨? ->   variables: {file: 여기}, '여기' 부분이 image,
-//   //! 즉 const image = event.target.files[0] 이거가 들어가야함!!!
-//   // console.log(data, '업로드잘되나')
-//   setMyImg(`https://storage.cloud.google.com/${data.uploadFile.url}`) //state에 저장
-//   // console.log(myImg, '이미지 잘 들어갔니')
-//   setQwer({
-//     ...qwer,
-//     images: [data.uploadFile.url],
-//   })
-//   //!실제로 값이 들어가는 건 한박자 늦게 들어감. 모든 셋 함수가 그러함/
-//   //! 여기의 함수가 끝나고  qwer로 값이 들어가는거임.
-//   console.log(qwer, '이미지 잘 들어가니')
-//   console.log(data.uploadFile, '업로드뮤테이션결과')
-// } catch (error) {
-//   alert(error.message)
-// }

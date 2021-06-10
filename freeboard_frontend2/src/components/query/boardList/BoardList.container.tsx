@@ -70,7 +70,7 @@ const Query = () => {
   }
 
   const onClickPostButton = () => {
-    router.push(`/board/write.tsx`)
+    router.push(`/board/write`)
   }
 
   //!베스트 도전
@@ -144,7 +144,7 @@ const Query = () => {
   const onClickSearch = () => {
     setSearch(inputForSearch)
   }
-  console.log(boardcount?.fetchBoardsCount / 10)
+  // console.log(boardcount?.fetchBoardsCount / 10)
   //!뮤테이션은 어싱크어웨이트 써야함. 쿼리는 보통 옵셔널체에닝을 쓴다
 
   return (

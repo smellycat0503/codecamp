@@ -42,6 +42,7 @@ interface IProps {
 //! js한 파일에서 관리할 떄에는 넘겨줄 필요가 없었던 data가 컴포넌트가 나눠지면서 이 페이지에서도 필요하게 ㄷ함!!
 
 const Presenter = (props) => {
+  console.log(props.data)
   // console.log('asdfasdf', props.data?.fetchBoard._id)
   return (
     <Wrapper>
@@ -67,9 +68,14 @@ const Presenter = (props) => {
         </HeadWrapper>
         <BodyWrapper>
           <BoardTitle>{props.data && props.data.fetchBoard.title}</BoardTitle>
-
-          <Picture src={props.data?.fetchBoard.image}></Picture>
-
+          {props.data?.fetchBoard.image === [] ? (
+            <NoPicture></NoPicture>
+          ) : (
+            <Picture
+              src={`https://storage.cloud.google.com/${props.data?.fetchBoard.images}`}
+            ></Picture>
+          )}
+          {/* <Picture></Picture> */}
           <Contents>
             {props.data === undefined ? '' : props.data.fetchBoard.contents}
           </Contents>

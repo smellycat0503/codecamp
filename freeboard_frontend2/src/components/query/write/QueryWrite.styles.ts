@@ -131,6 +131,12 @@ export const PhotoWrapper = styled.div`
   margin-top: 16px;
   padding-left: 40px;
   padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+`
+export const MyPhoto__List = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
 export const PhotoTitle = styled.div`
@@ -140,7 +146,7 @@ export const PhotoTitle = styled.div`
 export const PhotoContent = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  /* justify-content: start; */
 `
 export const Photo_Wrapper = styled.label`
   width: 78px;
@@ -168,6 +174,7 @@ export const PhotoInput = styled.input`
 export const PreviewImg = styled.img`
   width: 78px;
   height: 78px;
+  margin-right: 24px;
 `
 
 export const PlusIcon = styled.img`
@@ -209,7 +216,9 @@ export const MainSettingTitle = styled.div`
 `
 
 export const MainSettingRadio1 = styled.input``
-export const Radio1 = styled.label``
+export const Radio1 = styled.label`
+  padding-right: 15px;
+`
 
 export const MainSettingRadio2 = styled.input``
 export const Radio2 = styled.label``

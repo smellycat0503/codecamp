@@ -5,18 +5,17 @@ import Navigation2 from './Navigation2/Navigation2.container'
 
 export const Wrapper = styled.div`
   /* margin-top: ; */
-  width: 100%;
+  /* width: 100%; */
   /* height: 100%; */
-  display: flex;
-  z-index: 99;
-  flex-direction: column;
-  align-items: center;
+  /* display: flex; */
+  /* z-index: 99; */
+  /* flex-direction: column; */
+  /* align-items: center; */
   /* background-color: lightgray; */
 `
 
 export const Body = styled.div`
   height: 100%;
-
   /* width: 100px; */
   /* background-color: lightgray; */
 `

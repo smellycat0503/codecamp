@@ -2,19 +2,32 @@ import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
   height: 100%;
-  width: 1200px;
+  width: 100%;
   /* background-color: gold; */
   display: flex;
   flex-direction: column;
   /* background-color: yellow; */
+  justify-content: center;
+  align-items: center;
 `
+
+// export const Body__Wrapper = styled.div`
+//   height: 100%;
+//   width: 100%;
+//   /* background-color: gold; */
+//   /* display: flex; */
+//   /* flex-direction: row; */
+//   /* background-color: yellow; */
+//   /* justify-content: center; */
+// `
 
 export const Title = styled.div`
   /* margin-top: 80px; */
   font-size: 36px;
   font-weight: bold;
-  /* display: flex;
-  flex-direction: row; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-self: center;
 `
 

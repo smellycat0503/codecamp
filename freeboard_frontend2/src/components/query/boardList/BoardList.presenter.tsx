@@ -70,6 +70,7 @@ const QueryUI = (Props: IProps) => {
   // console.log(Props.nextPage)
   return (
     <Wrapper>
+      {/* <img src="/BG.png" /> */}
       <Title>베스트 게시글</Title>
       <Best__List__Wrapper>
         {Props.bestPostList?.fetchBoardsOfTheBest.map((bestfour) => (

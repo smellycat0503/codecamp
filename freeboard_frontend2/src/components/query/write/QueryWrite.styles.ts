@@ -1,10 +1,22 @@
 import styled from '@emotion/styled'
 
+export const All_Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 export const Wrapper = styled.div`
   width: 1200px;
   height: 1847px;
   border: 1px solid black;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
 `
 export const Title = styled.div`
   font-size: 50px;

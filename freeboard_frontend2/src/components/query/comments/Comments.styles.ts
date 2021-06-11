@@ -1,5 +1,13 @@
 import styled from '@emotion/styled'
 
+export const All_Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 export const Wrapper = styled.div`
   margin-top: -70px;
   width: 1200px;

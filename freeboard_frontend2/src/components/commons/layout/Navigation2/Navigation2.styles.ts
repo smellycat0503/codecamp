@@ -1,5 +1,11 @@
 import styled from '@emotion/styled'
 
+export const Navi2Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
 export const Navi2 = styled.div`
   height: 152px;
   width: 1200px;
@@ -37,7 +43,7 @@ export const Login = styled.button`
   text-align: center;
 `
 
-export const SignIn = styled.button`
+export const SignUp = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: center;

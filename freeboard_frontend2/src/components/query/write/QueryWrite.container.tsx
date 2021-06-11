@@ -153,12 +153,18 @@ const Container = () => {
   const onClickdeleteImage = (event) => {
     // setIsTrue((prev) => !prev)
     // const newArrForDel = new Array(myImg.length).fill(1)
-    const del = String(event.target.id)
+    const del = Number(event.target.id)
     console.log(del, 'del') //!내가 클릭한 놈의 id가 찍힘.
-    const newArrForDel = new Array(myImg.length).fill([...myImg, del])
+    // const newArrForDel = new Array(myImg.length)
+    //   .fill(myImg)
+    //   .map((_, index) => [...myImg]) // 실패버전
+    const newArrForDel = [...myImg]
     console.log(newArrForDel, 'newArrForDel')
-  }
 
+    newArrForDel.splice(del, 1)
+    setMyImg(newArrForDel)
+  }
+  console.log(myImg, '잘렸는지 보자')
   return (
     <Presenter
       inputRef={inputRef}

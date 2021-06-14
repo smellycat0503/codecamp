@@ -72,6 +72,14 @@ export const SignUpButton__Disabled = styled.button`
   border-radius: 16px;
   color: #ffffff;
 `
+
+export const SignUpButton = styled.button`
+  width: 384px;
+  height: 64px;
+  background: #4f4f4f;
+  border-radius: 16px;
+  color: gold;
+`
 // export const Background = styled.img`
 //   width: 100%;
 //   height: 100%;

@@ -4,25 +4,35 @@ export const Navi2Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: white;
+  height: 100px;
 `
 
 export const Navi2 = styled.div`
-  height: 152px;
-  width: 1200px;
+  min-width: 1260px;
+  /* height: 152px; */
+  /* width: 1200px; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 1260px) {
+    min-width: unset;
+  }
 `
 
 export const Logo = styled.img`
   /* height: 100%;
   width: 100%; */
+  width: 190px;
+  object-fit: contain;
 `
 
 export const Wrapper_Login_SignIn = styled.div`
   display: flex;
   flex-direction: row;
+  display: flex;
+  align-items: center;
 
   /* align-self: flex-end; */
 `

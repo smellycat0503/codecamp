@@ -9,6 +9,7 @@ const SignUp = () => {
   const [newAccount, setNewAccount] = useState({
     email: '',
     password: '',
+    password2: '',
     name: '',
   })
 
@@ -24,12 +25,22 @@ const SignUp = () => {
     setNewAccount(newAccountInfo)
     console.log(newAccountInfo, 'newAccountInfo')
 
-    if (!newAccount.email || !newAccount.password || !newAccount.name) {
+    if (
+      !newAccount.email ||
+      !newAccount.password ||
+      !newAccount.password2 ||
+      !newAccount.name
+    ) {
       setError('필수 입력 사항입니다.')
     } else {
       setError('')
     }
-    if (newAccount.email && newAccount.password && newAccount.name) {
+    if (
+      newAccount.email &&
+      newAccount.password &&
+      newAccount.password2 &&
+      newAccount.name
+    ) {
       setSignUp(true)
     }
   }
@@ -38,7 +49,11 @@ const SignUp = () => {
     try {
       await createUserAccount({
         variables: {
-          ...newAccount,
+          createUserInput: {
+            email: '',
+            password: '',
+            name: '',
+          },
         },
       })
     } catch (error) {
@@ -46,7 +61,13 @@ const SignUp = () => {
     }
   }
 
-  return <SignUpUI />
+  return (
+    <SignUpUI
+      onChangeInput={onChangeInput}
+      onClickSignUp={onClickSignUp}
+      signUp={signUp}
+    />
+  )
 }
 
 export default SignUp

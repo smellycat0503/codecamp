@@ -11,7 +11,13 @@ import {
   SignUpButton,
 } from './Login.styles'
 
-const LoginUI = () => {
+const LoginUI = ({
+  loginbutton,
+  errorEmail,
+  errorPassword,
+  onClickLogin,
+  onChangeInput,
+}) => {
   return (
     <Wrapper>
       <Background src="/BG.png" />
@@ -22,20 +28,24 @@ const LoginUI = () => {
           <Input__Input
             placeholder="이메일을 입력해주세요."
             name="email"
+            type="text"
+            onChange={onChangeInput}
           ></Input__Input>
-          <Warning__Input>이메일은 필수 입력입니다.</Warning__Input>
+          <Warning__Input>{errorEmail}</Warning__Input>
         </Input__Wrapper>
         <Input__Wrapper>
           <Input__Title>비밀번호</Input__Title>
           <Input__Input
             placeholder="비밀번호를 입력해주세요."
             name="password"
+            type="password"
+            onChange={onChangeInput}
           ></Input__Input>
-          <Warning__Input>비밀번호는 필수 입력입니다.</Warning__Input>
+          <Warning__Input>{errorPassword}</Warning__Input>
         </Input__Wrapper>
-        <SignUpButton__Disabled disabled="disabled">
+        <SignUpButton disabled={false} onClick={onClickLogin}>
           로그인하기
-        </SignUpButton__Disabled>
+        </SignUpButton>
       </Body__Wrapper>
     </Wrapper>
   )

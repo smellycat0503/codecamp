@@ -46,69 +46,44 @@ import {
   Regist__Item__Wrapper,
   Regist__Button,
 } from './main.styled'
+import InfiniteScroll from 'react-infinite-scroller'
 
-const MarketMainUI = () => {
+const MarketMainUI = ({
+  bestItem,
+  onClickBestItem,
+  onLoadMore,
+  usedItems,
+  onChangeSearch,
+  onClickSearch,
+}) => {
+  console.log(usedItems?.fetchUseditems)
   return (
     <Wrapper>
       <Best__Items__Wrapper>
         <Title>베스트 상품</Title>
         <Best__List__Wrapper>
-          <Best__Item__Wrapper>
-            <Item__Img src="/Best_Items/a.png"></Item__Img>
-            <Item__Title>삼성전자 갤럭시탭A 10.1</Item__Title>
-            <Item__Detail__Wrapper>
-              <ModelName__Price__Wrapper>
-                <Item__ModelName>2019 LTE 32GB</Item__ModelName>
-                <Item__Price>240,120원</Item__Price>
-              </ModelName__Price__Wrapper>
-              <Like__Wrapper>
-                <Like__Button src="/likeimg.png"></Like__Button>
-                <Like__Number>20</Like__Number>
-              </Like__Wrapper>
-            </Item__Detail__Wrapper>
-          </Best__Item__Wrapper>
-          <Best__Item__Wrapper>
-            <Item__Img src="/Best_Items/a.png"></Item__Img>
-            <Item__Title>삼성전자 갤럭시탭A 10.1</Item__Title>
-            <Item__Detail__Wrapper>
-              <ModelName__Price__Wrapper>
-                <Item__ModelName>2019 LTE 32GB</Item__ModelName>
-                <Item__Price>240,120원</Item__Price>
-              </ModelName__Price__Wrapper>
-              <Like__Wrapper>
-                <Like__Button src="/likeimg.png"></Like__Button>
-                <Like__Number>20</Like__Number>
-              </Like__Wrapper>
-            </Item__Detail__Wrapper>
-          </Best__Item__Wrapper>
-          <Best__Item__Wrapper>
-            <Item__Img src="/Best_Items/a.png"></Item__Img>
-            <Item__Title>삼성전자 갤럭시탭A 10.1</Item__Title>
-            <Item__Detail__Wrapper>
-              <ModelName__Price__Wrapper>
-                <Item__ModelName>2019 LTE 32GB</Item__ModelName>
-                <Item__Price>240,120원</Item__Price>
-              </ModelName__Price__Wrapper>
-              <Like__Wrapper>
-                <Like__Button src="/likeimg.png"></Like__Button>
-                <Like__Number>20</Like__Number>
-              </Like__Wrapper>
-            </Item__Detail__Wrapper>
-          </Best__Item__Wrapper>
-          <Best__Item__Wrapper>
-            <Item__Img src="/Best_Items/a.png"></Item__Img>
-            <Item__Title>삼성전자 갤럭시탭A 10.1</Item__Title>
-            <Item__Detail__Wrapper>
-              <ModelName__Price__Wrapper>
-                <Item__ModelName>2019 LTE 32GB</Item__ModelName>
-                <Item__Price>240,120원</Item__Price>
-              </ModelName__Price__Wrapper>
-              <Like__Wrapper>
-                <Like__Button src="/likeimg.png"></Like__Button>
-                <Like__Number>20</Like__Number>
-              </Like__Wrapper>
-            </Item__Detail__Wrapper>
-          </Best__Item__Wrapper>
+          {bestItem?.fetchUseditemsOfTheBest.map((best) => (
+            <Best__Item__Wrapper>
+              <Item__Img
+                src="/Best_Items/a.png"
+                onClick={onClickBestItem}
+                id={best._id}
+              ></Item__Img>
+              <Item__Title onClick={onClickBestItem} id={best._id}>
+                {best.name}
+              </Item__Title>
+              <Item__Detail__Wrapper>
+                <ModelName__Price__Wrapper>
+                  <Item__ModelName>{best.remarks}</Item__ModelName>
+                  <Item__Price>{best.price}원</Item__Price>
+                </ModelName__Price__Wrapper>
+                <Like__Wrapper>
+                  <Like__Button src="/likeimg.png"></Like__Button>
+                  <Like__Number>20</Like__Number>
+                </Like__Wrapper>
+              </Item__Detail__Wrapper>
+            </Best__Item__Wrapper>
+          ))}
         </Best__List__Wrapper>
       </Best__Items__Wrapper>
 
@@ -119,7 +94,11 @@ const MarketMainUI = () => {
             <SoldOut__Item>판매된상품</SoldOut__Item>
           </Menu__Wrapper>
           <Search__Wrapper>
-            <Search__Input placeholder="제품을 검색해주세요."></Search__Input>
+            <Search__Input
+              placeholder="제품을 검색해주세요."
+              name="search"
+              onChange={onChangeSearch}
+            ></Search__Input>
             <Date__Wrapper>
               <Calender__Img src="/cal.png"></Calender__Img>
               <Date__Start>2020.12.02</Date__Start>
@@ -128,11 +107,67 @@ const MarketMainUI = () => {
               <Date__End>2020.12.02</Date__End>
             </Date__Wrapper>
 
-            <Search__Button>검색</Search__Button>
+            <Search__Button onClick={onClickSearch}>검색</Search__Button>
           </Search__Wrapper>
         </Sale__Menu__Search__Wrapper>
-        <Now__Sale__List__Wrapper>
-          {new Array(10).fill(1).map((__) => (
+        <Now__Sale__List__Wrapper id="scrollableDiv">
+          {usedItems?.fetchUseditems.length && (
+            <InfiniteScroll
+              loadMore={onLoadMore}
+              hasMore={true}
+              scrollableTarget="scrollableDiv"
+              height={300}
+            >
+              {usedItems?.fetchUseditems.map((data) => (
+                <Item__Wrapper>
+                  <Sale__Img__Detail__Wrapper>
+                    <Sale__Item__Img
+                      src="/160a.png"
+                      onClick={onClickBestItem}
+                      id={data._id}
+                    ></Sale__Item__Img>
+                    <Sale__Item__Detail>
+                      <Sale__Item__Title__Detail__Wrapper>
+                        <Sale__Item__Title
+                          onClick={onClickBestItem}
+                          id={data._id}
+                        >
+                          {data.name}
+                        </Sale__Item__Title>
+                        <Sale__Item__ModelName>
+                          {data.remarks}
+                        </Sale__Item__ModelName>
+                        <Sale__Item__Tag>{data.tags}</Sale__Item__Tag>
+                      </Sale__Item__Title__Detail__Wrapper>
+                      <Sale__UserName__Like__Wrapper>
+                        <Sale__User__Icon src="/saleUserIcon.png"></Sale__User__Icon>
+                        <Sale__UserName>판매자</Sale__UserName>
+                        <Sale__Item__Like__Button src="/likeimg.png"></Sale__Item__Like__Button>
+                        <Sale__Item__Like__Number>20</Sale__Item__Like__Number>
+                      </Sale__UserName__Like__Wrapper>
+                    </Sale__Item__Detail>
+                  </Sale__Img__Detail__Wrapper>
+                  <Sale__Item__Price__Wrapper>
+                    <Sale__Item__Price__Img src="/w.png"></Sale__Item__Price__Img>
+                    <Sale__Item__Price>{data.price}원</Sale__Item__Price>
+                  </Sale__Item__Price__Wrapper>
+                </Item__Wrapper>
+              ))}
+            </InfiniteScroll>
+          )}
+        </Now__Sale__List__Wrapper>
+        <Regist__Item__Wrapper>
+          <Regist__Button>상품 등록하기</Regist__Button>
+        </Regist__Item__Wrapper>
+      </Sale__Wrapper>
+    </Wrapper>
+  )
+}
+
+export default MarketMainUI
+
+{
+  /* {new Array(10).fill(1).map((__) => (
             <Item__Wrapper>
               <Sale__Img__Detail__Wrapper>
                 <Sale__Item__Img src="/160a.png"></Sale__Item__Img>
@@ -159,14 +194,5 @@ const MarketMainUI = () => {
                 <Sale__Item__Price>240,120원</Sale__Item__Price>
               </Sale__Item__Price__Wrapper>
             </Item__Wrapper>
-          ))}
-        </Now__Sale__List__Wrapper>
-        <Regist__Item__Wrapper>
-          <Regist__Button>상품 등록하기</Regist__Button>
-        </Regist__Item__Wrapper>
-      </Sale__Wrapper>
-    </Wrapper>
-  )
+          ))} */
 }
-
-export default MarketMainUI

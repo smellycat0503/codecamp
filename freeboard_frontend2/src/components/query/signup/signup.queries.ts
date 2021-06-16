@@ -6,7 +6,6 @@ export const CREATEACCOUNT = gql`
       _id
       email
       name
-      userPoint
       createdAt
       updatedAt
       deletedAt

@@ -41,14 +41,15 @@ export const Best__Item__Wrapper = styled.div`
 export const Item__Img = styled.img`
   width: 242px;
   height: 242px;
-
   margin-bottom: 20px;
+  cursor: pointer;
 `
 export const Item__Title = styled.div`
   font-size: 18px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  cursor: pointer;
   /* background-color: gray; */
   width: 100%;
 `
@@ -162,6 +163,7 @@ export const Search__Button = styled.button`
   background-color: black;
   color: white;
   border: 0px;
+  cursor: pointer;
 `
 
 export const Date__Start = styled.div``
@@ -176,12 +178,12 @@ export const Date__End = styled.div``
 
 export const Now__Sale__List__Wrapper = styled.div`
   width: 1200px;
-  height: 1006px;
+  height: 700px;
   margin-top: 40px;
   border-top: 1px solid silver;
   border-bottom: 1px solid silver;
-  overflow-y: scroll;
-
+  overflow: auto;
+  /* overflow-y: scroll; */
   /* background-color: gold; */
 `
 export const Item__Wrapper = styled.div`
@@ -189,7 +191,7 @@ export const Item__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 200px;
-  /* align-items: center; */
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid silver;
 `

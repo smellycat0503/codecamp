@@ -33,7 +33,7 @@ const ReplyCommentUI = (props) => {
     },
   })
   // console.log(datareply)
-  // console.log(datareply?.fetchBoardComments, '댓글쿼리를 보자')
+  console.log(datareply?.fetchBoardComments, '댓글쿼리를 보자')
 
   //!무한스크롤 도전
   const onLoadMore = () => {

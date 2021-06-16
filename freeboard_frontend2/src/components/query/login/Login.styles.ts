@@ -60,6 +60,7 @@ export const Input__Input = styled.input`
   padding-left: 16px;
   border-color: white;
   margin-top: 12px;
+  outline: none;
 `
 
 export const Warning__Input = styled.div`
@@ -67,6 +68,7 @@ export const Warning__Input = styled.div`
   color: red;
   padding-left: 14px;
   margin-top: 4px;
+  height: 14px;
 `
 export const SignUpButton__Disabled = styled.button`
   width: 384px;
@@ -79,9 +81,17 @@ export const SignUpButton__Disabled = styled.button`
 export const SignUpButton = styled.button`
   width: 384px;
   height: 64px;
-  background: #4f4f4f;
+  background: gold;
   border-radius: 16px;
-  color: gold;
+  cursor: pointer;
+
+  :disabled {
+    width: 384px;
+    height: 64px;
+    background: #4f4f4f;
+    border-radius: 16px;
+    color: #bdbdbd;
+  }
 `
 // export const Background = styled.img`
 //   width: 100%;

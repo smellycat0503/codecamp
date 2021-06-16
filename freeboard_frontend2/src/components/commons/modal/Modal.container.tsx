@@ -1,8 +1,30 @@
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+import React from 'react'
+
 import ModalUI from './Modal.presenter'
 
 const Modal = () => {
-  return <></>
+  const router = useRouter()
+
+  const [open, setOpen] = React.useState(true)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    router.push(`/board/login/`)
+  }
+
+  return (
+    <>
+      <ModalUI
+        open={open}
+        handleClickOpen={handleClickOpen}
+        handleClose={handleClose}
+      />
+    </>
+  )
 }
 export default Modal

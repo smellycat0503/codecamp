@@ -57,6 +57,8 @@ export const Input__Input = styled.input`
   padding-left: 16px;
   border-color: white;
   margin-top: 12px;
+  outline: none;
+  //!아웃라인 있어야 깔끔
 `
 
 export const Warning__Input = styled.div`
@@ -64,6 +66,7 @@ export const Warning__Input = styled.div`
   color: red;
   padding-left: 14px;
   margin-top: 4px;
+  height: 14px;
 `
 export const SignUpButton__Disabled = styled.button`
   width: 384px;
@@ -76,9 +79,18 @@ export const SignUpButton__Disabled = styled.button`
 export const SignUpButton = styled.button`
   width: 384px;
   height: 64px;
-  background: #4f4f4f;
+  background-color: gold;
   border-radius: 16px;
-  color: gold;
+  color: black;
+  cursor: pointer;
+  :disabled {
+    width: 384px;
+    height: 64px;
+    background-color: #4f4f4f;
+    border-radius: 16px;
+    color: #bdbdbd;
+  }
+  //!:disabled 뒤에 css 적용 기억하기
 `
 // export const Background = styled.img`
 //   width: 100%;

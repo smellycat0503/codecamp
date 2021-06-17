@@ -4,9 +4,9 @@ import {createContext, useContext, useEffect, useState} from 'react'
 import {LayoutContext} from '../../../../pages/_app'
 import MarketMainUI from './main.presenter'
 import withAuth from '../../commons/hocs/withAuth'
+//! 요거 필요!
 import {useQuery} from '@apollo/client'
 import {USED_ITEM_BEST, USED_ITEMS} from './main.queries'
-//! 요거 필요!
 
 // export const LayoutContext = createContext({
 //   accessToken: '',
@@ -61,6 +61,10 @@ const MarketMain = (props) => {
     setSearch(inputSearch)
   }
 
+  const onClickItemRegist = (event) => {
+    router.push(`/board/itemregist/`)
+  }
+
   return (
     <MarketMainUI
       onLoadMore={onLoadMore}
@@ -69,12 +73,19 @@ const MarketMain = (props) => {
       usedItems={usedItems}
       onChangeSearch={onChangeSearch}
       onClickSearch={onClickSearch}
+      onClickItemRegist={onClickItemRegist}
     />
   )
 }
 
-export default MarketMain
-// export default withAuth(MarketMain)
+// if (typeof window !== 'undefined') {
+//   //! window 자체가 렌더링보다 늦기 대문에, window 로딩 시에만 실행하는 조건. 그렇지 않으면 페이지렌더링 시 에러 발생.
+// window.localStorage.setItem('test', 1)
+// window.localStorage.getItem('test')
+// }
+
+// export default MarketMain
+export default withAuth(MarketMain)
 
 // const router = useRouter()
 

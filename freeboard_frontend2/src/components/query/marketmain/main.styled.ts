@@ -18,8 +18,8 @@ export const Title = styled.div`
 
 export const Best__List__Wrapper = styled.div`
   margin-top: 40px;
-  width: 1200px;
-  /* max-width: 1200px; */
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-direction: row;
   /* background-color: gold; */
@@ -108,6 +108,84 @@ export const Sale__Menu__Search__Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 1200px;
+`
+
+export const Sale__List__Today__HaveSeen__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+export const HaveSeen__Wrapper = styled.div`
+  border: 1px solid silver;
+  width: 196px;
+  /* height: 505px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 40px;
+  margin-left: 20px;
+  position: absolute;
+  right: 5%;
+`
+export const TodayIHaveSeen__Title = styled.div`
+  font-size: 18px;
+`
+export const HaveSeen__Item__Wrapper = styled.div`
+  border: 1px solid silver;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* height: 199px; */
+  width: 156px;
+  margin-top: 20px;
+  padding: 0px 10px 10px 10px;
+  /* background-color: brown; */
+`
+export const HaveSeen__Item__Like__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 12.25px;
+
+  /* background-color: brown; */
+`
+export const HaveSeen__Item__Like__Button = styled.img`
+  margin-right: 5.5px;
+`
+export const HaveSeen__Item__Like__Number = styled.div`
+  font-size: 12px;
+`
+export const HaveSeen__Item__Image__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 4px;
+`
+export const HaveSeen__Item__Image = styled.img`
+  width: 60px;
+  height: 60px;
+`
+export const HaveSeen__Item__Detail__Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+export const HaveSeen__Item__Detail__Title = styled.div`
+  font-size: 12px;
+  margin-top: 12px;
+`
+export const HaveSeen__Item__Detail__ModelName = styled.div`
+  font-size: 12px;
+  color: #4f4f4f;
+`
+export const HaveSeen__Item__Detail__Price = styled.div`
+  font-size: 16px;
+  margin-top: 4px;
+`
+export const HaveSeen__Item__Detail__Tag = styled.div`
+  font-size: 10px;
+  color: #bdbdbd;
+  margin-top: 8px;
 `
 
 export const Menu__Wrapper = styled.div`
@@ -200,6 +278,7 @@ export const Sale__Item__Img = styled.img`
   width: 160px;
   height: 160px;
   margin-right: 40px;
+  cursor: pointer;
 `
 
 export const Sale__Img__Detail__Wrapper = styled.div`
@@ -218,6 +297,7 @@ export const Sale__Item__Title__Detail__Wrapper = styled.div`
 
 export const Sale__Item__Title = styled.div`
   font-size: 24px;
+  cursor: pointer;
 `
 
 export const Sale__Item__ModelName = styled.div`

@@ -31,9 +31,28 @@ import {
   Buy__Button,
 } from './ItemDetail.styles'
 
+import React, {Component} from 'react'
+import Slider from 'react-slick'
+// import {baseUrl} from '../../../../public'
 // import ItemComment from '../itemcomment/ItemComment.container'
 
-const ItemDetailUI = () => {
+const ItemDetailUI = ({data, onClickToMain}) => {
+  const settings = {
+    customPaging: function (i) {
+      return (
+        <a>
+          <img src={`${'/bg.png'}/abstract0${i + 1}.jpg`} />
+        </a>
+      )
+    },
+    dots: true,
+    dotsClass: 'slick-dots slick-thumb',
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }
+
   return (
     <Wrapper>
       <Header__Wrapper>
@@ -41,7 +60,7 @@ const ItemDetailUI = () => {
           <User__Icon src="/user40.png"></User__Icon>
           <User__Id__CreateAt__Wraper>
             <User__Id>판매자</User__Id>
-            <CreatedAt>Date : 2021.02.18</CreatedAt>
+            <CreatedAt>{data && data?.fetchUseditem.createdAt}</CreatedAt>
           </User__Id__CreateAt__Wraper>
         </User__Info__Wrapper>
         <Attach__And__Address__Wrapper>
@@ -52,45 +71,48 @@ const ItemDetailUI = () => {
       <Item__Detail__Body__Wrapper>
         <Item__Detail__Body__Top__Wrapper>
           <Item__Name__Price__Wrapper>
-            <ModelName>2019 LTE 32GB</ModelName>
-            <Item__Title>삼성전자 갤럽시탭A 10.1</Item__Title>
-            <Price>210,120원</Price>
+            <ModelName>{data && data?.fetchUseditem.remarks}</ModelName>
+            <Item__Title>{data && data?.fetchUseditem.name}</Item__Title>
+            <Price>{data && data?.fetchUseditem.price}원</Price>
           </Item__Name__Price__Wrapper>
           <Like__Wrapper>
             <Like__Button src="/ic_favorite-36px.png"></Like__Button>
             <Like__Number>20</Like__Number>
           </Like__Wrapper>
         </Item__Detail__Body__Top__Wrapper>
-        <Item__Carousel__Wrapper>
-          <Item__Main__Img src="/갤럭시 탭A image main.png"></Item__Main__Img>
+        {/* <Item__Carousel__Wrapper> */}
+        <Slider {...settings}>
+          <div>
+            <img src={'/bg.png' + '/abstract01.jpg'} />
+          </div>
+          <div>
+            <img src={'/bg.png' + '/abstract02.jpg'} />
+          </div>
+          <div>
+            <img src={'/bg.png' + '/abstract03.jpg'} />
+          </div>
+          <div>
+            <img src={'/bg.png' + '/abstract04.jpg'} />
+          </div>
+        </Slider>
+        {/* <Item__Main__Img src="/갤럭시 탭A image main.png"></Item__Main__Img>
           <Item__Sub__Img__Wrapper>
             <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
             <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
             <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
             <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-          </Item__Sub__Img__Wrapper>
-        </Item__Carousel__Wrapper>
+          </Item__Sub__Img__Wrapper> */}
+        {/* </Item__Carousel__Wrapper> */}
         <Item__Detail__Contents>
-          액정에 잔기스랑 주변부 스크래치있습니다. 택배거래 안합니다.액정에
-          잔기스랑 주변부 스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑
-          주변부 스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑 주변부
-          스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑 주변부
-          스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑 주변부
-          스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑 주변부
-          스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑 주변부
-          스크래치있습니다. 택배거래 안합니다.액정에 잔기스랑 주변부
-          스크래치있습니다. 택배거래 안합니다. 갤럭시탭A T515 10.1인치
-          새제품급입니다 잔상번인그런거 없어요 기능이런문제 전혀 없어요
-          3사호환가능하며 사용하시던 유시만 너으시면 되세요 택배가능 착불
-          가격네고 안되세요 경기도산본에서 거래가능합니다
+          {data && data?.fetchUseditem.contents}
         </Item__Detail__Contents>
-        <Item__Tag>#삼성전자 #갤러시탭</Item__Tag>
+        <Item__Tag>{data && data?.fetchUseditem.tags}</Item__Tag>
         <Map__Wrapper>
           <Map src="/map.png"></Map>
         </Map__Wrapper>
       </Item__Detail__Body__Wrapper>
       <Menu__Button__Wrapper>
-        <ToList__Button>목록으로</ToList__Button>
+        <ToList__Button onClick={onClickToMain}>목록으로</ToList__Button>
         <Buy__Button>구매하기</Buy__Button>
       </Menu__Button__Wrapper>
     </Wrapper>

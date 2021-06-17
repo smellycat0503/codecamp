@@ -1,4 +1,4 @@
-import ItemDetail from '../../../src/components/query/itemdetail/ItemDetail.container'
+import ItemDetail from '../../../../src/components/query/itemdetail/ItemDetail.container'
 
 const ItemDetailIndex = () => {
   return <ItemDetail />

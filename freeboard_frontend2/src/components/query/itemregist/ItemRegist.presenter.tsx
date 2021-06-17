@@ -50,7 +50,7 @@ import {
   Radio2,
 } from './ItemRegist.styles'
 
-const ItemRegistUI = () => {
+const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo}) => {
   return (
     <>
       <Wrapper>
@@ -59,23 +59,43 @@ const ItemRegistUI = () => {
           <Body__Wrapper>
             <Item__Title__Wrapper>
               <Item__Name__Title>상품명</Item__Name__Title>
-              <Item__Name__Input placeholder="상품명을 작성해주세요."></Item__Name__Input>
+              <Item__Name__Input
+                name="name"
+                placeholder="상품명을 작성해주세요."
+                onChange={onChangeInputInfo}
+              ></Item__Name__Input>
             </Item__Title__Wrapper>
             <Summary__Wrapper>
               <Summary__Title>한줄요약</Summary__Title>
-              <Summary__Input></Summary__Input>
+              <Summary__Input
+                name="remarks"
+                placeholder="상품명을 작성해주세요."
+                onChange={onChangeInputInfo}
+              ></Summary__Input>
             </Summary__Wrapper>
             <Item__Detail__Wrapper>
               <Item__Detail__Title>상품설명</Item__Detail__Title>
-              <Item__Detail__Input></Item__Detail__Input>
+              <Item__Detail__Input
+                name="contents"
+                placeholder="상품을 설명해주세요."
+                onChange={onChangeInputInfo}
+              ></Item__Detail__Input>
             </Item__Detail__Wrapper>
             <Sale__Price__Wrapper>
               <Sale__Price__Title>판매 가격</Sale__Price__Title>
-              <Sale__Price__Input></Sale__Price__Input>
+              <Sale__Price__Input
+                name="price"
+                placeholder="판매 가격을 입력해주세요."
+                onChange={onChangeInputInfo}
+              ></Sale__Price__Input>
             </Sale__Price__Wrapper>
             <Tag__Wrapper>
               <Tag__Title>태그입력</Tag__Title>
-              <Tag__Input></Tag__Input>
+              <Tag__Input
+                name="tags"
+                placeholder="#태그# 태그 #태그"
+                onChange={onChangeInputInfo}
+              ></Tag__Input>
             </Tag__Wrapper>
             <Location__Wrapper>
               <Location__Map__Wrapper>
@@ -119,7 +139,7 @@ const ItemRegistUI = () => {
             </Main__IMG__Radio__Wrapper>
           </Main__IMG__Setting__Wrapper>
           <Regist__Button__Wrapper>
-            <Regist__Button>등록하기</Regist__Button>
+            <Regist__Button onClick={onClickItemInfo}>등록하기</Regist__Button>
           </Regist__Button__Wrapper>
         </ItemRegist__Wrapper>
       </Wrapper>

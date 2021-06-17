@@ -45,6 +45,20 @@ import {
   Sale__Item__Price__Img,
   Regist__Item__Wrapper,
   Regist__Button,
+  Sale__List__Today__HaveSeen__Wrapper,
+  HaveSeen__Wrapper,
+  TodayIHaveSeen__Title,
+  HaveSeen__Item__Wrapper,
+  HaveSeen__Item__Like__Wrapper,
+  HaveSeen__Item__Like__Button,
+  HaveSeen__Item__Like__Number,
+  HaveSeen__Item__Image,
+  HaveSeen__Item__Detail__Wrapper,
+  HaveSeen__Item__Detail__Title,
+  HaveSeen__Item__Detail__ModelName,
+  HaveSeen__Item__Detail__Price,
+  HaveSeen__Item__Detail__Tag,
+  HaveSeen__Item__Image__Wrapper,
 } from './main.styled'
 import InfiniteScroll from 'react-infinite-scroller'
 
@@ -55,6 +69,7 @@ const MarketMainUI = ({
   usedItems,
   onChangeSearch,
   onClickSearch,
+  onClickItemRegist,
 }) => {
   console.log(usedItems?.fetchUseditems)
   return (
@@ -110,54 +125,87 @@ const MarketMainUI = ({
             <Search__Button onClick={onClickSearch}>검색</Search__Button>
           </Search__Wrapper>
         </Sale__Menu__Search__Wrapper>
-        <Now__Sale__List__Wrapper id="scrollableDiv">
-          {usedItems?.fetchUseditems.length && (
-            <InfiniteScroll
-              loadMore={onLoadMore}
-              hasMore={true}
-              scrollableTarget="scrollableDiv"
-              height={300}
-            >
-              {usedItems?.fetchUseditems.map((data) => (
-                <Item__Wrapper>
-                  <Sale__Img__Detail__Wrapper>
-                    <Sale__Item__Img
-                      src="/160a.png"
-                      onClick={onClickBestItem}
-                      id={data._id}
-                    ></Sale__Item__Img>
-                    <Sale__Item__Detail>
-                      <Sale__Item__Title__Detail__Wrapper>
-                        <Sale__Item__Title
-                          onClick={onClickBestItem}
-                          id={data._id}
-                        >
-                          {data.name}
-                        </Sale__Item__Title>
-                        <Sale__Item__ModelName>
-                          {data.remarks}
-                        </Sale__Item__ModelName>
-                        <Sale__Item__Tag>{data.tags}</Sale__Item__Tag>
-                      </Sale__Item__Title__Detail__Wrapper>
-                      <Sale__UserName__Like__Wrapper>
-                        <Sale__User__Icon src="/saleUserIcon.png"></Sale__User__Icon>
-                        <Sale__UserName>판매자</Sale__UserName>
-                        <Sale__Item__Like__Button src="/likeimg.png"></Sale__Item__Like__Button>
-                        <Sale__Item__Like__Number>20</Sale__Item__Like__Number>
-                      </Sale__UserName__Like__Wrapper>
-                    </Sale__Item__Detail>
-                  </Sale__Img__Detail__Wrapper>
-                  <Sale__Item__Price__Wrapper>
-                    <Sale__Item__Price__Img src="/w.png"></Sale__Item__Price__Img>
-                    <Sale__Item__Price>{data.price}원</Sale__Item__Price>
-                  </Sale__Item__Price__Wrapper>
-                </Item__Wrapper>
-              ))}
-            </InfiniteScroll>
-          )}
-        </Now__Sale__List__Wrapper>
+        <Sale__List__Today__HaveSeen__Wrapper>
+          <Now__Sale__List__Wrapper>
+            {usedItems?.fetchUseditems.length && (
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={onLoadMore}
+                hasMore={true}
+                // threshold={100}
+                useWindow={false}
+              >
+                {usedItems?.fetchUseditems.map((data) => (
+                  <Item__Wrapper>
+                    <Sale__Img__Detail__Wrapper>
+                      <Sale__Item__Img
+                        src="/160a.png"
+                        onClick={onClickBestItem}
+                        id={data._id}
+                      ></Sale__Item__Img>
+                      <Sale__Item__Detail>
+                        <Sale__Item__Title__Detail__Wrapper>
+                          <Sale__Item__Title
+                            onClick={onClickBestItem}
+                            id={data._id}
+                          >
+                            {data.name}
+                          </Sale__Item__Title>
+                          <Sale__Item__ModelName>
+                            {data.remarks}
+                          </Sale__Item__ModelName>
+                          <Sale__Item__Tag>{data.tags}</Sale__Item__Tag>
+                        </Sale__Item__Title__Detail__Wrapper>
+                        <Sale__UserName__Like__Wrapper>
+                          <Sale__User__Icon src="/saleUserIcon.png"></Sale__User__Icon>
+                          <Sale__UserName>판매자</Sale__UserName>
+                          <Sale__Item__Like__Button src="/likeimg.png"></Sale__Item__Like__Button>
+                          <Sale__Item__Like__Number>
+                            20
+                          </Sale__Item__Like__Number>
+                        </Sale__UserName__Like__Wrapper>
+                      </Sale__Item__Detail>
+                    </Sale__Img__Detail__Wrapper>
+                    <Sale__Item__Price__Wrapper>
+                      <Sale__Item__Price__Img src="/w.png"></Sale__Item__Price__Img>
+                      <Sale__Item__Price>{data.price}원</Sale__Item__Price>
+                    </Sale__Item__Price__Wrapper>
+                  </Item__Wrapper>
+                ))}
+              </InfiniteScroll>
+            )}
+          </Now__Sale__List__Wrapper>
+          <HaveSeen__Wrapper>
+            <TodayIHaveSeen__Title>오늘 본 상품</TodayIHaveSeen__Title>
+            <HaveSeen__Item__Wrapper>
+              <HaveSeen__Item__Like__Wrapper>
+                <HaveSeen__Item__Like__Button src="/ic_favorite-24px.png"></HaveSeen__Item__Like__Button>
+                <HaveSeen__Item__Like__Number>20</HaveSeen__Item__Like__Number>
+              </HaveSeen__Item__Like__Wrapper>
+              <HaveSeen__Item__Image__Wrapper>
+                <HaveSeen__Item__Image src="/갤럭시 탭A image 1 (1).png"></HaveSeen__Item__Image>
+              </HaveSeen__Item__Image__Wrapper>
+              <HaveSeen__Item__Detail__Wrapper>
+                <HaveSeen__Item__Detail__Title>
+                  삼성전자 갤럭시탭A
+                </HaveSeen__Item__Detail__Title>
+                <HaveSeen__Item__Detail__ModelName>
+                  2019
+                </HaveSeen__Item__Detail__ModelName>
+                <HaveSeen__Item__Detail__Price>
+                  240,120원
+                </HaveSeen__Item__Detail__Price>
+                <HaveSeen__Item__Detail__Tag>
+                  #삼성전자
+                </HaveSeen__Item__Detail__Tag>
+              </HaveSeen__Item__Detail__Wrapper>
+            </HaveSeen__Item__Wrapper>
+          </HaveSeen__Wrapper>
+        </Sale__List__Today__HaveSeen__Wrapper>
         <Regist__Item__Wrapper>
-          <Regist__Button>상품 등록하기</Regist__Button>
+          <Regist__Button onClick={onClickItemRegist}>
+            상품 등록하기
+          </Regist__Button>
         </Regist__Item__Wrapper>
       </Sale__Wrapper>
     </Wrapper>

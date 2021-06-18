@@ -38,6 +38,7 @@ const ItemRegist = (props) => {
       })
       // console.log(result, 'result')
       router.push(`/board/marketboard/${result.data.createUseditem._id}`)
+      //! 여기서 넘어갈 사이트 경로를 위해 result 선언한 것?
 
       // console.log(result)
     } catch (error) {

@@ -28,10 +28,40 @@ export const Reply__Title = styled.div``
 
 export const Reply__Input = styled.input`
   width: 1200px;
-  height: 161px;
+  height: 108px;
   padding: 20px;
   margin-top: 42px;
   text-align: top;
+  /* outline-color: 1px 1px 1px 0px solid #bdbdbd; */
+  border: 1px solid #bdbdbd;
+  border-bottom: 0px;
+  /* background-color: black; */
+`
+export const ReplyCount__Regint__Button__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+export const Reply__Count = styled.input`
+  max-width: 1108px;
+  width: 100%;
+  /* max-height: 52px; */
+  height: 52px;
+  border: 1px solid #bdbdbd;
+`
+
+export const Regist__Buttom = styled.div`
+  max-width: 91px;
+  width: 100%;
+  max-height: 52px;
+  height: 52px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `
 
 export const Reply__List__Wrapper = styled.div`
@@ -50,6 +80,7 @@ export const Reply__Contents__Wrapper = styled.div`
   width: 1200px;
   justify-content: space-between;
   margin-top: 20px;
+  /* margin-bottom: 200px; */
   border-bottom: 1px solid #bdbdbd;
 
   /* border: 5px solid black; */

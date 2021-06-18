@@ -19,3 +19,16 @@ export const FETCH_USED_ITEM = gql`
     }
   }
 `
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query FETCH_USER_LOGGED_IN {
+    fetchUserLoggedIn {
+      _id
+      email
+      name
+      userPoint {
+        amount
+      }
+    }
+  }
+`

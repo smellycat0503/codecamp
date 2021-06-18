@@ -158,7 +158,7 @@ const MarketMainUI = ({
                         </Sale__Item__Title__Detail__Wrapper>
                         <Sale__UserName__Like__Wrapper>
                           <Sale__User__Icon src="/saleUserIcon.png"></Sale__User__Icon>
-                          <Sale__UserName>판매자</Sale__UserName>
+                          <Sale__UserName>{data.seller.name}</Sale__UserName>
                           <Sale__Item__Like__Button src="/likeimg.png"></Sale__Item__Like__Button>
                           <Sale__Item__Like__Number>
                             20

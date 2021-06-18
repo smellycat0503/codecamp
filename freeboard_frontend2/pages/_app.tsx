@@ -27,16 +27,22 @@ import {ForwardRounded} from '@material-ui/icons'
 export const LayoutContext = createContext({
   accessToken: '',
   setAccessToken: (__) => {},
+  setUserInfo: (_: string) => {},
+  userInfo: {},
 })
 //!로긴 토큰 설정4/ 레이아웃 감싸기 위해 LayoutContext 선언. 안에 아까 state선언한 accessToken 넣기.
 //!로긴설정6 / 사용할 곳에서 export 넣기!
 //!로긴설정7 / 빨간줄 없애기 ->  setAccessToken:(__)=>{}
+//!유저정보받기 2/  setUserInfo: (_:string)=> {}, 이거 레이아웃에 넣기 위해 추가.
 
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const App = ({Component, pageProps}) => {
   const [accessToken, setAccessToken] = useState('')
   //!로긴 토큰 설정 1/ 스테이트선언.
+
+  const [userInfo, setUserInfo] = useState({})
+  //!유저정보받기 1/  스테이트 선언. 객체 형태임. 이유는 지켜보자
 
   const uploadLink = createUploadLink({
     uri: 'http://backend.codebootcamp.co.kr/graphql',
@@ -99,7 +105,10 @@ const App = ({Component, pageProps}) => {
 
   return (
     //!로긴설정5/ 4번에서 만든 거 레이아웃 적용. 벨류 안에 {}로 한번 더 감싸기.
-    <LayoutContext.Provider value={{accessToken, setAccessToken}}>
+    //!유저정보받기3/ value에 넣어 전역에 적용되도록.
+    <LayoutContext.Provider
+      value={{accessToken, setAccessToken, userInfo, setUserInfo}}
+    >
       <ApolloProvider client={aaa}>
         <Layout>
           <GlobalStyles />

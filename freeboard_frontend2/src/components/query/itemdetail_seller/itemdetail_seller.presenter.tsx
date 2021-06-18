@@ -29,7 +29,7 @@ import {
   Menu__Button__Wrapper,
   ToList__Button,
   Buy__Button,
-} from './ItemDetail.styles'
+} from './itemdetail_seller.styles'
 
 import React, {Component} from 'react'
 import Slider from 'react-slick'
@@ -133,12 +133,12 @@ const ItemDetailUI = ({data, onClickToMain}) => {
         </StyledSlider>
         {/* </Item__Sub__Img__Wrapper> */}
         {/* <Item__Main__Img src="/갤럭시 탭A image main.png"></Item__Main__Img>
-          <Item__Sub__Img__Wrapper>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-          </Item__Sub__Img__Wrapper> */}
+            <Item__Sub__Img__Wrapper>
+              <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
+              <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
+              <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
+              <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
+            </Item__Sub__Img__Wrapper> */}
         {/* </Item__Carousel__Wrapper> */}
         <Item__Detail__Contents>
           {data && data?.fetchUseditem.contents}

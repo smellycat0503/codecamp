@@ -21,6 +21,12 @@ export const USED_ITEMS = gql`
       contents
       price
       tags
+      seller {
+        _id
+        email
+        name
+        createdAt
+      }
     }
   }
 `

@@ -61,9 +61,14 @@ export const Summary__Input = styled.input`
   padding: 14px 16px 14px 16px;
   border: 1px solid #bdbdbd;
 `
-export const Item__Detail__Wrapper = styled.div``
+export const Item__Detail__Wrapper = styled.div`
+  .ql-toolbar.ql-snow + .ql-container.ql-snow {
+    height: 268px;
+  }
+`
 export const Item__Detail__Title = styled.div`
   margin-top: 40px;
+  margin-bottom: 16px;
 `
 export const Item__Detail__Input = styled.input`
   max-width: 996px;

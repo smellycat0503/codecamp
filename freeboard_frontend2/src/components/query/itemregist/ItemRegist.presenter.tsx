@@ -50,9 +50,43 @@ import {
   Radio2,
 } from './ItemRegist.styles'
 
-const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo}) => {
+import Head from 'next/head'
+
+// import ReactQuill from 'react-quill'
+import dynamic from 'next/dynamic'
+import 'react-quill/dist/quill.snow.css'
+import {useEffect} from 'react'
+
+const ReactQuill = dynamic(() => import('react-quill'), {ssr: false})
+
+const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo, onChangeEditor}) => {
+  useEffect(() => {
+    const aaa = setInterval(() => {
+      if (!window.kakao) return
+      // @ts-ignore
+      kakao.maps.load(function () {
+        const container = document.getElementById('map') //지도를 담을 영역의 DOM 레퍼런스
+        const options = {
+          //지도를 생성할 때 필요한 기본 옵션
+          //@ts-ignore
+          center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+          level: 3, //지도의 레벨(확대, 축소 정도)
+        }
+        //@ts-ignore
+        new kakao.maps.Map(container, options) //지도 생성 및 객체 리턴
+        clearInterval(aaa)
+      })
+    }, 100)
+  }, [])
+
   return (
     <>
+      <Head>
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=3b0e3a19115e974ac9105c44cf4831b0"
+        ></script>
+      </Head>
       <Wrapper>
         <ItemRegist__Wrapper>
           <ItemRegist__Title>상품 등록하기</ItemRegist__Title>
@@ -75,11 +109,16 @@ const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo}) => {
             </Summary__Wrapper>
             <Item__Detail__Wrapper>
               <Item__Detail__Title>상품설명</Item__Detail__Title>
-              <Item__Detail__Input
+              {/* <Item__Detail__Input
                 name="contents"
                 placeholder="상품을 설명해주세요."
                 onChange={onChangeInputInfo}
-              ></Item__Detail__Input>
+              ></Item__Detail__Input> */}
+              <ReactQuill
+                name="contents"
+                placeholder="상품을 설명해주세요."
+                onChange={onChangeEditor}
+              />
             </Item__Detail__Wrapper>
             <Sale__Price__Wrapper>
               <Sale__Price__Title>판매 가격</Sale__Price__Title>
@@ -100,6 +139,7 @@ const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo}) => {
             <Location__Wrapper>
               <Location__Map__Wrapper>
                 <Location__Title>거래위치</Location__Title>
+                <div id="map" style={{width: '500px', height: '400px'}}></div>
                 <Location__Map src="/map image.png"></Location__Map>
               </Location__Map__Wrapper>
               <GPS__Address__Wrapper>

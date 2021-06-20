@@ -140,8 +140,10 @@ const ItemDetailUI = ({data, onClickToMain}) => {
             <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
           </Item__Sub__Img__Wrapper> */}
         {/* </Item__Carousel__Wrapper> */}
-        <Item__Detail__Contents>
-          {data && data?.fetchUseditem.contents}
+        <Item__Detail__Contents
+          dangerouslySetInnerHTML={{__html: data?.fetchUseditem.contents}}
+        >
+          {/* {data && data?.fetchUseditem.contents} */}
         </Item__Detail__Contents>
         <Item__Tag>{data && data?.fetchUseditem.tags}</Item__Tag>
         <Map__Wrapper>

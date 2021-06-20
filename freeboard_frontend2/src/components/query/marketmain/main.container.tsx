@@ -30,7 +30,7 @@ const MarketMain = (props) => {
   // console.log(usedItems?.fetchUseditems, 'didd')
 
   const onLoadMore = () => {
-    console.log('1111')
+    // console.log('1111')
     // console.log('ccc123', usedItems)
     // console.log('aaa123', usedItems?.fetchUseditems.length)
     // console.log('1234123', usedItems?.fetchUseditems.length % 10)

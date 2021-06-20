@@ -21,12 +21,39 @@ export const FETCH_USED_ITEM_QUESTION = gql`
     fetchUseditemQuestions(useditemId: $useditemId, page: $page) {
       contents
       createdAt
+      _id
       user {
         _id
         email
         name
         createdAt
       }
+    }
+  }
+`
+
+export const DELETE_USED_ITEM_QUESTION = gql`
+  mutation DELETE_USED_ITEM_QUESTION($useditemQuestionId: ID!) {
+    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
+  }
+`
+export const UPDATE_USED_ITEM_QUESTION = gql`
+  mutation UPDATE_USED_ITEM_QUESTION(
+    $updateUseditemQuestionInput: UpdateUseditemQuestionInput!
+    $useditemQuestionId: ID!
+  ) {
+    updateUseditemQuestion(
+      updateUseditemQuestionInput: $updateUseditemQuestionInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+      contents
+      user {
+        _id
+        email
+        name
+      }
+      createdAt
     }
   }
 `

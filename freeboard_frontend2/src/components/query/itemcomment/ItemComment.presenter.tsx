@@ -7,10 +7,10 @@ import {
   Reply__Input,
   ReplyCount__Regint__Button__Wrapper,
   Reply__Count,
-  Regist__Buttom,
+  Regist__Button,
 } from './ItemComment.styled'
 
-import Reply__List from './ItemComment.presenter.replylist'
+// import Reply__List from './ItemComment.presenter.replylist'
 
 const ItemCommentUI = ({onChangeReplyInput, onClickReply}) => {
   return (
@@ -27,7 +27,7 @@ const ItemCommentUI = ({onChangeReplyInput, onClickReply}) => {
         ></Reply__Input>
         <ReplyCount__Regint__Button__Wrapper>
           <Reply__Count></Reply__Count>
-          <Regist__Buttom onClick={onClickReply}>문의하기</Regist__Buttom>
+          <Regist__Button onClick={onClickReply}>문의하기</Regist__Button>
         </ReplyCount__Regint__Button__Wrapper>
       </ReplyWrapper>
     </Wrapper>

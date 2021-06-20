@@ -1,7 +1,8 @@
 import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import {useState} from 'react'
-import withAuth from '../../commons/hocs/withAuth'
+// import withAuth from '../../commons/hocs/withAuth'
+import {Search__Input} from '../boardList/BoardList.styles'
 import ItemRegistUI from './ItemRegist.presenter'
 import {CREATE_USED_ITEM} from './ItemRegist.queries'
 
@@ -24,6 +25,10 @@ const ItemRegist = (props) => {
     console.log(info, '인포')
   }
 
+  const onChangeEditor = (contents) => {
+    setInputInfo({...inputInfo, contents: contents})
+  }
+
   const onClickItemInfo = async () => {
     try {
       // let arr: []
@@ -31,6 +36,7 @@ const ItemRegist = (props) => {
         variables: {
           createUseditemInput: {
             ...inputInfo,
+
             price: Number(inputInfo.price),
             tags: [inputInfo.tags],
           },
@@ -50,8 +56,9 @@ const ItemRegist = (props) => {
     <ItemRegistUI
       onChangeInputInfo={onChangeInputInfo}
       onClickItemInfo={onClickItemInfo}
+      onChangeEditor={onChangeEditor}
     />
   )
 }
 
-export default withAuth(ItemRegist)
+export default ItemRegist

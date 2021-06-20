@@ -71,7 +71,7 @@ const MarketMainUI = ({
   onClickSearch,
   onClickItemRegist,
 }) => {
-  console.log(usedItems?.fetchUseditems)
+  // console.log(usedItems?.fetchUseditems)
   return (
     <Wrapper>
       <Best__Items__Wrapper>

@@ -48,9 +48,10 @@ export const Reply__Count = styled.input`
   /* max-height: 52px; */
   height: 52px;
   border: 1px solid #bdbdbd;
+  border-top: 1px solid#F2F2F2;
 `
 
-export const Regist__Buttom = styled.div`
+export const Regist__Button = styled.div`
   max-width: 91px;
   width: 100%;
   max-height: 52px;
@@ -71,6 +72,7 @@ export const Reply__List__Wrapper = styled.div`
   width: 100%;
   /* justify-content: center; */
   margin-top: 20px;
+  margin-bottom: 300px;
   /* border: 1px solid red; */
 `
 export const Reply__Contents__Wrapper = styled.div`
@@ -81,9 +83,15 @@ export const Reply__Contents__Wrapper = styled.div`
   justify-content: space-between;
   margin-top: 20px;
   /* margin-bottom: 200px; */
-  border-bottom: 1px solid #bdbdbd;
+  /* border-bottom: 1px solid #bdbdbd; */
 
   /* border: 5px solid black; */
+`
+export const Line = styled.hr`
+  width: 1200px;
+  height: 1px;
+  background-color: #bdbdbd;
+  border: 0px;
 `
 
 export const UserIcon__UserInfo__Wrapper = styled.div`
@@ -97,6 +105,8 @@ export const UserIcon = styled.img`
   margin-right: 16px;
 `
 export const UserInfo__Reply__Content__Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   /* border-bottom: 5px solid #bdbdbd; */
 `
 
@@ -119,9 +129,42 @@ export const Delete__Edit__Wrapper = styled.div`
 export const Delete__Button = styled.img`
   width: 18px;
   height: 18px;
+  cursor: pointer;
 `
 export const Edit__Buttom = styled.img`
   width: 18px;
   height: 18px;
   margin-right: 16px;
+  cursor: pointer;
+`
+
+export const Reply__Edit__Wrapper = styled.div`
+  margin-top: 6px;
+`
+export const Reply__Edit__Input = styled.input`
+  width: 1140px;
+  height: 64px;
+  border: 1px solid #bdbdbd;
+  border-bottom: 0px;
+`
+export const Reply__Edit__Count__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+export const Reply__Edit__count = styled.input`
+  width: 1049px;
+  height: 52px;
+  border: 1px solid #bdbdbd;
+  border-top: 1px solid#F2F2F2;
+`
+export const Reply__Edit__Button = styled.button`
+  width: 91px;
+  height: 52px;
+  background-color: gold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  cursor: pointer;
 `

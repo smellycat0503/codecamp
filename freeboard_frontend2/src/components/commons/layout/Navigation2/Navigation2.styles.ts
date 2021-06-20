@@ -70,3 +70,15 @@ export const SignUp = styled.button`
 
   /* padding: 10px 16px; */
 `
+export const UserIcon__InfoMenu__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+export const UserIcon = styled.img`
+  margin-right: 15px;
+`
+export const InfoMenu = styled.img`
+  width: 24px;
+  height: 24px;
+`

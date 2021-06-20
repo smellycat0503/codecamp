@@ -3,8 +3,9 @@ import ItemComment from './../itemcomment/ItemComment.container'
 import {FETCH_USED_ITEM} from './ItemDetail.queries'
 import {useQuery} from '@apollo/client'
 import {useRouter} from 'next/router'
+import withAuth from '../../commons/hocs/withAuth'
 
-const ItemDetail = () => {
+const ItemDetail = (props) => {
   const router = useRouter()
 
   console.log(router)
@@ -26,4 +27,4 @@ const ItemDetail = () => {
   )
 }
 
-export default ItemDetail
+export default withAuth(ItemDetail)

@@ -1,3 +1,4 @@
+import {useMutation, useQuery} from '@apollo/client'
 import {
   Wrapper,
   ReplyWrapper,
@@ -9,10 +10,65 @@ import {
   Reply__Count,
   Regist__Button,
 } from './ItemComment.styled'
+import {
+  CREATE_USED_ITEM_QUESTION,
+  FETCH_USED_ITEM_QUESTION,
+} from './ItemComment.queries'
+import {useState} from 'react'
+import {useRouter} from 'next/router'
 
-// import Reply__List from './ItemComment.presenter.replylist'
+//*댓글 입력 및 등록 페이지
+const ItemCommentUI = () => {
+  const router = useRouter()
 
-const ItemCommentUI = ({onChangeReplyInput, onClickReply}) => {
+  const [currentPage, setCurrentPage] = useState(1)
+
+  //*댓글 클릭 시 리패치 위해 유즈쿼리 선언. 리패치만을 위한건데 variables까지 필요할까?
+  const {
+    data: readReply,
+    refetch,
+    fetchMore,
+  } = useQuery(FETCH_USED_ITEM_QUESTION, {
+    variables: {
+      page: Number(currentPage),
+      useditemId: router.query.ID,
+    },
+  })
+
+  //*댓글 쓰기 뮤테이션
+  const [writeRely] = useMutation(CREATE_USED_ITEM_QUESTION)
+
+  //*댓글 스테이트 선언
+  const [reply, setReply] = useState({
+    contents: '',
+  })
+
+  //*댓글 입력 감지 / 얘를 첫 댓글과 수정 시 둘다 써도 상관없을거 같음.
+  const onChangeReplyInput = (event) => {
+    const replyContents = {
+      contents: reply.contents,
+      [event.target.name]: event.target.value,
+    }
+    setReply(replyContents)
+  }
+
+  //*댓글 등록. 뮤테이션 통신.
+  const onClickReply = async () => {
+    try {
+      await writeRely({
+        variables: {
+          createUseditemQuestionInput: {contents: reply.contents},
+          useditemId: router.query.ID,
+        },
+      })
+      //! 따로 경로 지정할 필요 없어 await 앞에 변수 지정 안해도 될 것 같음.
+      setReply({contents: ''})
+      refetch()
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return (
     <Wrapper>
       <ReplyWrapper>

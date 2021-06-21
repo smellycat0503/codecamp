@@ -22,9 +22,6 @@ import {
 const ModalUI = ({open, handleClickOpen, handleClose}) => {
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button> */}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -32,25 +29,13 @@ const ModalUI = ({open, handleClickOpen, handleClose}) => {
         aria-describedby="alert-dialog-description"
       >
         <Modal__Wrapper>
-          {/* <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle> */}
           <Logo__Wrapper>
             <Logo src="/signuplogo.png"></Logo>
           </Logo__Wrapper>
           <DialogContent>
-            {/* <DialogContentText id="alert-dialog-description">
-              회원가입을 축하합니다!
-            </DialogContentText> */}
             <Message>회원가입을 축하합니다!</Message>
           </DialogContent>
           <DialogActions>
-            {/* <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button> */}
-            {/* <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
-          </Button> */}
             <Button__Wrapper>
               <Close__Button onClick={handleClose}>확인</Close__Button>
             </Button__Wrapper>

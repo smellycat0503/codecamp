@@ -26,9 +26,9 @@ import {
   GPS__Wrapper,
   GPS__Title,
   GPS__Button__Wrapper,
-  LAT__Button,
+  LAT__Input,
   Map__Button,
-  LNG__Button,
+  LNG__Input,
   Address__Wrapper,
   Address__Title,
   Address_Input1,
@@ -48,6 +48,8 @@ import {
   IMG__Upload__Preview,
   Radio1,
   Radio2,
+  SearchAddressButton,
+  Input2__Button__Wrapper,
 } from './ItemRegist.styles'
 
 import Head from 'next/head'
@@ -55,13 +57,22 @@ import Head from 'next/head'
 // import ReactQuill from 'react-quill'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
-import {useEffect} from 'react'
+import {memo, useEffect} from 'react'
 
 const ReactQuill = dynamic(() => import('react-quill'), {ssr: false})
 
-const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo, onChangeEditor}) => {
+const ItemRegistUI = ({
+  onChangeInputInfo,
+  onClickItemInfo,
+  onChangeEditor,
+  onChangeAddress,
+  address,
+  onClickAddressSearch,
+  isOpen,
+}) => {
   useEffect(() => {
     const aaa = setInterval(() => {
+      // @ts-ignore
       if (!window.kakao) return
       // @ts-ignore
       kakao.maps.load(function () {
@@ -73,18 +84,47 @@ const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo, onChangeEditor}) => {
           level: 3, //지도의 레벨(확대, 축소 정도)
         }
         //@ts-ignore
-        new kakao.maps.Map(container, options) //지도 생성 및 객체 리턴
+        const map = new kakao.maps.Map(container, options) //지도 생성 및 객체 리턴
+        //@ts-ignore
+        const geocoder = new kakao.maps.services.Geocoder()
+        geocoder.addressSearch(address, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          //@ts-ignore
+          if (status === kakao.maps.services.Status.OK) {
+            //@ts-ignore
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            //@ts-ignore
+            const marker = new kakao.maps.Marker({
+              map: map,
+              position: coords,
+            })
+
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            //@ts-ignore
+            const infowindow = new kakao.maps.InfoWindow({
+              content:
+                '<div style="width:150px;text-align:center;padding:6px 0;">희망 거래 위치</div>',
+            })
+            infowindow.open(map, marker)
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords)
+          }
+        })
         clearInterval(aaa)
       })
     }, 100)
-  }, [])
+  }, [address])
+  //!useEffect는 두번쨰 인자 []가 바뀔 때 실행됨!!
 
   return (
     <>
       <Head>
         <script
           type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=3b0e3a19115e974ac9105c44cf4831b0"
+          src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=3b0e3a19115e974ac9105c44cf4831b0&libraries=services"
         ></script>
       </Head>
       <Wrapper>
@@ -139,22 +179,29 @@ const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo, onChangeEditor}) => {
             <Location__Wrapper>
               <Location__Map__Wrapper>
                 <Location__Title>거래위치</Location__Title>
-                <div id="map" style={{width: '500px', height: '400px'}}></div>
-                <Location__Map src="/map image.png"></Location__Map>
+                {/* <Location__Map> */}
+                <div id="map" style={{width: '384px', height: '252px'}}></div>
+                {/* <Location__Map src="/map image.png"></Location__Map> */}
+                {/* </Location__Map> */}
               </Location__Map__Wrapper>
               <GPS__Address__Wrapper>
                 <GPS__Wrapper>
                   <GPS__Title>GPS</GPS__Title>
                   <GPS__Button__Wrapper>
-                    <LAT__Button>위도(LAT)</LAT__Button>
+                    <LAT__Input placeholder="위도(LAT)"></LAT__Input>
                     <Map__Button src="/loca.png"></Map__Button>
-                    <LNG__Button>경도(LNG)</LNG__Button>
+                    <LNG__Input placeholder="경도(LNG)"></LNG__Input>
                   </GPS__Button__Wrapper>
                 </GPS__Wrapper>
                 <Address__Wrapper>
                   <Address__Title>주소</Address__Title>
-                  <Address_Input1></Address_Input1>
-                  <Address_Input2></Address_Input2>
+                  <Address_Input1 onChange={onChangeAddress}></Address_Input1>
+                  <Input2__Button__Wrapper>
+                    <Address_Input2></Address_Input2>
+                    <SearchAddressButton onClick={onClickAddressSearch}>
+                      검색
+                    </SearchAddressButton>
+                  </Input2__Button__Wrapper>
                 </Address__Wrapper>
               </GPS__Address__Wrapper>
             </Location__Wrapper>
@@ -179,7 +226,9 @@ const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo, onChangeEditor}) => {
             </Main__IMG__Radio__Wrapper>
           </Main__IMG__Setting__Wrapper>
           <Regist__Button__Wrapper>
-            <Regist__Button onClick={onClickItemInfo}>등록하기</Regist__Button>
+            <Regist__Button onClick={onClickItemInfo} disabled={isOpen}>
+              등록하기
+            </Regist__Button>
           </Regist__Button__Wrapper>
         </ItemRegist__Wrapper>
       </Wrapper>
@@ -187,4 +236,4 @@ const ItemRegistUI = ({onChangeInputInfo, onClickItemInfo, onChangeEditor}) => {
   )
 }
 
-export default ItemRegistUI
+export default memo(ItemRegistUI)

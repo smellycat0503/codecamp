@@ -1,55 +1,53 @@
-import {
-  Reply__List__Wrapper,
-  Reply__Contents__Wrapper,
-  UserIcon__UserInfo__Wrapper,
-  UserIcon,
-  UserInfo__Reply__Content__Wrapper,
-  Reply__UserName,
-  Reply__Content,
-  Reply__Date,
-  Delete__Edit__Wrapper,
-  Delete__Button,
-  Edit__Buttom,
-  Reply__Edit__Wrapper,
-  Reply__Edit__Input,
-  Reply__Edit__Count__Wrapper,
-  Reply__Edit__count,
-  Reply__Edit__Button,
-  Line,
-} from './ItemComment.styled'
+import {Reply__List__Wrapper} from './ItemComment.styled'
 import InfiniteScroll from 'react-infinite-scroller'
 import {LayoutContext} from '../../../../pages/_app'
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
+import {FETCH_USED_ITEM_QUESTION} from './ItemComment.queries'
 
 import ReplylistItem from './ItemComment.presenter.replylist.item'
-// import ReplylistItem2 from './ItemComment.presenter.replylist.item2'
+import {useQuery} from '@apollo/client'
+import {useRouter} from 'next/router'
 
-const Reply__List = ({
-  readReply,
-  onLoadMore,
-  onClickDeleteQuestion,
-  onClickEditButton,
-  updateButton,
-  onChangeReplyInput,
-  onClickUpdataReply,
-  // userInfo,
-  //!유저정보가 프롭스로는 적용이 안되네.
-}) => {
-  const {accessToken, userInfo} = useContext(LayoutContext)
+//*댓글 목록/ 맵, 인피니트스크롤 적용 페이지
+const Reply__List = () => {
+  const router = useRouter()
+
+  const [currentPage, setCurrentPage] = useState(1)
+
+  //*댓글 쿼리, 인피니트스크롤 페이모어 사용
+  const {
+    data: readReply,
+    refetch,
+    fetchMore,
+  } = useQuery(FETCH_USED_ITEM_QUESTION, {
+    variables: {
+      page: Number(currentPage),
+      useditemId: router.query.ID,
+    },
+  })
+
+  //*인피니트스크롤 함수/ 쿼리모어 및 업데이트쿼리 합치기
+  const onLoadMore = () => {
+    if (readReply?.fetchUseditemQuestions.length % 10 !== 0) return
+    fetchMore({
+      variables: {
+        page: Math.floor(readReply?.fetchUseditemQuestions.length / 10) + 1,
+      },
+      updateQuery: (prev, {fetchMoreResult}) => ({
+        fetchUseditemQuestions: [
+          ...prev.fetchUseditemQuestions,
+          ...fetchMoreResult.fetchUseditemQuestions,
+        ],
+      }),
+    })
+  }
 
   return (
     <Reply__List__Wrapper>
       {readReply?.fetchUseditemQuestions && (
         <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
-          {readReply?.fetchUseditemQuestions.map((data, index) => (
-            <ReplylistItem
-              onChangeReplyInput={onChangeReplyInput}
-              onClickUpdataReply={onClickUpdataReply}
-              data={data}
-              updateButton={updateButton}
-              onClickEditButton={onClickEditButton}
-              onClickDeleteQuestion={onClickDeleteQuestion}
-            />
+          {readReply?.fetchUseditemQuestions.map((data) => (
+            <ReplylistItem data={data} />
           ))}
         </InfiniteScroll>
       )}
@@ -58,49 +56,3 @@ const Reply__List = ({
 }
 
 export default Reply__List
-
-// <Reply__List__Wrapper>
-// {readReply?.fetchUseditemQuestions && (
-//   <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
-//     {readReply?.fetchUseditemQuestions.map((data) => (
-//       <Reply__Contents__Wrapper>
-//                          {!updateButton ? (1) : (<></>)}
-//         <UserIcon__UserInfo__Wrapper>
-//           <UserIcon src="/user40.png"></UserIcon>
-//           <UserInfo__Reply__Content__Wrapper>
-//             <Reply__UserName>{data.user.name}</Reply__UserName>
-
-//             <Reply__Edit__Wrapper>
-//               <Reply__Edit__Input></Reply__Edit__Input>
-//               <Reply__Edit__Count__Wrapper>
-//                 <Reply__Edit__count></Reply__Edit__count>
-//                 <Reply__Edit__Button>수정하기</Reply__Edit__Button>
-//               </Reply__Edit__Count__Wrapper>
-//             </Reply__Edit__Wrapper>
-//             {/* <Reply__Content>{data.contents}</Reply__Content>
-//             <Reply__Date>{data.createdAt}</Reply__Date> */}
-//           </UserInfo__Reply__Content__Wrapper>
-//         </UserIcon__UserInfo__Wrapper>
-
-//         <Delete__Edit__Wrapper>
-//           {data.user._id !== userInfo?._id ? (
-//             ''
-//           ) : (
-//             <>
-//               <Edit__Buttom
-//                 onClick={updateButton}
-//                 src="/editicon.png"
-//               ></Edit__Buttom>
-//               <Delete__Button
-//                 name={data.user._id}
-//                 id={data._id}
-//                 src="/deleteicon.png"
-//               ></Delete__Button>
-//             </>
-//           )}
-//         </Delete__Edit__Wrapper>
-//       </Reply__Contents__Wrapper>
-//     ))}
-//   </InfiniteScroll>
-// )}
-// </Reply__List__Wrapper>

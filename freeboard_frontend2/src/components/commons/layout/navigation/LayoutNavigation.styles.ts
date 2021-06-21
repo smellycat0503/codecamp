@@ -9,6 +9,7 @@ export const Navi = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 80px;
+  margin-top: -5px;
 `
 
 export const Vertical = styled.div`
@@ -21,16 +22,19 @@ export const FreeMarket = styled.div`
   color: white;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 `
 
 export const FreeBoard = styled.div`
   color: white;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 `
 
 export const MyPage = styled.div`
   color: white;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 `

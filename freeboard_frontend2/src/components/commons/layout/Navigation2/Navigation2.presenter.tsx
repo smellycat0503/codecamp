@@ -1,4 +1,6 @@
 import {useContext} from 'react'
+import ChargePage from '../../modal_charge/'
+
 import {LayoutContext} from '../../../../../pages/_app'
 import {
   Navi2,
@@ -10,10 +12,39 @@ import {
   UserIcon__InfoMenu__Wrapper,
   UserIcon,
   InfoMenu,
+  MyMenu__Wrapper,
+  Icon__UserInfo__Wrapper,
+  ImgChange,
+  Icon__Wrapper,
+  Name__Point__Wrapper,
+  UserName,
+  UserPoint,
+  MyMenu__Sub__Wrapper,
+  MyMenu__Charge__IMG,
+  MyMenu__Charge,
+  Logout__IMG,
+  Logout,
+  Info__Wrapper,
 } from './Navigation2.styles'
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+
+import ModalChangeIndex from './../../modal__charge/'
 
 const Navigation2UI = (props) => {
   const {accessToken, userInfo} = useContext(LayoutContext)
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   return (
     <Navi2Wrapper>
@@ -22,19 +53,60 @@ const Navigation2UI = (props) => {
         <Wrapper_Login_SignIn>
           {!accessToken ? (
             <>
-              <Login>로그인</Login>
+              <Login onClick={props.onClickLogin}>로그인</Login>
               <SignUp onClick={props.onClickSignUp}>회원가입</SignUp>
             </>
           ) : (
             <>
               <UserIcon__InfoMenu__Wrapper>
                 <UserIcon src="/ic_프로필.png"></UserIcon>
-                <InfoMenu src="/ic_more.png"></InfoMenu>
+
+                <InfoMenu onClick={handleClick} src="/ic_more.png"></InfoMenu>
+                <Info__Wrapper>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MyMenu__Wrapper>
+                      <Icon__UserInfo__Wrapper>
+                        <Icon__Wrapper>
+                          <UserIcon
+                            onClick={props.onClickCharge}
+                            src="/ic_프로필.png"
+                          ></UserIcon>
+                          <ImgChange
+                            onClick={handleClose}
+                            src="/bt_imgchange.png"
+                          ></ImgChange>
+                        </Icon__Wrapper>
+
+                        <Name__Point__Wrapper>
+                          <UserName>노원두</UserName>
+                          <UserPoint>100,000 P</UserPoint>
+                        </Name__Point__Wrapper>
+                      </Icon__UserInfo__Wrapper>
+                      <MyMenu__Sub__Wrapper>
+                        <MyMenu__Charge__IMG src="/charge.png"></MyMenu__Charge__IMG>
+                        <MyMenu__Charge onClick={props.onClickCharge}>
+                          충전하기
+                        </MyMenu__Charge>
+                      </MyMenu__Sub__Wrapper>
+                      <MyMenu__Sub__Wrapper>
+                        <Logout__IMG src="/logout.png"></Logout__IMG>
+                        <Logout onClick={handleClose}>로그아웃</Logout>
+                      </MyMenu__Sub__Wrapper>
+                    </MyMenu__Wrapper>
+                  </Menu>
+                </Info__Wrapper>
               </UserIcon__InfoMenu__Wrapper>
             </>
           )}
         </Wrapper_Login_SignIn>
       </Navi2>
+      {!props.popUp && <ModalChangeIndex></ModalChangeIndex>}
     </Navi2Wrapper>
   )
 }

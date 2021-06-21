@@ -17,12 +17,38 @@ const ItemRegist = (props) => {
     price: '',
     tags: [],
   })
-  console.log(inputInfo, 'inputInfo')
+  // console.log(inputInfo, 'inputInfo')
+
+  const [isOpen, setIsOpen] = useState(true)
 
   const onChangeInputInfo = (event) => {
     const info = {...inputInfo, [event.target.name]: event.target.value}
     setInputInfo(info)
-    console.log(info, '인포')
+    if (
+      info.name &&
+      info.remarks &&
+      info.contents &&
+      info.price &&
+      info.tags.length > 0
+      //! 태그는 빈 배열이므로 이미 값이 있음. 불린값이 아닌 길이로 확인해야한다!
+    ) {
+      setIsOpen((prev) => !prev)
+    }
+
+    // console.log(info, '인포')
+  }
+
+  const [address, setAddress] = useState('')
+  const [temp, setTemp] = useState('')
+
+  const onChangeAddress = (event) => {
+    const inputaddress = event.target.value
+    setTemp(inputaddress)
+  }
+  console.log(address)
+
+  const onClickAddressSearch = () => {
+    setAddress(temp)
   }
 
   const onChangeEditor = (contents) => {
@@ -57,6 +83,10 @@ const ItemRegist = (props) => {
       onChangeInputInfo={onChangeInputInfo}
       onClickItemInfo={onClickItemInfo}
       onChangeEditor={onChangeEditor}
+      onChangeAddress={onChangeAddress}
+      address={address}
+      onClickAddressSearch={onClickAddressSearch}
+      isOpen={isOpen}
     />
   )
 }

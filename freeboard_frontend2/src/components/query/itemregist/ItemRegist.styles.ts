@@ -114,8 +114,10 @@ export const Location__Map__Wrapper = styled.div`
   max-width: 384px;
   width: 100%;
 `
-export const Location__Title = styled.div``
-export const Location__Map = styled.img`
+export const Location__Title = styled.div`
+  margin-bottom: 16px;
+`
+export const Location__Map = styled.div`
   margin-top: 16px;
   height: 100%;
   max-height: 252px;
@@ -142,26 +144,28 @@ export const GPS__Button__Wrapper = styled.div`
   align-items: center;
   margin-top: 16px;
 `
-export const LAT__Button = styled.button`
+export const LAT__Input = styled.input`
   width: 108px;
   height: 52px;
   background-color: white;
   color: #4f4f4f;
   border: 1px solid #bdbdbd;
   cursor: pointer;
+  padding: 18px;
 `
 export const Map__Button = styled.img`
   margin-left: 21px;
   margin-right: 21px;
   cursor: pointer;
 `
-export const LNG__Button = styled.button`
+export const LNG__Input = styled.input`
   width: 108px;
   height: 52px;
   background-color: white;
   color: #4f4f4f;
   border: 1px solid #bdbdbd;
   cursor: pointer;
+  padding: 18px;
 `
 export const Address__Wrapper = styled.div`
   margin-top: 40px;
@@ -175,11 +179,29 @@ export const Address_Input1 = styled.input`
   padding: 14px 16px 14px 16px;
   border: 1px solid #bdbdbd;
 `
+
+export const Input2__Button__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  /* background-color: black; */
+`
+
 export const Address_Input2 = styled.input`
   margin-top: 16px;
   height: 52px;
   padding: 14px 16px 14px 16px;
   border: 1px solid #bdbdbd;
+  width: 500px;
+`
+
+export const SearchAddressButton = styled.button`
+  width: 80px;
+  height: 52px;
+  margin-left: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
 `
 
 export const IMG__Attach_Wrapper = styled.div`
@@ -263,9 +285,15 @@ export const Regist__Button__Wrapper = styled.div`
 `
 
 export const Regist__Button = styled.button`
-  background-color: #bdbdbd;
+  background-color: gold;
   width: 179px;
   height: 52px;
   border: 0px solid;
   cursor: pointer;
+  :disabled {
+    background-color: #bdbdbd;
+    width: 179px;
+    height: 52px;
+    border: 0px solid;
+  }
 `

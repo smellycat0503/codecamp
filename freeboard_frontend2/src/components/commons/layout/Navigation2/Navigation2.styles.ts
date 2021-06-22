@@ -16,7 +16,7 @@ export const Navi2 = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  @media (max-width: 1260px) {
+  @media (max-width: 1200px) {
     min-width: unset;
   }
 `
@@ -91,7 +91,7 @@ export const Icon__UserInfo__Wrapper = styled.div`
   /* background-color: gold; */
   display: flex;
   flex-direction: row;
-  width: 258px;
+  width: 300px;
   height: 96px;
   align-items: center;
   border-bottom: 1px solid black;
@@ -155,5 +155,6 @@ export const Logout__IMG = styled.img``
 export const Logout = styled.div`
   color: #bdbdbd;
   margin-left: 12px;
+  cursor: pointer;
 `
 export const Info__Wrapper = styled.div``

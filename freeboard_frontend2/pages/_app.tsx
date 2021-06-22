@@ -22,6 +22,7 @@ import {createContext, useState} from 'react'
 import {onError} from '@apollo/client/link/error'
 import axios from 'axios'
 import {ForwardRounded} from '@material-ui/icons'
+import Head from 'next/head'
 //!리프레시토큰 설정2
 
 export const LayoutContext = createContext({
@@ -103,19 +104,21 @@ const App = ({Component, pageProps}) => {
     //! cache가 아폴로의 스테이트 데이터 저장 용도
   })
 
+  //!로긴설정5/ 4번에서 만든 거 레이아웃 적용. 벨류 안에 {}로 한번 더
+  //!감싸기. //!유저정보받기3/ value에 넣어 전역에 적용되도록.
   return (
-    //!로긴설정5/ 4번에서 만든 거 레이아웃 적용. 벨류 안에 {}로 한번 더 감싸기.
-    //!유저정보받기3/ value에 넣어 전역에 적용되도록.
-    <LayoutContext.Provider
-      value={{accessToken, setAccessToken, userInfo, setUserInfo}}
-    >
-      <ApolloProvider client={aaa}>
-        <Layout>
-          <GlobalStyles />
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    </LayoutContext.Provider>
+    <>
+      <LayoutContext.Provider
+        value={{accessToken, setAccessToken, userInfo, setUserInfo}}
+      >
+        <ApolloProvider client={aaa}>
+          <Layout>
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </LayoutContext.Provider>
+    </>
   )
 }
 

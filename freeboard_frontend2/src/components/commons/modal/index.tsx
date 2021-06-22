@@ -1,6 +1,6 @@
 import Modal from './Modal.container'
 
-const SignUpModalIndex = () => {
+const SignUpModalIndex = (props) => {
   return <Modal />
 }
 

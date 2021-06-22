@@ -1,5 +1,4 @@
 import {useContext} from 'react'
-import ChargePage from '../../modal_charge/'
 
 import {LayoutContext} from '../../../../../pages/_app'
 import {
@@ -35,6 +34,7 @@ import ModalChangeIndex from './../../modal__charge/'
 
 const Navigation2UI = (props) => {
   const {accessToken, userInfo} = useContext(LayoutContext)
+  // console.log(userInfo.name)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
@@ -84,8 +84,8 @@ const Navigation2UI = (props) => {
                         </Icon__Wrapper>
 
                         <Name__Point__Wrapper>
-                          <UserName>노원두</UserName>
-                          <UserPoint>100,000 P</UserPoint>
+                          <UserName>{userInfo?.name}</UserName>
+                          <UserPoint>{userInfo?.userPoint?.amount} P</UserPoint>
                         </Name__Point__Wrapper>
                       </Icon__UserInfo__Wrapper>
                       <MyMenu__Sub__Wrapper>
@@ -96,7 +96,7 @@ const Navigation2UI = (props) => {
                       </MyMenu__Sub__Wrapper>
                       <MyMenu__Sub__Wrapper>
                         <Logout__IMG src="/logout.png"></Logout__IMG>
-                        <Logout onClick={handleClose}>로그아웃</Logout>
+                        <Logout onClick={props.onClickLogOut}>로그아웃</Logout>
                       </MyMenu__Sub__Wrapper>
                     </MyMenu__Wrapper>
                   </Menu>

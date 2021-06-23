@@ -7,7 +7,11 @@ export const Wrapper = styled.div`
   width: 100%;
 `
 
-export const Best__Items__Wrapper = styled.div``
+export const Best__Items__Wrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+`
 
 export const Title = styled.div`
   font-size: 36px;
@@ -18,16 +22,19 @@ export const Title = styled.div`
 
 export const Best__List__Wrapper = styled.div`
   margin-top: 40px;
-  width: 100%;
   max-width: 1200px;
+  width: 100%;
+  /* flex-wrap: wrap; */
   display: flex;
   flex-direction: row;
   /* background-color: gold; */
 `
 
 export const Best__Item__Wrapper = styled.div`
-  width: 282px;
-  height: 391px;
+  max-width: 282px;
+  width: 100%;
+  max-height: 391px;
+  height: 100%;
   margin-right: 24px;
   /* background-color: gold; */
   display: flex;
@@ -39,8 +46,10 @@ export const Best__Item__Wrapper = styled.div`
 `
 
 export const Item__Img = styled.img`
-  width: 242px;
-  height: 242px;
+  max-width: 242px;
+  width: 100%;
+  max-height: 242px;
+  height: 100%;
   margin-bottom: 20px;
   cursor: pointer;
 `

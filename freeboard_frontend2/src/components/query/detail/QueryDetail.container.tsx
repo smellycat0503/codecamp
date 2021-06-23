@@ -73,6 +73,8 @@ const Container = () => {
     }
   }
 
+  const [isOwner, setIsOwner] = useState(false)
+
   return (
     <>
       <Presenter

@@ -297,3 +297,25 @@ export const Regist__Button = styled.button`
     border: 0px solid;
   }
 `
+
+export const Cancel__Edit__Button = styled.button`
+  background-color: #bdbdbd;
+  width: 179px;
+  height: 52px;
+  border: 0px solid;
+  margin-right: 24px;
+  cursor: pointer;
+`
+export const Edit__Button = styled.button`
+  background-color: gold;
+  width: 179px;
+  height: 52px;
+  border: 0px solid;
+  cursor: pointer;
+  :disabled {
+    background-color: #bdbdbd;
+    width: 179px;
+    height: 52px;
+    border: 0px solid;
+  }
+`

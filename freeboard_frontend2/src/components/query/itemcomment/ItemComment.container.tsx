@@ -13,19 +13,6 @@ import {
 } from './ItemComment.queries'
 
 const ItemComment = (props) => {
-  const [reply, setReply] = useState({
-    contents: '',
-  })
-
-  //! 얘를 첫 댓글과 수정 시 둘다 써도 상관없을거 같음.
-  const onChangeReplyInput = (event) => {
-    const replyContents = {
-      contents: reply.contents,
-      [event.target.name]: event.target.value,
-    }
-    setReply(replyContents)
-  }
-
   return (
     <>
       <ItemCommentUI />

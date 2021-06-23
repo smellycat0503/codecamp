@@ -23,16 +23,13 @@ import {
 
 const ModalChargeUI = ({
   handleClose,
-
   open,
   onClickCloseCharge,
   onClickChargeButton,
-
   isOpenSelect,
   onClickPointSelectMenu,
-
   onClickSelectedAmount,
-  chargeResult,
+  amount,
 }) => {
   return (
     <>
@@ -53,11 +50,9 @@ const ModalChargeUI = ({
               <ChargeMessage>충전하실 금액을 선택해주세요!</ChargeMessage>
               <ChargePiont__Wrapper>
                 <Input__Point
-                  value={chargeResult}
-                  placeholder="포인트 선택"
-
-                  //! 여기 인풋인 채로 금액 어떻게 넣지?
-                  // onChange={inputChargePrice}
+                  value={amount}
+                  placeholder={'충전 금액을 선택해주세요'}
+                  //! 여기 인풋인 채로 금액 어떻게 넣지?=> value={}에 스테이트에 넣은 금액이 실제 값으로 들어간다!
                 ></Input__Point>
                 <Select__Point__Button
                   src="/ic_arrow.png"
@@ -93,11 +88,6 @@ const ModalChargeUI = ({
               </Change__Button>
             </Main__Wrapper>
             <DialogContent></DialogContent>
-            {/* <DialogActions>
-              <Button onClick={handleClose} color="primary" autoFocus>
-                Agree
-              </Button>
-            </DialogActions> */}
           </Wrapper>
         </Dialog>
       </div>

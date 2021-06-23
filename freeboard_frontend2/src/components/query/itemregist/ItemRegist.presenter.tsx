@@ -50,6 +50,8 @@ import {
   Radio2,
   SearchAddressButton,
   Input2__Button__Wrapper,
+  Cancel__Edit__Button,
+  Edit__Button,
 } from './ItemRegist.styles'
 
 import Head from 'next/head'
@@ -69,6 +71,10 @@ const ItemRegistUI = ({
   address,
   onClickAddressSearch,
   isOpen,
+  isOwner,
+  data,
+  onClickEditItem,
+  onClickReturnPage,
 }) => {
   useEffect(() => {
     const aaa = setInterval(() => {
@@ -119,6 +125,8 @@ const ItemRegistUI = ({
   }, [address])
   //!useEffect는 두번쨰 인자 []가 바뀔 때 실행됨!!
 
+  // console.log(data, 'data')
+
   return (
     <>
       <Head>
@@ -129,7 +137,11 @@ const ItemRegistUI = ({
       </Head>
       <Wrapper>
         <ItemRegist__Wrapper>
-          <ItemRegist__Title>상품 등록하기</ItemRegist__Title>
+          {!data ? (
+            <ItemRegist__Title>상품 등록하기</ItemRegist__Title>
+          ) : (
+            <ItemRegist__Title>상품 수정하기</ItemRegist__Title>
+          )}
           <Body__Wrapper>
             <Item__Title__Wrapper>
               <Item__Name__Title>상품명</Item__Name__Title>
@@ -225,11 +237,22 @@ const ItemRegistUI = ({
               <Radio2 htmlFor="사진2">사진 2</Radio2>
             </Main__IMG__Radio__Wrapper>
           </Main__IMG__Setting__Wrapper>
-          <Regist__Button__Wrapper>
-            <Regist__Button onClick={onClickItemInfo} disabled={isOpen}>
-              등록하기
-            </Regist__Button>
-          </Regist__Button__Wrapper>
+          {!data ? (
+            <Regist__Button__Wrapper>
+              <Regist__Button onClick={onClickItemInfo} disabled={isOpen}>
+                등록하기
+              </Regist__Button>
+            </Regist__Button__Wrapper>
+          ) : (
+            <Regist__Button__Wrapper>
+              <Cancel__Edit__Button onClick={onClickReturnPage}>
+                취소하기
+              </Cancel__Edit__Button>
+              <Edit__Button disabled={isOpen} onClick={onClickEditItem}>
+                수정하기
+              </Edit__Button>
+            </Regist__Button__Wrapper>
+          )}
         </ItemRegist__Wrapper>
       </Wrapper>
     </>

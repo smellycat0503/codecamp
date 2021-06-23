@@ -36,7 +36,7 @@ export const User__Id = styled.div``
 
 export const CreatedAt = styled.div`
   font-size: 12px;
-  margin-top: 2px;
+  margin-top: 10px;
   color: #828282;
 `
 
@@ -153,13 +153,17 @@ export const Menu__Button__Wrapper = styled.div`
   margin-top: 84px;
   margin-bottom: 80px;
 `
-export const ToList__Button = styled.button`
+export const ToList__Button = styled.div`
   width: 179px;
   height: 52px;
   border: 0px;
   background-color: #bdbdbd;
   cursor: pointer;
   margin-right: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `
 
 export const Buy__Button = styled.button`
@@ -168,4 +172,16 @@ export const Buy__Button = styled.button`
   border: 0px;
   background-color: #ffd600;
   cursor: pointer;
+`
+
+export const Edit__Button = styled.div`
+  width: 179px;
+  height: 52px;
+  border: 0px;
+  background-color: #ffd600;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `

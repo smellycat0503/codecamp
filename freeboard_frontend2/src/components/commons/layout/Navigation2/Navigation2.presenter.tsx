@@ -36,16 +36,6 @@ const Navigation2UI = (props) => {
   const {accessToken, userInfo} = useContext(LayoutContext)
   // console.log(userInfo.name)
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
   return (
     <Navi2Wrapper>
       <Navi2>
@@ -61,14 +51,17 @@ const Navigation2UI = (props) => {
               <UserIcon__InfoMenu__Wrapper>
                 <UserIcon src="/ic_프로필.png"></UserIcon>
 
-                <InfoMenu onClick={handleClick} src="/ic_more.png"></InfoMenu>
+                <InfoMenu
+                  onClick={props.handleClick}
+                  src="/ic_more.png"
+                ></InfoMenu>
                 <Info__Wrapper>
                   <Menu
                     id="simple-menu"
-                    anchorEl={anchorEl}
+                    anchorEl={props.anchorEl}
                     keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
+                    open={Boolean(props.anchorEl)}
+                    onClose={props.handleClose}
                   >
                     <MyMenu__Wrapper>
                       <Icon__UserInfo__Wrapper>
@@ -78,7 +71,7 @@ const Navigation2UI = (props) => {
                             src="/ic_프로필.png"
                           ></UserIcon>
                           <ImgChange
-                            onClick={handleClose}
+                            onClick={props.handleClose}
                             src="/bt_imgchange.png"
                           ></ImgChange>
                         </Icon__Wrapper>
@@ -106,7 +99,7 @@ const Navigation2UI = (props) => {
           )}
         </Wrapper_Login_SignIn>
       </Navi2>
-      {!props.popUp && <ModalChangeIndex></ModalChangeIndex>}
+      {!props.popUpChargeMenu && <ModalChangeIndex />}
     </Navi2Wrapper>
   )
 }

@@ -6,59 +6,58 @@ import ModalChargeUI from './modalCharge.presenter'
 import {CREATE_POINT_TRANSACTION_OF_LOADING} from './modalCharge.queries'
 
 const ModalCharge = () => {
+  //* 엑세스 토큰 가져오기
   const {userInfo, accessToken} = useContext(LayoutContext)
 
+  //* 충전 금액 스테이트
   const [amount, setAmount] = useState('')
 
+  //* 포인트 충전 뮤테이션
   const [createPoint] = useMutation(CREATE_POINT_TRANSACTION_OF_LOADING)
 
+  //? 창 여닫기 스테이트
   const [isOpenSelect, setIsOpenSelect] = useState(true)
 
-  // console.log([createPoint], "볼수있나")
-  //@ts-ignore
-
-  //임시용.
-  const [temp, setTemp] = useState('')
-
+  //? 충전 모달 창 여닫이 스테이트.
   const [open, setOpen] = useState(true)
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
+  // //* 창 클릭 시 오픈 함수
+  // const handleClickOpen = () => {
+  //   setOpen(true)
+  // }
 
+  //* 창 클릭 시 닫기
   const handleClose = () => {
     setOpen(false)
   }
 
-  // const inputChargePrice = (event) => {
-  //   const chargeAmount = event.target.value
-  //   setAmount(chargeAmount)
-  // }
-
+  //* 충전 금액 메뉴 클릭 시 오픈 클로즈 함수
   const onClickPointSelectMenu = () => {
     setIsOpenSelect((prev) => !prev)
   }
 
+  //* 금액 충전 모달 창 클릭 시 닫기 함수.
   const onClickCloseCharge = () => {
     setOpen(false)
   }
 
-  const [chargeResult, setChargeResult] = useState('')
+  // //*최종 충전하기 클릭 시 금액 스테이트
+  // const [chargeResult, setChargeResult] = useState('')
 
+  //*충전 금액 메뉴 클릭 시 amount에 이벤트 금액 넣고 금액 선택 메뉴 창 닫기
   const onClickSelectedAmount = (event) => {
     const selectedAmount = event.target.id
-    // setAaa(bbb)
+
     setAmount(selectedAmount)
-    // setIsOpenSelect((prev) => !prev)
+    setIsOpenSelect((prev) => !prev)
+    //!요거로 금액 선택 시 자동으로 닫힌다!!
   }
 
-  console.log(amount, '충전금액')
+  console.log(open, 'open')
 
+  //*최종 충전하기 클릭 시 최종 금액 스테이트 및 충전 뮤테이션 통신
   const onClickChargeButton = () => {
-    // setOpen(false)
-    // if(Number(amount) < Number(100)){
-    // }
-    setAmount(chargeResult)
+    setAmount(amount)
     //@ts-ignore
     const IMP = window.IMP // 생략해도 괜찮습니다.
     IMP.init('imp89386405') // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -122,7 +121,7 @@ const ModalCharge = () => {
         onClickChargeButton={onClickChargeButton}
         isOpenSelect={isOpenSelect}
         onClickPointSelectMenu={onClickPointSelectMenu}
-        chargeResult={chargeResult}
+        amount={amount}
         onClickSelectedAmount={onClickSelectedAmount}
       />
     </>

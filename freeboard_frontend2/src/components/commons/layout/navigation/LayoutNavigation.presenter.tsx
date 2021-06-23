@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router'
 import {
   Navi,
   Vertical,
@@ -7,11 +8,17 @@ import {
 } from './LayoutNavigation.styles'
 
 const NaviUI = () => {
+  const router = useRouter()
+
+  const onClickMarket = () => {
+    router.push(`/board/marketmain`)
+  }
+
   return (
     <Navi>
       <FreeBoard>자유게시판</FreeBoard>
       <Vertical>|</Vertical>
-      <FreeMarket>중고마켓</FreeMarket>
+      <FreeMarket onClick={onClickMarket}>중고마켓</FreeMarket>
       <Vertical>|</Vertical>
       <MyPage>마이페이지</MyPage>
     </Navi>

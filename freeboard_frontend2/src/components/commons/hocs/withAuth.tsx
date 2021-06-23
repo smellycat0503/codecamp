@@ -2,6 +2,7 @@ import {Router} from '@material-ui/icons'
 import {useRouter} from 'next/router'
 import {createContext, useContext, useEffect} from 'react'
 import {LayoutContext} from '../../../../pages/_app'
+import getAccessToken from '../../../commons/libraries/getAccessToken'
 
 const withAuth = (Component) => {
   //컴포넌트
@@ -9,13 +10,24 @@ const withAuth = (Component) => {
     //props
 
     const router = useRouter()
-    const {accessToken} = useContext(LayoutContext)
+    const {accessToken, setAccessToken} = useContext(LayoutContext)
 
     //토큰체크
     useEffect(() => {
-      if (!accessToken) {
-        router.push(`/board/login/`)
+      if (accessToken) return
+
+      //*refreshToken으로 accessToken 재발급 받기
+      const restoreAccessToken = async () => {
+        const newAccessToken = await getAccessToken({setAccessToken})
+        if (!newAccessToken) router.push(`board/login`)
       }
+      //?함수 실행시키기 위함
+      restoreAccessToken()
+
+      //*그래도 없으면 로긴화면으로 돌려보내기
+      // if (!accessToken) {
+      //   router.push(`/board/login/`)
+      // }
     }, [])
 
     if (!accessToken) return <></>

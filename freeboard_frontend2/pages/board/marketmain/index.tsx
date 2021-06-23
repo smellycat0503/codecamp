@@ -1,7 +1,8 @@
+import withAuth from '../../../src/components/commons/hocs/withAuth'
 import MarketMain from '../../../src/components/query/marketmain/main.container'
 
-const MarketMainIndex = () => {
+const MarketMainIndex = (props) => {
   return <MarketMain />
 }
 
-export default MarketMainIndex
+export default withAuth(MarketMainIndex)

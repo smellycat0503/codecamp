@@ -1,7 +1,8 @@
+import withAuth from '../../../src/components/commons/hocs/withAuth'
 import Mypage from '../../../src/components/query/mypage/Mypage.container'
 
-const MypageIndex = () => {
+const MypageIndex = (props) => {
   return <Mypage />
 }
 
-export default MypageIndex
+export default withAuth(MypageIndex)

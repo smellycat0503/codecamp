@@ -1,6 +1,7 @@
 import {useContext, useState} from 'react'
 import {LayoutContext} from '../../../../pages/_app'
 import {
+  Reply__And__Nested__Reply__Wrapper,
   Reply__Contents__Wrapper,
   UserIcon__UserInfo__Wrapper,
   UserIcon,
@@ -17,6 +18,7 @@ import {
   Reply__Edit__Button,
   Line,
   Delete__Edit__Wrapper,
+  Nested__Reply__Button,
 } from './ItemComment.styled'
 
 import {
@@ -27,8 +29,11 @@ import {
 } from './ItemComment.queries'
 import {useMutation, useQuery} from '@apollo/client'
 import {useRouter} from 'next/router'
+import {getDate} from '../../../commons/libraries/utils'
 
-//* 댓글 맵 내용 페이지
+import NestedReply from './ItemComment.presenter.replylist.nested'
+
+//* 댓글 맵 내용 조회, 수정, 삭제 페이지
 const ReplylistItem = ({data}) => {
   //*id 경로 확인용
   const router = useRouter()
@@ -116,62 +121,73 @@ const ReplylistItem = ({data}) => {
     }
   }
 
+  const [openNestedReply, setOpenNestedReply] = useState(true)
+
+  const onClickNestedReplyButton = () => {
+    setOpenNestedReply((prev) => !prev)
+  }
+
   return (
     <>
-      <Reply__Contents__Wrapper>
-        <UserIcon__UserInfo__Wrapper>
-          <UserIcon src="/user40.png"></UserIcon>
-          <UserInfo__Reply__Content__Wrapper>
-            <Reply__UserName>{data.user.name}</Reply__UserName>
-            {!isupdateReply && (
-              <Reply__Edit__Wrapper id={data._id}>
-                <Reply__Edit__Input
-                  onChange={onChangeReplyInput}
-                  name="contents"
-                ></Reply__Edit__Input>
-                <Reply__Edit__Count__Wrapper>
-                  <Reply__Edit__count></Reply__Edit__count>
-                  <Reply__Edit__Button
-                    onClick={onClickUpdataReply}
-                    id={data._id}
-                    //! 댓글 내용 입력 후 수정하기 버튼 클릭 시의 위치에서 id를 찾아야 한다.
-                  >
-                    수정하기
-                  </Reply__Edit__Button>
-                </Reply__Edit__Count__Wrapper>
-              </Reply__Edit__Wrapper>
-            )}
-            {isupdateReply && (
-              <>
-                <Reply__Content>{data.contents}</Reply__Content>
-                <Reply__Date>{data.createdAt}</Reply__Date>
-              </>
-            )}
-          </UserInfo__Reply__Content__Wrapper>
-        </UserIcon__UserInfo__Wrapper>
+      <Reply__And__Nested__Reply__Wrapper>
+        <Reply__Contents__Wrapper>
+          <UserIcon__UserInfo__Wrapper>
+            <UserIcon src="/user40.png"></UserIcon>
+            <UserInfo__Reply__Content__Wrapper>
+              <Reply__UserName>{data.user.name}</Reply__UserName>
+              {!isupdateReply && (
+                <Reply__Edit__Wrapper id={data._id}>
+                  <Reply__Edit__Input
+                    onChange={onChangeReplyInput}
+                    name="contents"
+                  ></Reply__Edit__Input>
+                  <Reply__Edit__Count__Wrapper>
+                    <Reply__Edit__count></Reply__Edit__count>
+                    <Reply__Edit__Button
+                      onClick={onClickUpdataReply}
+                      id={data._id}
+                      //! 댓글 내용 입력 후 수정하기 버튼 클릭 시의 위치에서 id를 찾아야 한다.
+                    >
+                      수정하기
+                    </Reply__Edit__Button>
+                  </Reply__Edit__Count__Wrapper>
+                </Reply__Edit__Wrapper>
+              )}
+              {isupdateReply && (
+                <>
+                  <Reply__Content>{data.contents}</Reply__Content>
+                  <Reply__Date>{getDate(data.createdAt)}</Reply__Date>
+                </>
+              )}
+            </UserInfo__Reply__Content__Wrapper>
+          </UserIcon__UserInfo__Wrapper>
 
-        {isupdateReply && isOwner && (
-          <>
-            <Delete__Edit__Wrapper>
-              <Edit__Buttom
-                onClick={onClickEditButton}
-                id={data._id}
-                src="/editicon.png"
-              ></Edit__Buttom>
-              <Delete__Button
-                name={data.user._id}
-                //!삭제 시 댓글의 작성자와 로그인한 유저 정보의 아이디가 일치함을 name으로 확인!
-                //!{isupdateReply && isOwner} 이 조건으로 해야 각 댓글에 IsTure 값이 뜨는거고
-                //!{isupdateReply ? A : B(isOwner ? C : D)}일 경우에는 IsTrue가 맵으로 적용이 안되는건가?
-                id={data._id}
-                src="/deleteicon.png"
-                onClick={onClickDeleteQuestion}
-              ></Delete__Button>
-            </Delete__Edit__Wrapper>
-          </>
-        )}
-      </Reply__Contents__Wrapper>
-      {!isupdateReply ? '' : <Line></Line>}
+          {isupdateReply && isOwner ? (
+            <>
+              <Delete__Edit__Wrapper>
+                <Edit__Buttom
+                  onClick={onClickEditButton}
+                  id={data._id}
+                  src="/editicon.png"
+                ></Edit__Buttom>
+                <Delete__Button
+                  name={data.user._id}
+                  //!삭제 시 댓글의 작성자와 로그인한 유저 정보의 아이디가 일치함을 name으로 확인!
+                  //!{isupdateReply && isOwner} 이 조건으로 해야 각 댓글에 IsTure 값이 뜨는거고
+                  //!{isupdateReply ? A : B(isOwner ? C : D)}일 경우에는 IsTrue가 맵으로 적용이 안되는건가?
+                  id={data._id}
+                  src="/deleteicon.png"
+                  onClick={onClickDeleteQuestion}
+                ></Delete__Button>
+              </Delete__Edit__Wrapper>
+            </>
+          ) : (
+            <Nested__Reply__Button src="/nestedreply.png"></Nested__Reply__Button>
+          )}
+        </Reply__Contents__Wrapper>
+        <NestedReply />
+      </Reply__And__Nested__Reply__Wrapper>
+      {/* {!isupdateReply ? '' : <Line></Line>} */}
     </>
   )
 }

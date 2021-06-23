@@ -1,7 +1,8 @@
+import withAuth from '../../../../src/components/commons/hocs/withAuth'
 import ItemDetail from '../../../../src/components/query/itemdetail/ItemDetail.container'
 
-const ItemDetailIndex = () => {
+const ItemDetailIndex = (props) => {
   return <ItemDetail />
 }
 
-export default ItemDetailIndex
+export default withAuth(ItemDetailIndex)

@@ -1,7 +1,8 @@
+import withAuth from '../../../src/components/commons/hocs/withAuth'
 import ItemRegist from '../../../src/components/query/itemregist/ItemRegist.container'
 
-const ItemRegistIndex = () => {
+const ItemRegistIndex = (props) => {
   return <ItemRegist />
 }
 
-export default ItemRegistIndex
+export default withAuth(ItemRegistIndex)

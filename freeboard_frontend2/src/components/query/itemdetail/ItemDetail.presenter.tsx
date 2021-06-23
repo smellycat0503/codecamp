@@ -29,16 +29,18 @@ import {
   Menu__Button__Wrapper,
   ToList__Button,
   Buy__Button,
+  Edit__Button,
 } from './ItemDetail.styles'
 
 import React, {Component} from 'react'
 import Slider from 'react-slick'
 import {baseURL} from './image'
 import styled from '@emotion/styled'
+import {getDate} from '../../../commons/libraries/utils'
 // import {baseUrl} from '../../../../public'
 // import ItemComment from '../itemcomment/ItemComment.container'
 
-const ItemDetailUI = ({data, onClickToMain}) => {
+const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
   const settings = {
     customPaging: function (i) {
       return (
@@ -95,7 +97,7 @@ const ItemDetailUI = ({data, onClickToMain}) => {
           <User__Icon src="/user40.png"></User__Icon>
           <User__Id__CreateAt__Wraper>
             <User__Id>{data?.fetchUseditem.seller.name}</User__Id>
-            <CreatedAt>{data && data?.fetchUseditem.createdAt}</CreatedAt>
+            <CreatedAt>{getDate(data?.fetchUseditem.createdAt)}</CreatedAt>
           </User__Id__CreateAt__Wraper>
         </User__Info__Wrapper>
         <Attach__And__Address__Wrapper>
@@ -152,7 +154,11 @@ const ItemDetailUI = ({data, onClickToMain}) => {
       </Item__Detail__Body__Wrapper>
       <Menu__Button__Wrapper>
         <ToList__Button onClick={onClickToMain}>목록으로</ToList__Button>
-        <Buy__Button>구매하기</Buy__Button>
+        {!isOwner ? (
+          <Buy__Button>구매하기</Buy__Button>
+        ) : (
+          <Edit__Button onClick={onClickEditPage}>수정하기</Edit__Button>
+        )}
       </Menu__Button__Wrapper>
     </Wrapper>
   )

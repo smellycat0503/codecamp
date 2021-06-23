@@ -1,7 +1,8 @@
-import Query from "../../../../src/components/query/write/QueryWrite.container";
+import withAuth from '../../../../src/components/commons/hocs/withAuth'
+import Query from '../../../../src/components/query/write/QueryWrite.container'
 
-const UpdateBoard = () => {
-  return <Query />;
-};
+const UpdateBoard = (props) => {
+  return <Query />
+}
 
-export default UpdateBoard;
+export default withAuth(UpdateBoard)

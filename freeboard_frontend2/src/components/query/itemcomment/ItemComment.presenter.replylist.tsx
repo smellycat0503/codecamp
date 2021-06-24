@@ -1,7 +1,7 @@
 import {Reply__List__Wrapper} from './ItemComment.styled'
 import InfiniteScroll from 'react-infinite-scroller'
 import {LayoutContext} from '../../../../pages/_app'
-import {useContext, useState} from 'react'
+import {createContext, useContext, useState} from 'react'
 import {FETCH_USED_ITEM_QUESTION} from './ItemComment.queries'
 
 import ReplylistItem from './ItemComment.presenter.replylist.item'

@@ -79,7 +79,7 @@ export const Reply__Contents__Wrapper = styled.div`
   /* background-color: greenyellow; */
   display: flex;
   flex-direction: row;
-  width: 1200px;
+  /* width: 1200px; */
   justify-content: space-between;
   margin-top: 20px;
   /* margin-bottom: 200px; */
@@ -94,7 +94,7 @@ export const Line = styled.hr`
   border: 0px;
 `
 
-export const UserIcon__UserInfo__Wrapper = styled.div`
+export const UserIcon__UserInfo__Comment__Wrapper = styled.div`
   /* background-color: gold; */
   display: flex;
   flex-direction: row;
@@ -114,17 +114,24 @@ export const Reply__UserName = styled.div``
 export const Reply__Content = styled.div`
   color: #4f4f4f;
   max-width: 900px;
+  width: 100%;
+
+  /* max-height: 250px; */
+  /* height: 100%; */
   margin-top: 4px;
+  /* background-color: red; */
 `
 export const Reply__Date = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 12px;
   color: #bdbdbd;
+  /* background-color: blue; */
 `
 
 export const Delete__Edit__Wrapper = styled.div`
   /* background-color: brown; */
+  /* margin-left: 30px; */
 `
 export const Delete__Button = styled.img`
   width: 18px;
@@ -169,6 +176,12 @@ export const Reply__Edit__Button = styled.button`
   cursor: pointer;
 `
 
+export const Nested__Reply__Button__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`
+
 export const Nested__Reply__Button = styled.img`
   width: 18px;
   height: 18px;
@@ -179,53 +192,55 @@ export const Nested__Reply__Button = styled.img`
 export const Reply__And__Nested__Reply__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  /* background-color: green; */
 `
 
-//*임시* 여기부터 대댓글
+// //*임시* 여기부터 대댓글
 
-export const Nested__Reply__Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`
-export const Arrow__Icon = styled.img`
-  height: 24px;
-  width: 24px;
-  margin-left: 55px;
-  margin-right: 25px; ;
-`
-export const Nested__Reply__Input__Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  /* background-color: blue; */
-`
-export const Nested__Reply__Input = styled.input`
-  /* max-width: 1096px; */
-  width: 1096px;
-  height: 64px;
-  border: 1px solid #bdbdbd;
-  border-bottom: 0px;
-`
-export const Nested__Reply__Count__Button__Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`
-export const Nested__Reply__Count = styled.input`
-  /* max-width: 1004px; */
-  /* width: 100%; */
-  width: 1006px;
-  height: 52px;
-  border: 1px solid #bdbdbd;
-  border-top: 1px solid#F2F2F2;
-  border-right: 0px;
-`
-export const Nested__Reply__Post__Button = styled.div`
-  max-width: 91px;
-  width: 100%;
-  height: 52px;
-  background-color: gold;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
+// export const Nested__Reply__Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   /* background-color: red; */
+// `
+// export const Arrow__Icon = styled.img`
+//   height: 24px;
+//   width: 24px;
+//   /* margin-left: 55px; */
+//   margin-right: 25px; ;
+// `
+// export const Nested__Reply__Input__Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   /* background-color: blue; */
+// `
+// export const Nested__Reply__Input = styled.input`
+//   /* max-width: 1096px; */
+//   width: 1096px;
+//   height: 64px;
+//   border: 1px solid #bdbdbd;
+//   border-bottom: 0px;
+// `
+// export const Nested__Reply__Count__Button__Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `
+// export const Nested__Reply__Count = styled.input`
+//   /* max-width: 1004px; */
+//   /* width: 100%; */
+//   width: 1006px;
+//   height: 52px;
+//   border: 1px solid #bdbdbd;
+//   border-top: 1px solid#F2F2F2;
+//   border-right: 0px;
+// `
+// export const Nested__Reply__Post__Button = styled.div`
+//   max-width: 91px;
+//   width: 100%;
+//   height: 52px;
+//   background-color: gold;
+//   font-size: 16px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `

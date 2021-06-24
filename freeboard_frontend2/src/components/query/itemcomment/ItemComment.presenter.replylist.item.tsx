@@ -3,7 +3,7 @@ import {LayoutContext} from '../../../../pages/_app'
 import {
   Reply__And__Nested__Reply__Wrapper,
   Reply__Contents__Wrapper,
-  UserIcon__UserInfo__Wrapper,
+  UserIcon__UserInfo__Comment__Wrapper,
   UserIcon,
   UserInfo__Reply__Content__Wrapper,
   Reply__UserName,
@@ -19,6 +19,7 @@ import {
   Line,
   Delete__Edit__Wrapper,
   Nested__Reply__Button,
+  Nested__Reply__Button__Wrapper,
 } from './ItemComment.styled'
 
 import {
@@ -26,12 +27,15 @@ import {
   DELETE_USED_ITEM_QUESTION,
   CREATE_USED_ITEM_QUESTION,
   FETCH_USED_ITEM_QUESTION,
+  FETCH_USED_ITEM_QUESTION_ANSWER,
+  CREATE_USED_ITEM_QUESTION_ANSWER,
 } from './ItemComment.queries'
 import {useMutation, useQuery} from '@apollo/client'
 import {useRouter} from 'next/router'
 import {getDate} from '../../../commons/libraries/utils'
 
-import NestedReply from './ItemComment.presenter.replylist.nested'
+import NestedReply from './nestedReply/nestedReply.container'
+import {ControlCameraOutlined} from '@material-ui/icons'
 
 //* 댓글 맵 내용 조회, 수정, 삭제 페이지
 const ReplylistItem = ({data}) => {
@@ -121,17 +125,66 @@ const ReplylistItem = ({data}) => {
     }
   }
 
+  //? 여기부터 대댓글 시도!
+
+  // //*대댓글 쿼리
+  // const {data: answerData} = useQuery(FETCH_USED_ITEM_QUESTION_ANSWER, {
+  //   variables: {
+  //     page: Number(currentPage),
+  //     useditemQuestionId: data._id,
+  //   },
+  // })
+
+  // //*대댓글 작성 뮤테이션
+  // const [answerReplyWrite] = useMutation(CREATE_USED_ITEM_QUESTION_ANSWER)
+
+  // //*대댓글 내용 담기위한 스테이트
+  // const [answer, setAnswer] = useState({
+  //   contents: '',
+  // })
+
+  // //*대댓글 작성 인풋 감지
+  // const inputAnswerReply = (event) => {
+  //   const answerContents = {
+  //     contents: answer.contents,
+  //     [event.target.name]: event.target.value,
+  //   }
+  //   setAnswer(answerContents)
+  // }
+
+  // //*대댓글 온클릭 시 뮤테이션 통신
+  // const onClickAnswerButton = async () => {
+  //   try {
+  //     await answerReplyWrite({
+  //       variables: {
+  //         createUseditemQuestionAnswerInput: {
+  //           contents: answer.contents,
+  //         },
+  //         useditemQuestionId: data._id,
+  //       },
+  //     })
+
+  //   } catch (error) {
+  //     alert(error.message)
+  //   }
+  // }
+
+  //*대댓글 아이콘 클릭 시 스테이트
   const [openNestedReply, setOpenNestedReply] = useState(true)
 
+  //*대댓글 아이콘 클릭 함수
   const onClickNestedReplyButton = () => {
     setOpenNestedReply((prev) => !prev)
   }
+
+  // console.log(data, '댓글아이디암거나')
+  // console.log(accessToken, '엑세스토큰내놔')
 
   return (
     <>
       <Reply__And__Nested__Reply__Wrapper>
         <Reply__Contents__Wrapper>
-          <UserIcon__UserInfo__Wrapper>
+          <UserIcon__UserInfo__Comment__Wrapper>
             <UserIcon src="/user40.png"></UserIcon>
             <UserInfo__Reply__Content__Wrapper>
               <Reply__UserName>{data.user.name}</Reply__UserName>
@@ -157,10 +210,12 @@ const ReplylistItem = ({data}) => {
                 <>
                   <Reply__Content>{data.contents}</Reply__Content>
                   <Reply__Date>{getDate(data.createdAt)}</Reply__Date>
+                  {/* <NestedReply /> */}
                 </>
               )}
             </UserInfo__Reply__Content__Wrapper>
-          </UserIcon__UserInfo__Wrapper>
+          </UserIcon__UserInfo__Comment__Wrapper>
+          {/* <NestedReply /> */}
 
           {isupdateReply && isOwner ? (
             <>
@@ -182,12 +237,22 @@ const ReplylistItem = ({data}) => {
               </Delete__Edit__Wrapper>
             </>
           ) : (
-            <Nested__Reply__Button src="/nestedreply.png"></Nested__Reply__Button>
+            <Nested__Reply__Button__Wrapper>
+              <Nested__Reply__Button
+                onClick={onClickNestedReplyButton}
+                src="/nestedreply.png"
+              ></Nested__Reply__Button>
+            </Nested__Reply__Button__Wrapper>
           )}
         </Reply__Contents__Wrapper>
-        <NestedReply />
       </Reply__And__Nested__Reply__Wrapper>
+      {/* <NestedReply /> */}
       {/* {!isupdateReply ? '' : <Line></Line>} */}
+      <NestedReply
+        data={data}
+        currentPage={currentPage}
+        openNestedReply={openNestedReply}
+      />
     </>
   )
 }

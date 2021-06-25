@@ -1,15 +1,11 @@
 import {useApolloClient, useMutation} from '@apollo/client'
-import {CloudCircleTwoTone, Router} from '@material-ui/icons'
 import {useRouter} from 'next/router'
-import {createContext, useContext, useState} from 'react'
+import {useContext, useState} from 'react'
 
 import LoginUI from './Login.presenter'
 import {LOGIN_USER, FETCH_USER_LOGGED_IN} from './Login.queries'
 import {LayoutContext} from '../../../../pages/_app'
 //!로긴설정8/ layout은 여기서 불러와야 하는 것!
-// import {LayoutContext} from ''
-
-// export const LayoutContext = createContext
 
 const Login = () => {
   const router = useRouter()
@@ -35,7 +31,7 @@ const Login = () => {
       ...loginAccount,
       [event.target.name]: event.target.value,
     }
-    // console.log(loginInfo, 'loginInfo')
+
     let isTrue = [false, false]
     setLoginAccount(loginInfo)
 
@@ -77,7 +73,6 @@ const Login = () => {
     } else {
       setLoginbutton(true)
     }
-    // console.log(isTrue)
   }
 
   const client = useApolloClient()
@@ -86,15 +81,13 @@ const Login = () => {
   //! 이게 gql을 axios처럼 사용 하는거라는게 무슨 뜻이지?
 
   const onClickLogin = async () => {
-    // event.preventDefault()
-
     const {data} = await loginPage({
       variables: {
         password: loginAccount.password,
         email: loginAccount.email,
       },
     })
-    // console.log(data.loginUser.accessToken)
+
     setAccessToken(data?.loginUser.accessToken)
     //!로긴설정10
 
@@ -115,7 +108,6 @@ const Login = () => {
 
   return (
     <LoginUI
-      loginbutton={loginbutton}
       errorEmail={errorEmail}
       errorPassword={errorPassword}
       onClickLogin={onClickLogin}

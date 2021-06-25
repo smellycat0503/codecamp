@@ -1,6 +1,6 @@
 import ItemDetailUI from './itemdetail_seller.presenter'
-import ItemComment from './../itemcomment/ItemComment.container'
-import {FETCH_USED_ITEM} from './ItemDetail_seller.queries'
+import ItemComment from '../itemcomment/itemCommentReply/ItemCommentReply.container'
+import {FETCH_USED_ITEM} from './itemdetail_seller.queries'
 import {useQuery} from '@apollo/client'
 import {useRouter} from 'next/router'
 

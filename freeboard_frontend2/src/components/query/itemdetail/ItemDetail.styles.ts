@@ -4,16 +4,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-width: 1200px; */
 `
 
 export const Header__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: center; */
+
   width: 792px;
-  /* background-color: greenyellow; */
 `
 
 export const User__Info__Wrapper = styled.div`

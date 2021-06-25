@@ -34,7 +34,8 @@ import ModalChangeIndex from './../../modal__charge/'
 
 const Navigation2UI = (props) => {
   const {accessToken, userInfo} = useContext(LayoutContext)
-  // console.log(userInfo.name)
+
+  // console.log(userInfo, '유저 정보 보자')
 
   return (
     <Navi2Wrapper>

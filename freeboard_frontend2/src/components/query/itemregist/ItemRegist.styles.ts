@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 `
 
 export const ItemRegist__Wrapper = styled.div`
-  /* background-color: gold; */
   width: 100%;
   max-width: 1200px;
   padding: 80px 102px 80px 102px;
@@ -106,7 +105,6 @@ export const Location__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* background-color: green; */
   margin-top: 40px;
 `
 export const Location__Map__Wrapper = styled.div`
@@ -135,7 +133,6 @@ export const GPS__Wrapper = styled.div`
   @media only screen and (max-width: 600px) {
     margin-top: 60px;
   }
-  /* background-color: blueviolet; */
 `
 export const GPS__Title = styled.div``
 export const GPS__Button__Wrapper = styled.div`
@@ -184,7 +181,6 @@ export const Input2__Button__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  /* background-color: black; */
 `
 
 export const Address_Input2 = styled.input`
@@ -198,7 +194,7 @@ export const Address_Input2 = styled.input`
 export const SearchAddressButton = styled.button`
   width: 80px;
   height: 52px;
-  margin-left: 15px;
+  margin-top: 24px;
   background-color: black;
   color: white;
   cursor: pointer;
@@ -218,7 +214,6 @@ export const IMG__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* background-color: yellowgreen; */
   margin-top: 16px;
 `
 export const IMG__Upload__Preview__Wrapper = styled.div`
@@ -230,10 +225,6 @@ export const IMG__Upload__Preview__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 24px;
-  /* justify-content: center; */
-  /* padding-right: 24px; */
-  /* background-color: blue; */
-  /* align-self: flex-start; */
 `
 
 export const IMG__Upload__Cancel__Button = styled.img`
@@ -254,7 +245,6 @@ export const IMG__Upload__Button = styled.img`
   height: 180px;
 `
 export const Main__IMG__Setting__Wrapper = styled.div`
-  /* background-color: yellowgreen; */
   margin-top: 40px;
 `
 export const Main__IMG__Title = styled.div``
@@ -266,8 +256,7 @@ export const Main__IMG__Radio__Wrapper = styled.div`
 `
 export const IMG__Radio = styled.input`
   margin-right: 10px;
-  /* -webkit-appearance: none;
-  -moz-appearance: none; */
+
   background-color: gold;
 `
 

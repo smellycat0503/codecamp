@@ -33,7 +33,6 @@ const ItemRegist = (props) => {
     price: '',
     tags: [],
   })
-  // console.log(inputInfo, 'inputInfo')
 
   const [isOpen, setIsOpen] = useState(true)
 
@@ -52,8 +51,6 @@ const ItemRegist = (props) => {
     } else {
       setIsOpen(true)
     }
-
-    // console.log(info, '인포')
   }
 
   const [address, setAddress] = useState('')
@@ -63,7 +60,6 @@ const ItemRegist = (props) => {
     const inputaddress = event.target.value
     setTemp(inputaddress)
   }
-  console.log(address)
 
   const onClickAddressSearch = () => {
     setAddress(temp)
@@ -75,7 +71,6 @@ const ItemRegist = (props) => {
 
   const onClickItemInfo = async () => {
     try {
-      // let arr: []
       const result = await ItemRegist({
         variables: {
           createUseditemInput: {
@@ -86,11 +81,8 @@ const ItemRegist = (props) => {
           },
         },
       })
-      // console.log(result, 'result')
       router.push(`/board/marketboard/${result.data.createUseditem._id}`)
       //! 여기서 넘어갈 사이트 경로를 위해 result 선언한 것?
-
-      // console.log(result)
     } catch (error) {
       alert(error.message)
     }
@@ -112,12 +104,8 @@ const ItemRegist = (props) => {
           useditemId: router.query.ID,
         },
       })
-      //!원래 수정 결과 아이디를 가져와야 하는거 아닌가?
-      // router.push(`board/marketboard/${editResult?.data.updateUseditem._id}`)
-      // console.log(
-      //   editResult?.data.updateUseditem._id,
-      //   '수정뮤테이션 결과 아이디'
-      // )
+      //!원래 수정 결과 아이디를 라우터로 가져와야 하는거 아닌가?
+
       router.push(`/board/marketboard/${router.query.ID}`)
     } catch (error) {
       alert(error.message)

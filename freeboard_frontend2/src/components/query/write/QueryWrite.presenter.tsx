@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import {
   All_Wrapper,
   Wrapper,
@@ -40,8 +39,6 @@ import {
   RegistButton,
   ErrorMessage1,
   FONT,
-  PlusIcon,
-  UploadButton,
   PhotoInput,
   PreviewImg,
   Img__Del__Button,
@@ -60,17 +57,12 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
 const Presenter = (props: IProps) => {
-  // const plusImg = new Array(3)
-  // const userImg = props.myImg
-  // const imgLength = plusImg.length - userImg.length
-
   return (
     <All_Wrapper>
       <Wrapper>
         {!props.data ? (
           <Title>
             <FONT>게시물 등록</FONT>
-            {/* 게시물 등록 */}
           </Title>
         ) : (
           <Title>게시물 수정</Title>
@@ -86,7 +78,7 @@ const Presenter = (props: IProps) => {
               onChange={props.onChangeInput}
               ref={props.inputRef}
             ></NameInput>
-            {/* 여기 name은 별 의미가 없는건가 -> 이름 바꿔도 페이지 바뀜. */}
+
             <ErrorMessage1>{props.error}</ErrorMessage1>
           </Name>
           <Password>
@@ -152,9 +144,6 @@ const Presenter = (props: IProps) => {
         <PhotoWrapper>
           <PhotoTitle>사진 첨부</PhotoTitle>
           <MyPhoto__List>
-            {/* <label htmlFor="photo" style={{fontSize: '20px'}}>
-            + upload
-          </label> */}
             <PhotoContent></PhotoContent>
             {props.myImg.map((data, index) => (
               <>
@@ -207,7 +196,7 @@ const Presenter = (props: IProps) => {
           >
             등록하기
           </RegistButton>
-          {/* //모달 시도 1. 프롭스 앞에 넣기. 2. */}
+
           {props.open && (
             <Dialog
               open={props.open}
@@ -222,16 +211,12 @@ const Presenter = (props: IProps) => {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                {/* <Button onClick={props.handleClose} color="primary">
-            Disagree
-          </Button> */}
                 <Button onClick={props.handleClose} color="primary" autoFocus>
                   확인
                 </Button>
               </DialogActions>
             </Dialog>
           )}
-          {/* //모달 시도 */}
         </RegistWrapper>
       </Wrapper>
     </All_Wrapper>
@@ -239,28 +224,3 @@ const Presenter = (props: IProps) => {
 }
 
 export default Presenter
-
-// {new Array(3).fill(1).map((_, index) => (
-//   <Photo_Wrapper htmlFor="photo">
-//     <PhotoInput
-//       id="photo"
-//       type="file"
-//       multiple
-//       onChange={props.onChangeImage}
-//     ></PhotoInput>
-//   </Photo_Wrapper>
-// ))}
-// </PhotoContent>
-// {props.myImg.map((data, index) => (
-// <>
-//   <PreviewImg__Wrapper>
-//     <Img__Del__Button
-//       id={String(index)}
-//       onClick={props.onClickdeleteImage}
-//     >
-//       X
-//     </Img__Del__Button>
-//     <PreviewImg src={data}></PreviewImg>
-//   </PreviewImg__Wrapper>
-// </>
-// ))}

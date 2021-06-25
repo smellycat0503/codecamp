@@ -1,22 +1,12 @@
 import styled from '@emotion/styled'
 
-// export const Wrapper = styled.div`
-//   width: 464px;
-//   height: 306px;
-// `
-
 export const Modal__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border-radius: 16px; */
 `
 
-export const Logo__Wrapper = styled.div`
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center; */
-`
+export const Logo__Wrapper = styled.div``
 
 export const Logo = styled.img`
   width: 236px;
@@ -28,11 +18,7 @@ export const Message = styled.div`
   font-size: 22px;
 `
 
-export const Button__Wrapper = styled.div`
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center; */
-`
+export const Button__Wrapper = styled.div``
 export const Close__Button = styled.button`
   width: 384px;
   height: 64px;

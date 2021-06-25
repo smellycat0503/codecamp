@@ -14,8 +14,7 @@ const withAuth = (Component) => {
 
     //토큰체크
     useEffect(() => {
-      if (accessToken) return
-
+      // if (accessToken) return
       //*refreshToken으로 accessToken 재발급 받기
       const restoreAccessToken = async () => {
         const newAccessToken = await getAccessToken({setAccessToken})

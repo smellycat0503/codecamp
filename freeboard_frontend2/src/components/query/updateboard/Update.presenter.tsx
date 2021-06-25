@@ -37,13 +37,13 @@ import {
   RegistWrapper,
   RegistButton,
   ErrorMessage1,
-} from "./Update.styles";
+} from './Update.styles'
 
 interface IProps {
-  onChangeInput: any;
-  onClickPost: any;
-  error: any;
-  ErrorMessage: any;
+  onChangeInput: any
+  onClickPost: any
+  error: any
+  ErrorMessage: any
   //*여기는 컨테이너에서 넘어온 것들을 그대로 가져오면 됨.
   //*임의로 any 설정.
 }
@@ -61,7 +61,6 @@ const QueryUI = (props) => {
             name="writer"
             onChange={props.onChangeInput}
           ></NameInput>
-          {/* 여기 name은 별 의미가 없는건가 -> 이름 바꿔도 페이지 바뀜. */}
           <ErrorMessage1>{props.error}</ErrorMessage1>
         </Name>
         <Password>
@@ -152,7 +151,7 @@ const QueryUI = (props) => {
         <RegistButton onClick={props.onClickPost}>등록하기</RegistButton>
       </RegistWrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default QueryUI;
+export default QueryUI

@@ -32,22 +32,17 @@ import {
   Edit__Button,
 } from './ItemDetail.styles'
 
-import React, {Component} from 'react'
 import Slider from 'react-slick'
 import {baseURL} from './image'
 import styled from '@emotion/styled'
 import {getDate} from '../../../commons/libraries/utils'
-// import {baseUrl} from '../../../../public'
-// import ItemComment from '../itemcomment/ItemComment.container'
 
 const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
   const settings = {
     customPaging: function (i) {
       return (
         <a>
-          {/* <Item__Sub__Img__Wrapper> */}
           <Item__Sub__Img src={`${baseURL}/a-0${i + 1}.png`} />
-          {/* </Item__Sub__Img__Wrapper> */}
         </a>
       )
     },
@@ -62,8 +57,6 @@ const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
     .slick-next {
       right: 3% !important;
       z-index: 1; //! 얘는 배경이 없을 땐 없어도 될 듯.
-      /* color: black; */ // 의미없음
-      /* background: black; */
       margin-left: 50px;
       width: 40px; //배경
       height: 40px; //배경
@@ -72,8 +65,6 @@ const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
     .slick-prev {
       right: 3% !important;
       z-index: 1;
-      /* color: black; */ // 의미없음
-      /* background: black; */
       margin-left: 50px;
       width: 40px; //배경
       height: 40px; //배경
@@ -86,7 +77,7 @@ const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
       line-height: 0;
 
       opacity: 0.75;
-      color: gray; //!이놈이 화살표 색!!
+      color: gray; //! 화살표 색!!
     }
   `
 
@@ -117,7 +108,6 @@ const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
             <Like__Number>20</Like__Number>
           </Like__Wrapper>
         </Item__Detail__Body__Top__Wrapper>
-        {/* <Item__Carousel__Wrapper> */}
 
         <StyledSlider {...settings}>
           <div>
@@ -133,20 +123,10 @@ const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
             <Item__Main__Img src={`${baseURL}/a-04.png`} />
           </div>
         </StyledSlider>
-        {/* </Item__Sub__Img__Wrapper> */}
-        {/* <Item__Main__Img src="/갤럭시 탭A image main.png"></Item__Main__Img>
-          <Item__Sub__Img__Wrapper>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-            <Item__Sub__Img src="/갤럭시 탭A image 1.png"></Item__Sub__Img>
-          </Item__Sub__Img__Wrapper> */}
-        {/* </Item__Carousel__Wrapper> */}
+
         <Item__Detail__Contents
           dangerouslySetInnerHTML={{__html: data?.fetchUseditem.contents}}
-        >
-          {/* {data && data?.fetchUseditem.contents} */}
-        </Item__Detail__Contents>
+        ></Item__Detail__Contents>
         <Item__Tag>{data && data?.fetchUseditem.tags}</Item__Tag>
         <Map__Wrapper>
           <Map src="/map.png"></Map>

@@ -4,12 +4,6 @@ import {useRouter} from 'next/router'
 
 import {CREATE_BOARD, PILLOWS, UPLOAD_FILE} from './QueryWrite.queries'
 import Presenter from './QueryWrite.presenter'
-import {IMutation} from '../../../commons/types/generated/types'
-import {ConsoleSqlOutlined} from '@ant-design/icons'
-
-// interface IErrorMessage{
-
-// }
 
 const Container = () => {
   const [uploadimage] = useMutation(UPLOAD_FILE)
@@ -35,7 +29,6 @@ const Container = () => {
   const {data} = useQuery(PILLOWS, {
     variables: {boardId: router.query.ID},
   })
-  // console.log(data)
 
   function onChangeInput(event) {
     const iphone = {...qwer, [event.target.name]: event.target.value}
@@ -76,12 +69,11 @@ const Container = () => {
       const result = await muta({
         variables: {...qwer, images}, //! 여기에 이미지 추가!!!!!
       })
-      // const id = result.data.createBoard._id;
-      // alert(result.data.createBoard.message);
+
       setA(result.data.createBoard._id)
       handleClickOpen()
       console.log('리절트', result)
-      // router.push(`/board/${result.data.createBoard._id}`)
+
       //! 리절트를 밖으로 꺼내기 위해 1. 유즈스테이트 사용. 기본값 별도로 필요치 않으므로 '' 사용.
       //! 2. 여기서의 결과를 셋A로 꺼내어 a에 넣는다.
       //* push 경로 파악하기.
@@ -129,11 +121,11 @@ const Container = () => {
 
   const onChangeImage = async (event) => {
     const file = event.target.files
-    //map을 쓰려했으나 안됨. 파일 자체의 속성떄무ㅡㄴ에 배열 형태일지라도 안됨 그렇게 알기
+    //map을 쓰려했으나 안됨. 파일 자체의 속성 때문에 배열 형태일지라도 안됨 그렇게 알기
 
     let fileURLs = []
     let newFileArr = []
-    //미리보ㅓ기를 위해 미리 담아두기.
+    //미리보기를 위해 미리 담아두기.
     for (let i = 0; i < file.length; i++) {
       newFileArr.push(file[i])
       const reader = new FileReader()
@@ -141,7 +133,6 @@ const Container = () => {
       reader.onload = (event) => {
         //읽은거 업로드용
         fileURLs[i] = event.target.result
-        // console.log(event.target.result, 'event.target.result')
         setMyImg([...fileURLs])
         console.log(myImg, 'myImg')
         setIsTrue((prev) => !prev)
@@ -151,13 +142,9 @@ const Container = () => {
   }
 
   const onClickdeleteImage = (event) => {
-    // setIsTrue((prev) => !prev)
-    // const newArrForDel = new Array(myImg.length).fill(1)
     const del = Number(event.target.id)
-    console.log(del, 'del') //!내가 클릭한 놈의 id가 찍힘.
-    // const newArrForDel = new Array(myImg.length)
-    //   .fill(myImg)
-    //   .map((_, index) => [...myImg]) // 실패버전
+    // console.log(del, 'del') //!내가 클릭한 곳의 id가 찍힘.
+
     const newArrForDel = [...myImg]
     console.log(newArrForDel, 'newArrForDel')
 
@@ -202,8 +189,3 @@ export default Container
 //   })
 //   //!실제로 값이 들어가는 건 한박자 늦게 들어감. 모든 셋 함수가 그러함/
 //   //! 여기의 함수가 끝나고  qwer로 값이 들어가는거임.
-//   console.log(qwer, '이미지 잘 들어가니')
-//   console.log(data.uploadFile, '업로드뮤테이션결과')
-// } catch (error) {
-//   alert(error.message)
-// }

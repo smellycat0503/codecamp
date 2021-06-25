@@ -7,19 +7,11 @@ import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
 } from './nestedReply.queries'
 
-const NestedReply = ({data, currentPage, openNestedReply}) => {
+const NestedReply = ({data}) => {
+  //* 대댓글 기능들
+
   //* 본인 글 권한 확인
   const {accessToken, userInfo} = useContext(LayoutContext)
-
-  //*대댓글 쿼리
-  const {data: answerData} = useQuery(FETCH_USED_ITEM_QUESTION_ANSWER, {
-    variables: {
-      page: Number(currentPage),
-      useditemQuestionId: data._id,
-    },
-  })
-
-  console.log(answerData, '대댓글쿼리')
 
   //*대댓글 작성 뮤테이션
   const [answerReplyWrite] = useMutation(CREATE_USED_ITEM_QUESTION_ANSWER)
@@ -54,16 +46,17 @@ const NestedReply = ({data, currentPage, openNestedReply}) => {
     }
   }
 
-  // const [isOpenRelpyButton, setIsOpenRelpyButton] = useState(true)
-
+  const [Test, setTest] = useState(true)
+  const onClickTest = () => {
+    setTest((prev) => !prev)
+  }
   return (
     <NestedReplyUI
-      openNestedReply={openNestedReply}
       data={data}
-      currentPage={currentPage}
       inputAnswerReply={inputAnswerReply}
       onClickAnswerButton={onClickAnswerButton}
-      answerData={answerData}
+      Test={Test}
+      onClickTest={onClickTest}
     />
   )
 }

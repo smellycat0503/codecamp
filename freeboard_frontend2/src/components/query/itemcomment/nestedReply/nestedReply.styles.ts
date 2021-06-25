@@ -2,12 +2,9 @@ import styled from '@emotion/styled'
 
 export const Wrapper = styled.div``
 
-//*임시* 여기부터 대댓글
-
 export const Nested__Reply__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  /* background-color: red; */
 `
 export const Arrow__Icon = styled.img`
   height: 24px;
@@ -19,10 +16,8 @@ export const Arrow__Icon = styled.img`
 export const Nested__Reply__Input__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: blue; */
 `
 export const Nested__Reply__Input = styled.input`
-  /* max-width: 1096px; */
   width: 1096px;
   height: 64px;
   border: 1px solid #bdbdbd;
@@ -33,8 +28,6 @@ export const Nested__Reply__Count__Button__Wrapper = styled.div`
   flex-direction: row;
 `
 export const Nested__Reply__Count = styled.input`
-  /* max-width: 1004px; */
-  /* width: 100%; */
   width: 1006px;
   height: 52px;
   border: 1px solid #bdbdbd;
@@ -58,7 +51,7 @@ export const Nest__Reply__Contents__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: yellow; */
+
   width: 1100px;
 `
 
@@ -75,7 +68,6 @@ export const Nest__Reply__User__Icon = styled.img`
 export const Nest__Reply__Name__Contents__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: green; */
 `
 export const Nest__Reply__UserName = styled.div`
   font-size: 16px;
@@ -90,10 +82,7 @@ export const Nest__Reply__Date = styled.div`
   color: #bdbdbd;
 `
 
-export const Nest__Reply__Edit__Delete__Buttons__Wrapper = styled.div`
-  /* background-color: brown; */
-  /* align-items: flex-end; */
-`
+export const Nest__Reply__Edit__Delete__Buttons__Wrapper = styled.div``
 export const Nest__Reply__Edit__Button = styled.img`
   width: 18px;
   height: 18px;
@@ -114,4 +103,10 @@ export const Click__Input__Nested__Reply__Wrapper = styled.div`
 export const Nested__Reply__Input__Count__Button__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+`
+export const Nested__Reply__Button = styled.img`
+  width: 18px;
+  height: 18px;
+
+  cursor: pointer;
 `

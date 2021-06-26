@@ -36,10 +36,7 @@ export const Title = styled.div`
 `
 
 export const Input__Wrapper = styled.div`
-  /* background-color: blue; */
   padding-bottom: 20px;
-
-  /* height: 124px; */
 `
 
 export const Input__Title = styled.div`
@@ -49,7 +46,6 @@ export const Input__Title = styled.div`
 export const Input__Input = styled.input`
   width: 384px;
   height: 64px;
-  /* opacity: 0.9; */
   font-size: 16px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.05);
@@ -92,20 +88,3 @@ export const SignUpButton = styled.button`
   }
   //!:disabled 뒤에 css 적용 기억하기
 `
-// export const Background = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   opacity: 0.5;
-//   /* z-index: 1; */
-//   /* position: absolute; */
-// `
-// export const PrevPage__Button__Wrapper = styled.div`
-//   width: 100%;
-//   height: 20px;
-//   padding-top: 82px;
-//   background-color: gray;
-// `
-// export const PrevPage__Button = styled.div`
-//   width: 20px;
-//   height: 20px;
-// `

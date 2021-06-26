@@ -1,24 +1,15 @@
 import {useMutation, useQuery} from '@apollo/client'
-import {
-  Wrapper,
-  ReplyWrapper,
-  Title__Wrapper,
-  Reply__Img,
-  Reply__Title,
-  Reply__Input,
-  ReplyCount__Regint__Button__Wrapper,
-  Reply__Count,
-  Regist__Button,
-} from './ItemComment.styled'
-import {
-  CREATE_USED_ITEM_QUESTION,
-  FETCH_USED_ITEM_QUESTION,
-} from './ItemComment.queries'
-import {useState} from 'react'
 import {useRouter} from 'next/router'
+import {useState} from 'react'
+import withAuth from '../../../commons/hocs/withAuth'
+import ItemCommentUI from './ItemCommentReply.presenter'
+import {
+  FETCH_USED_ITEM_QUESTION,
+  CREATE_USED_ITEM_QUESTION,
+} from './ItemCommentReply.queries'
 
-//*댓글 입력 및 등록 페이지
-const ItemCommentUI = () => {
+//* 댓글 입력 및 댓글 불러오기
+const ItemComment = () => {
   const router = useRouter()
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -69,25 +60,34 @@ const ItemCommentUI = () => {
     }
   }
 
+  console.log(readReply?.fetchUseditemQuestions)
+
+  // //*인피니트스크롤 함수/ 쿼리모어 및 업데이트쿼리 합치기
+  const onLoadMore = () => {
+    if (readReply?.fetchUseditemQuestions.length % 10 !== 0) return
+    fetchMore({
+      variables: {
+        page: Math.floor(readReply?.fetchUseditemQuestions.length / 10) + 1,
+      },
+      updateQuery: (prev, {fetchMoreResult}) => ({
+        fetchUseditemQuestions: [
+          ...prev.fetchUseditemQuestions,
+          ...fetchMoreResult.fetchUseditemQuestions,
+        ],
+      }),
+    })
+  }
+
   return (
-    <Wrapper>
-      <ReplyWrapper>
-        <Title__Wrapper>
-          <Reply__Img src="/ic_rate_review-24px.png"></Reply__Img>
-          <Reply__Title>문의하기</Reply__Title>
-        </Title__Wrapper>
-        <Reply__Input
-          onChange={onChangeReplyInput}
-          name="contents"
-          placeholder="개인정보를 공유 및 요청하거나, 명회 훼손, 무단 광고, 불법 정보 우표시 모디터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
-        ></Reply__Input>
-        <ReplyCount__Regint__Button__Wrapper>
-          <Reply__Count></Reply__Count>
-          <Regist__Button onClick={onClickReply}>문의하기</Regist__Button>
-        </ReplyCount__Regint__Button__Wrapper>
-      </ReplyWrapper>
-    </Wrapper>
+    <>
+      <ItemCommentUI
+        onChangeReplyInput={onChangeReplyInput}
+        onClickReply={onClickReply}
+        readReply={readReply}
+        onLoadMore={onLoadMore}
+      />
+    </>
   )
 }
 
-export default ItemCommentUI
+export default withAuth(ItemComment)

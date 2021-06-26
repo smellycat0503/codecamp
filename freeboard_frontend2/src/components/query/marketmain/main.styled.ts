@@ -24,10 +24,8 @@ export const Best__List__Wrapper = styled.div`
   margin-top: 40px;
   max-width: 1200px;
   width: 100%;
-  /* flex-wrap: wrap; */
   display: flex;
   flex-direction: row;
-  /* background-color: gold; */
 `
 
 export const Best__Item__Wrapper = styled.div`
@@ -36,13 +34,11 @@ export const Best__Item__Wrapper = styled.div`
   max-height: 391px;
   height: 100%;
   margin-right: 24px;
-  /* background-color: gold; */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   box-shadow: 5px 3px 10px silver;
-  /* justify-content: center; */
 `
 
 export const Item__Img = styled.img`
@@ -59,21 +55,17 @@ export const Item__Title = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   cursor: pointer;
-  /* background-color: gray; */
   width: 100%;
 `
 export const Item__Detail__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: green; */
   width: 100%;
   margin-top: 4px;
 `
 
-export const ModelName__Price__Wrapper = styled.div`
-  /* background-color: blue; */
-`
+export const ModelName__Price__Wrapper = styled.div``
 
 export const Item__ModelName = styled.div`
   font-size: 12px;
@@ -88,11 +80,9 @@ export const Item__Price = styled.div`
   height: 28px;
 `
 export const Like__Wrapper = styled.div`
-  /* background-color: red; */
   height: 50px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-self: flex-end;
 `
 
@@ -111,7 +101,6 @@ export const Sale__Wrapper = styled.div`
 `
 
 export const Sale__Menu__Search__Wrapper = styled.div`
-  /* background-color: greenyellow; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -126,7 +115,6 @@ export const Sale__List__Today__HaveSeen__Wrapper = styled.div`
 export const HaveSeen__Wrapper = styled.div`
   border: 1px solid silver;
   width: 196px;
-  /* height: 505px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,12 +131,9 @@ export const HaveSeen__Item__Wrapper = styled.div`
   border: 1px solid silver;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* height: 199px; */
   width: 156px;
   margin-top: 20px;
   padding: 0px 10px 10px 10px;
-  /* background-color: brown; */
 `
 export const HaveSeen__Item__Like__Wrapper = styled.div`
   display: flex;
@@ -156,8 +141,6 @@ export const HaveSeen__Item__Like__Wrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-top: 12.25px;
-
-  /* background-color: brown; */
 `
 export const HaveSeen__Item__Like__Button = styled.img`
   margin-right: 5.5px;
@@ -202,7 +185,6 @@ export const Menu__Wrapper = styled.div`
   flex-direction: row;
   height: 52px;
   align-items: center;
-  /* background-color: yellow; */
 `
 
 export const Now__Sale__Item = styled.div`
@@ -215,7 +197,6 @@ export const SoldOut__Item = styled.div`
   color: gray;
 `
 export const Search__Wrapper = styled.div`
-  /* background-color: gold; */
   display: flex;
   flex-direction: row;
 `
@@ -232,7 +213,6 @@ export const Search__Input = styled.input`
 export const Date__Wrapper = styled.div`
   width: 282px;
   height: 52px;
-  /* background-color: hotpink; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -270,11 +250,8 @@ export const Now__Sale__List__Wrapper = styled.div`
   border-top: 1px solid silver;
   border-bottom: 1px solid silver;
   overflow: auto;
-  /* overflow-y: scroll; */
-  /* background-color: gold; */
 `
 export const Item__Wrapper = styled.div`
-  /* background-color: yellow; */
   display: flex;
   flex-direction: row;
   height: 200px;
@@ -294,15 +271,10 @@ export const Sale__Img__Detail__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
 `
 export const Sale__Item__Detail = styled.div``
 
-export const Sale__Item__Title__Detail__Wrapper = styled.div`
-  /* background-color: yellowgreen; */
-  /* height: 200px; */
-  /* width: 800px; */
-`
+export const Sale__Item__Title__Detail__Wrapper = styled.div``
 
 export const Sale__Item__Title = styled.div`
   font-size: 24px;
@@ -315,8 +287,6 @@ export const Sale__Item__ModelName = styled.div`
 `
 
 export const Sale__Item__Tag = styled.div`
-  /* width: 20px;
-  height: 20px; */
   color: #bdbdbd;
   display: flex;
   flex-direction: row;
@@ -324,12 +294,10 @@ export const Sale__Item__Tag = styled.div`
 `
 
 export const Sale__UserName__Like__Wrapper = styled.div`
-  /* background-color: red; */
   margin-top: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* height: 24px; */
 `
 
 export const Sale__User__Icon = styled.img`
@@ -348,7 +316,6 @@ export const Sale__Item__Like__Number = styled.div``
 export const Sale__Item__Price__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  /* background-color: blue; */
 `
 export const Sale__Item__Price__Img = styled.img`
   height: 18px;
@@ -373,5 +340,4 @@ export const Regist__Button = styled.button`
   height: 52px;
   background-color: white;
   cursor: pointer;
-  /* align-self: flex-end; */
 `

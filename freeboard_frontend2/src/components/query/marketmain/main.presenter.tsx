@@ -71,7 +71,6 @@ const MarketMainUI = ({
   onClickSearch,
   onClickItemRegist,
 }) => {
-  // console.log(usedItems?.fetchUseditems)
   return (
     <Wrapper>
       <Best__Items__Wrapper>
@@ -132,7 +131,6 @@ const MarketMainUI = ({
                 pageStart={0}
                 loadMore={onLoadMore}
                 hasMore={true}
-                // threshold={100}
                 useWindow={false}
               >
                 {usedItems?.fetchUseditems.map((data) => (
@@ -213,34 +211,3 @@ const MarketMainUI = ({
 }
 
 export default MarketMainUI
-
-{
-  /* {new Array(10).fill(1).map((__) => (
-            <Item__Wrapper>
-              <Sale__Img__Detail__Wrapper>
-                <Sale__Item__Img src="/160a.png"></Sale__Item__Img>
-                <Sale__Item__Detail>
-                  <Sale__Item__Title__Detail__Wrapper>
-                    <Sale__Item__Title>
-                      삼성전자 갤럭시탭A 10.1
-                    </Sale__Item__Title>
-                    <Sale__Item__ModelName>2019 LTE 32GB</Sale__Item__ModelName>
-                    <Sale__Item__Tag>
-                      #삼성전자 #갤럭시탭 #갓성비
-                    </Sale__Item__Tag>
-                  </Sale__Item__Title__Detail__Wrapper>
-                  <Sale__UserName__Like__Wrapper>
-                    <Sale__User__Icon src="/saleUserIcon.png"></Sale__User__Icon>
-                    <Sale__UserName>판매자</Sale__UserName>
-                    <Sale__Item__Like__Button src="/likeimg.png"></Sale__Item__Like__Button>
-                    <Sale__Item__Like__Number>20</Sale__Item__Like__Number>
-                  </Sale__UserName__Like__Wrapper>
-                </Sale__Item__Detail>
-              </Sale__Img__Detail__Wrapper>
-              <Sale__Item__Price__Wrapper>
-                <Sale__Item__Price__Img src="/w.png"></Sale__Item__Price__Img>
-                <Sale__Item__Price>240,120원</Sale__Item__Price>
-              </Sale__Item__Price__Wrapper>
-            </Item__Wrapper>
-          ))} */
-}

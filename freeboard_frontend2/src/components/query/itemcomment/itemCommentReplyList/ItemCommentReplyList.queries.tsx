@@ -17,6 +17,23 @@ export const FETCH_USED_ITEM_QUESTION_ANSWER = gql`
     }
   }
 `
+
+export const FETCH_USED_ITEM_QUESTION = gql`
+  query FETCH_USED_ITEM_QUESTION($useditemId: ID!, $page: Int) {
+    fetchUseditemQuestions(useditemId: $useditemId, page: $page) {
+      contents
+      createdAt
+      _id
+      user {
+        _id
+        email
+        name
+        createdAt
+      }
+    }
+  }
+`
+
 export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
   mutation CREATE_USED_ITEM_QUESTION_ANSWER(
     $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
@@ -36,25 +53,30 @@ export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
     }
   }
 `
-export const DELETE_USED_ITEM_QUESTION_ANSWER = gql`
-  mutation DELETE_USED_ITEM_QUESTION_ANSWER($useditemQuestionAnswerId: ID!) {
-    deleteUseditemQuestionAnswer(
-      useditemQuestionAnswerId: $useditemQuestionAnswerId
-    )
+
+export const DELETE_USED_ITEM_QUESTION = gql`
+  mutation DELETE_USED_ITEM_QUESTION($useditemQuestionId: ID!) {
+    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
   }
 `
 
-export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
-  mutation UPDATE_USED_ITEM_QUESTION_ANSWER(
-    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
-    $useditemQuestionAnswerId: ID!
+export const UPDATE_USED_ITEM_QUESTION = gql`
+  mutation UPDATE_USED_ITEM_QUESTION(
+    $updateUseditemQuestionInput: UpdateUseditemQuestionInput!
+    $useditemQuestionId: ID!
   ) {
-    updateUseditemQuestionAnswer(
-      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
-      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    updateUseditemQuestion(
+      updateUseditemQuestionInput: $updateUseditemQuestionInput
+      useditemQuestionId: $useditemQuestionId
     ) {
       _id
       contents
+      user {
+        _id
+        email
+        name
+      }
+      createdAt
     }
   }
 `

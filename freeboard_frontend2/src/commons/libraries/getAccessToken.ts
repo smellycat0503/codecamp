@@ -5,7 +5,7 @@ import axios from 'axios'
 //* {setAccessToken} 객체로 쌓아놓는 편이 실수 예방에 있어 좋음
 const getAccessToken = async ({setAccessToken}) => {
   const response = await axios.post(
-    'https://localhost:3000/graphgql',
+    'https://backend.codebootcamp.co.kr/graphql',
     {
       query: `
                 mutation restoreAccessToken {
@@ -22,9 +22,9 @@ const getAccessToken = async ({setAccessToken}) => {
     }
   )
   //*리프레시토큰을 통해 새 액세스토큰을 발급받음
+
   const newAccessToken = response.data.data.restoreAccessToken.accessToken
   setAccessToken(newAccessToken)
-
   return newAccessToken
 }
 

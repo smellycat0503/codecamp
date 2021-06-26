@@ -11,7 +11,6 @@ import {
   Summary__Input,
   Item__Detail__Wrapper,
   Item__Detail__Title,
-  Item__Detail__Input,
   Sale__Price__Wrapper,
   Sale__Price__Title,
   Sale__Price__Input,
@@ -21,7 +20,6 @@ import {
   Location__Wrapper,
   Location__Map__Wrapper,
   Location__Title,
-  Location__Map,
   GPS__Address__Wrapper,
   GPS__Wrapper,
   GPS__Title,
@@ -32,7 +30,6 @@ import {
   Address__Wrapper,
   Address__Title,
   Address_Input1,
-  Address_Input2,
   IMG__Attach_Wrapper,
   IMG__Attach__Title,
   IMG__Wrapper,
@@ -56,7 +53,6 @@ import {
 
 import Head from 'next/head'
 
-// import ReactQuill from 'react-quill'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 import {memo, useEffect} from 'react'
@@ -125,8 +121,6 @@ const ItemRegistUI = ({
   }, [address])
   //!useEffect는 두번쨰 인자 []가 바뀔 때 실행됨!!
 
-  // console.log(data, 'data')
-
   return (
     <>
       <Head>
@@ -161,11 +155,7 @@ const ItemRegistUI = ({
             </Summary__Wrapper>
             <Item__Detail__Wrapper>
               <Item__Detail__Title>상품설명</Item__Detail__Title>
-              {/* <Item__Detail__Input
-                name="contents"
-                placeholder="상품을 설명해주세요."
-                onChange={onChangeInputInfo}
-              ></Item__Detail__Input> */}
+
               <ReactQuill
                 name="contents"
                 placeholder="상품을 설명해주세요."
@@ -191,10 +181,8 @@ const ItemRegistUI = ({
             <Location__Wrapper>
               <Location__Map__Wrapper>
                 <Location__Title>거래위치</Location__Title>
-                {/* <Location__Map> */}
+
                 <div id="map" style={{width: '384px', height: '252px'}}></div>
-                {/* <Location__Map src="/map image.png"></Location__Map> */}
-                {/* </Location__Map> */}
               </Location__Map__Wrapper>
               <GPS__Address__Wrapper>
                 <GPS__Wrapper>
@@ -209,7 +197,6 @@ const ItemRegistUI = ({
                   <Address__Title>주소</Address__Title>
                   <Address_Input1 onChange={onChangeAddress}></Address_Input1>
                   <Input2__Button__Wrapper>
-                    <Address_Input2></Address_Input2>
                     <SearchAddressButton onClick={onClickAddressSearch}>
                       검색
                     </SearchAddressButton>

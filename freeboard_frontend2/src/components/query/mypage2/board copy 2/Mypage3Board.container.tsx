@@ -1,4 +1,4 @@
-import Mypage2BoardUI from './Mypage2Board.presenter'
+import Mypage2BoardUI from './Mypage3Board.presenter'
 
 const Mypage2Board = () => {
   return <Mypage2BoardUI />

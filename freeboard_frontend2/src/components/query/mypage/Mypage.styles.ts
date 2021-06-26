@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
 export const Mypage__Menu__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: blue; */
   width: 100%;
   max-width: 97px;
   margin-right: 123px;
@@ -25,7 +24,6 @@ export const Icon__Name__Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: green; */
 `
 export const Mypage__Icon = styled.img`
   max-width: 80px;
@@ -33,7 +31,6 @@ export const Mypage__Icon = styled.img`
   max-height: 80px;
   height: 100%;
   margin-top: 48px;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -134,14 +131,10 @@ export const Select__Delete__Button = styled.button`
   background-color: white;
 `
 
-export const BoardList__Body__Wrapper = styled.div`
-  /* width: 100%;
-  max-width: 980px; */
-`
+export const BoardList__Body__Wrapper = styled.div``
 
 export const BoardList__TopList__Wrapper = styled.div`
   width: 980px;
-  /* max-width: 980px; */
   height: 52px;
   border-top: 1px solid black;
   border-bottom: 1px solid #bdbdbd;

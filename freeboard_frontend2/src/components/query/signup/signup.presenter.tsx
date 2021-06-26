@@ -7,7 +7,6 @@ import {
   Input__Input,
   Warning__Input,
   Input__Wrapper,
-  SignUpButton__Disabled,
   Background,
   SignUpButton,
 } from './signup.styles'

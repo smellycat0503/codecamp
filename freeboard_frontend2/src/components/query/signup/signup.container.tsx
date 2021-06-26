@@ -5,8 +5,6 @@ import SignUpUI from './signup.presenter'
 import {CREATEACCOUNT} from './signup.queries'
 
 const SignUp = () => {
-  const router = useRouter()
-
   const [createUserAccount] = useMutation(CREATEACCOUNT)
 
   const [newAccount, setNewAccount] = useState({

@@ -11,13 +11,7 @@ import {
   SignUpButton,
 } from './Login.styles'
 
-const LoginUI = ({
-  loginbutton,
-  errorEmail,
-  errorPassword,
-  onClickLogin,
-  onChangeInput,
-}) => {
+const LoginUI = ({errorEmail, errorPassword, onClickLogin, onChangeInput}) => {
   return (
     <Wrapper>
       <Background src="/BG.png" />

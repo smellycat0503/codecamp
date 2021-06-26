@@ -11,9 +11,6 @@ import {createUploadLink} from 'apollo-upload-client'
 import {config} from '@fortawesome/fontawesome-svg-core'
 import {createContext, useState} from 'react'
 import {onError} from '@apollo/client/link/error'
-import axios from 'axios'
-import {ForwardRounded} from '@material-ui/icons'
-import Head from 'next/head'
 
 import getAccessToken from '../src/commons/libraries/getAccessToken'
 
@@ -35,35 +32,17 @@ const App = ({Component, pageProps}) => {
     uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
       authorization: `Bearer ${accessToken}`,
-      credentials: 'include',
     },
+    credentials: 'include',
   })
 
   // @ts-ignore
-  const errorLink = onError(async ({graphQLErrors, operation, forward}) => {
+  const errorLink = onError(({graphQLErrors, operation, forward}) => {
     if (graphQLErrors) {
       for (let err of graphQLErrors) {
         if (err.extensions.code === 'UNAUTHENTICATED') {
           //* 만료된 토큰 재발급 받기
           //* 리프레시토큰/ 복잡해서 axios부분(getAccessToken)을 src/commons/libraries/로 빼기로 함. 안빼도 상관은 없음
-          // const response = await axios.post(
-          //   'https://localhost:3000/graphgql',
-          //   {
-          //     query: `
-          //       mutation restoreAccessToken {
-          //         restoreAccessToken{
-          //           accessToken
-          //         }}
-          //       `,
-          //   },
-          //   {
-          //     headers: {'Content-Type': 'application/json'},
-          //     withCredentials: true,
-          //   }
-          // )
-          // const newAccessToken =
-          //   response.data.data.restoreAccessToken.accessToken
-          // setAccessToken(newAccessToken)
 
           //*재발급 받은 토큰으로 실패했던 쿼리 다시 날리기.
           operation.setContext({

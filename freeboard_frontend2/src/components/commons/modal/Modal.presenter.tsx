@@ -13,11 +13,6 @@ import {
   Button__Wrapper,
   Close__Button,
 } from './Modal.styles'
-// export interface IProps {
-//   open: any
-//   handleClickOpen: any
-//   handleClose: any
-// }
 
 const ModalUI = ({open, handleClickOpen, handleClose}) => {
   return (

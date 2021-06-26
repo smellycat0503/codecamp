@@ -16,7 +16,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
 `
 export const Title = styled.div`
   font-size: 50px;
@@ -158,7 +157,6 @@ export const PhotoTitle = styled.div`
 export const PhotoContent = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: start; */
 `
 export const Photo_Wrapper = styled.label`
   width: 78px;

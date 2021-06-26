@@ -10,8 +10,16 @@ import {
   Regist__Button,
 } from './ItemCommentReply.styled'
 import Reply__List from '../itemCommentReplyList/ItemCommentReplyList.container'
+
+import InfiniteScroll from 'react-infinite-scroller'
+
 //*댓글 입력 및 등록 페이지
-const ItemCommentUI = ({onChangeReplyInput, onClickReply, readReply}) => {
+const ItemCommentUI = ({
+  onChangeReplyInput,
+  onClickReply,
+  readReply,
+  onLoadMore,
+}) => {
   return (
     <Wrapper>
       <ReplyWrapper>
@@ -29,10 +37,13 @@ const ItemCommentUI = ({onChangeReplyInput, onClickReply, readReply}) => {
           <Regist__Button onClick={onClickReply}>문의하기</Regist__Button>
         </ReplyCount__Regint__Button__Wrapper>
       </ReplyWrapper>
-
-      {readReply?.fetchUseditemQuestions.map((data, index) => (
-        <Reply__List data={data} key={index}></Reply__List>
-      ))}
+      {readReply?.fetchUseditemQuestions.length && (
+        <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
+          {readReply?.fetchUseditemQuestions.map((data, index) => (
+            <Reply__List data={data} key={index}></Reply__List>
+          ))}
+        </InfiniteScroll>
+      )}
     </Wrapper>
   )
 }

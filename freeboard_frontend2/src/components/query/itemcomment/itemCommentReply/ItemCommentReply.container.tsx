@@ -60,21 +60,23 @@ const ItemComment = () => {
     }
   }
 
+  console.log(readReply?.fetchUseditemQuestions)
+
   // //*인피니트스크롤 함수/ 쿼리모어 및 업데이트쿼리 합치기
-  // const onLoadMore = () => {
-  //   if (readReply?.fetchUseditemQuestions.length % 10 !== 0) return
-  //   fetchMore({
-  //     variables: {
-  //       page: Math.floor(readReply?.fetchUseditemQuestions.length / 10) + 1,
-  //     },
-  //     updateQuery: (prev, {fetchMoreResult}) => ({
-  //       fetchUseditemQuestions: [
-  //         ...prev.fetchUseditemQuestions,
-  //         ...fetchMoreResult.fetchUseditemQuestions,
-  //       ],
-  //     }),
-  //   })
-  // }
+  const onLoadMore = () => {
+    if (readReply?.fetchUseditemQuestions.length % 10 !== 0) return
+    fetchMore({
+      variables: {
+        page: Math.floor(readReply?.fetchUseditemQuestions.length / 10) + 1,
+      },
+      updateQuery: (prev, {fetchMoreResult}) => ({
+        fetchUseditemQuestions: [
+          ...prev.fetchUseditemQuestions,
+          ...fetchMoreResult.fetchUseditemQuestions,
+        ],
+      }),
+    })
+  }
 
   return (
     <>
@@ -82,6 +84,7 @@ const ItemComment = () => {
         onChangeReplyInput={onChangeReplyInput}
         onClickReply={onClickReply}
         readReply={readReply}
+        onLoadMore={onLoadMore}
       />
     </>
   )

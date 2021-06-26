@@ -109,7 +109,7 @@ export const Reply__Content = styled.div`
 `
 export const Reply__Date = styled.div`
   margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   font-size: 12px;
   color: #bdbdbd;
 `

@@ -37,7 +37,13 @@ import {baseURL} from './image'
 import styled from '@emotion/styled'
 import {getDate} from '../../../commons/libraries/utils'
 
-const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
+const ItemDetailUI = ({
+  data,
+  onClickToMain,
+  isOwner,
+  onClickEditPage,
+  onClickChargeButton,
+}) => {
   const settings = {
     customPaging: function (i) {
       return (
@@ -135,7 +141,7 @@ const ItemDetailUI = ({data, onClickToMain, isOwner, onClickEditPage}) => {
       <Menu__Button__Wrapper>
         <ToList__Button onClick={onClickToMain}>목록으로</ToList__Button>
         {!isOwner ? (
-          <Buy__Button>구매하기</Buy__Button>
+          <Buy__Button onClick={onClickChargeButton}>구매하기</Buy__Button>
         ) : (
           <Edit__Button onClick={onClickEditPage}>수정하기</Edit__Button>
         )}

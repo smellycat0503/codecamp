@@ -36,3 +36,25 @@ export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
     }
   }
 `
+export const DELETE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation DELETE_USED_ITEM_QUESTION_ANSWER($useditemQuestionAnswerId: ID!) {
+    deleteUseditemQuestionAnswer(
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    )
+  }
+`
+
+export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation UPDATE_USED_ITEM_QUESTION_ANSWER(
+    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+    $useditemQuestionAnswerId: ID!
+  ) {
+    updateUseditemQuestionAnswer(
+      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    ) {
+      _id
+      contents
+    }
+  }
+`

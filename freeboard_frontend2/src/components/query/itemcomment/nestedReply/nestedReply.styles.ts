@@ -1,7 +1,12 @@
 import styled from '@emotion/styled'
 
-export const Wrapper = styled.div``
-
+export const Wrapper = styled.div`
+  margin-top: 30px;
+`
+export const Nest__Reply__Icon__Name__Contents__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 export const Nested__Reply__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -52,7 +57,7 @@ export const Nest__Reply__Contents__Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  width: 1100px;
+  /* width: 1100px; */
 `
 
 export const Nest__Reply__Icon__Contents__Wrapper = styled.div`
@@ -82,7 +87,10 @@ export const Nest__Reply__Date = styled.div`
   color: #bdbdbd;
 `
 
-export const Nest__Reply__Edit__Delete__Buttons__Wrapper = styled.div``
+export const Nest__Reply__Edit__Delete__Buttons__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 export const Nest__Reply__Edit__Button = styled.img`
   width: 18px;
   height: 18px;
@@ -109,4 +117,48 @@ export const Nested__Reply__Button = styled.img`
   height: 18px;
 
   cursor: pointer;
+`
+export const Nested__Reply__Edit__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+export const Nested__Reply__Edit__Input = styled.input`
+  width: 1036px;
+  height: 64px;
+  border: 1px solid #bdbdbd;
+  border-bottom: 0px;
+`
+
+export const Nested__Reply__Edit__Input__Count = styled.input`
+  width: 945px;
+  height: 52px;
+  border: 1px solid #bdbdbd;
+  border-top: 1px solid#F2F2F2;
+  border-right: 0px;
+`
+
+export const Nested__Reply__Edit__Button = styled.div`
+  width: 91px;
+  height: 52px;
+  cursor: pointer;
+  background-color: gold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+
+export const Nest__Reply__UserName__Input__Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const Nested__Reply__Edit__Input__Count__Button__Wrapper = styled.div`
+  margin-top: 10px;
+`
+
+export const Nested__Reply__Edit__Count__Button__Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
 `

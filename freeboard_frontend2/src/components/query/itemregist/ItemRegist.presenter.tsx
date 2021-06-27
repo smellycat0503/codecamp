@@ -49,6 +49,8 @@ import {
   Input2__Button__Wrapper,
   Cancel__Edit__Button,
   Edit__Button,
+  PhotoInput,
+  Plus,
 } from './ItemRegist.styles'
 
 import Head from 'next/head'
@@ -71,6 +73,9 @@ const ItemRegistUI = ({
   data,
   onClickEditItem,
   onClickReturnPage,
+  itemImg,
+  onChangeItemImg,
+  onClickDeleteImg,
 }) => {
   useEffect(() => {
     const aaa = setInterval(() => {
@@ -208,11 +213,30 @@ const ItemRegistUI = ({
           <IMG__Attach_Wrapper>
             <IMG__Attach__Title>사진 첨부</IMG__Attach__Title>
             <IMG__Wrapper>
-              <IMG__Upload__Preview__Wrapper>
-                <IMG__Upload__Cancel__Button src="/img_del.png"></IMG__Upload__Cancel__Button>
-                <IMG__Upload__Preview src="/갤럭시 탭A140.png"></IMG__Upload__Preview>
-              </IMG__Upload__Preview__Wrapper>
-              <IMG__Upload__Button src="/uploadimg.png"></IMG__Upload__Button>
+              {itemImg.map((data, index) => (
+                <>
+                  <IMG__Upload__Preview__Wrapper>
+                    <IMG__Upload__Cancel__Button
+                      src="/img_del.png"
+                      id={index}
+                      onClick={onClickDeleteImg}
+                    ></IMG__Upload__Cancel__Button>
+                    <IMG__Upload__Preview src={data}></IMG__Upload__Preview>
+                  </IMG__Upload__Preview__Wrapper>
+                </>
+              ))}
+              {new Array(4 - itemImg.length).fill(1).map((__) => (
+                <IMG__Upload__Button htmlFor="photo">
+                  <Plus>+</Plus>
+                  upload
+                  <PhotoInput
+                    id="photo"
+                    type="file"
+                    multiple
+                    onChange={onChangeItemImg}
+                  ></PhotoInput>
+                </IMG__Upload__Button>
+              ))}
             </IMG__Wrapper>
           </IMG__Attach_Wrapper>
           <Main__IMG__Setting__Wrapper>
@@ -247,3 +271,13 @@ const ItemRegistUI = ({
 }
 
 export default memo(ItemRegistUI)
+
+{
+  /* <IMG__Upload__Preview__Wrapper>
+                <IMG__Upload__Cancel__Button src="/img_del.png"></IMG__Upload__Cancel__Button>
+                <IMG__Upload__Preview src="/갤럭시 탭A140.png"></IMG__Upload__Preview>
+              </IMG__Upload__Preview__Wrapper> */
+}
+{
+  /* <IMG__Upload__Button src="/uploadimg.png"></IMG__Upload__Button> */
+}

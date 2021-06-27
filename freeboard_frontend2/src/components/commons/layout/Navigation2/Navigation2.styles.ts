@@ -10,8 +10,6 @@ export const Navi2Wrapper = styled.div`
 
 export const Navi2 = styled.div`
   min-width: 1260px;
-  /* height: 152px; */
-  /* width: 1200px; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,8 +20,6 @@ export const Navi2 = styled.div`
 `
 
 export const Logo = styled.img`
-  /* height: 100%;
-  width: 100%; */
   width: 190px;
   object-fit: contain;
 `
@@ -33,8 +29,6 @@ export const Wrapper_Login_SignIn = styled.div`
   flex-direction: row;
   display: flex;
   align-items: center;
-
-  /* align-self: flex-end; */
 `
 
 export const Login = styled.button`
@@ -48,9 +42,6 @@ export const Login = styled.button`
   outline: none;
   padding-right: 20px;
   cursor: pointer;
-
-  /* identical to box height */
-
   text-align: center;
 `
 
@@ -69,8 +60,6 @@ export const SignUp = styled.button`
   font-size: 16px;
   line-height: 24px;
   cursor: pointer;
-
-  /* padding: 10px 16px; */
 `
 export const UserIcon__InfoMenu__Wrapper = styled.div`
   display: flex;
@@ -88,7 +77,6 @@ export const MyMenu__Wrapper = styled.div`
   height: 226px;
 `
 export const Icon__UserInfo__Wrapper = styled.div`
-  /* background-color: gold; */
   display: flex;
   flex-direction: row;
   width: 300px;
@@ -104,29 +92,21 @@ export const Icon__Wrapper = styled.div`
   height: 48px;
   justify-content: flex-end;
   align-items: flex-end;
-  //*얘가 이해안감
   margin-left: 26px;
-  /* background-color: red; */
 `
 export const UserIcon = styled.img`
-  /* margin-right: 15px; */
   cursor: pointer;
   width: 48px;
   height: 48px;
-  /* position: absolute; */
 `
 export const ImgChange = styled.img`
   position: absolute;
   cursor: pointer;
-  /* width: 16px; */
-  /* height: 16px; */
-  /* align-self: flex-end; */
 `
 export const Name__Point__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: blue; */
   margin-left: 12px;
 `
 export const UserName = styled.div`

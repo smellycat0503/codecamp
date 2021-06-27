@@ -35,8 +35,9 @@ const ItemDetail = (props) => {
   //?구매하기 도전!!
 
   const {accessToken} = useContext(LayoutContext)
-
-  console.log(accessToken)
+  console.log(userInfo?.email, '유저정보')
+  console.log(accessToken, '엑세스토큰')
+  console.log(data?.fetchUseditem.name, '상품이름')
 
   const [buyItem] = useMutation(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
 
@@ -53,10 +54,10 @@ const ItemDetail = (props) => {
         pay_method: 'card',
         // merchant_uid: 'ORD20180131-0000011',
         //! merchant_uid이 아이디는 상품의 고유의 값!/ 원래 결제 서버에 중복이 있으면 바로 오류가 뜸. 지금은 백엔드에서 얘를 주는 게 없음
-        name: data?.name,
-        amount: data?.price,
-        buyer_email: data?.seller?.email,
-        buyer_name: data?.seller?.name,
+        name: data?.fetchUseditem.name,
+        amount: data?.fetchUseditem.price,
+        buyer_email: userInfo?.email,
+        buyer_name: userInfo?.name,
         buyer_tel: '010-4242-4242',
         buyer_addr: '서울특별시 강남구 신사동',
         buyer_postcode: '01181',

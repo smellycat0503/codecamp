@@ -240,10 +240,31 @@ export const IMG__Upload__Preview = styled.img`
   height: 180px;
 `
 
-export const IMG__Upload__Button = styled.img`
+export const IMG__Upload__Button = styled.label`
   width: 180px;
   height: 180px;
+  background-color: silver;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24px;
 `
+export const PhotoInput = styled.input`
+  position: absolute;
+  /* width: 1px; */
+  /* height: 1px; */
+  /* padding: 0px; */
+  /* margin: -1px; */
+  /* overflow: hidden; */
+  /* border: 0; */
+  clip: rect(0, 0, 0, 0);
+`
+export const Plus = styled.div`
+  font-size: 20px;
+`
+
 export const Main__IMG__Setting__Wrapper = styled.div`
   margin-top: 40px;
 `

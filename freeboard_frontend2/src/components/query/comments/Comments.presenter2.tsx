@@ -29,13 +29,9 @@ import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
+
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-import {
-  IMutation,
-  IMutationDeleteBoardCommentArgs,
-} from '../../../commons/types/generated/types'
 import {useRouter} from 'next/router'
 
 const ReplyMapUI = ({data}: IProps) => {
@@ -54,7 +50,6 @@ const ReplyMapUI = ({data}: IProps) => {
   const {data: datareply, fetchMore} = useQuery(REPLY, {
     variables: {
       boardId: router.query.ID,
-      // page: page,
     },
   })
   // console.log(datareply)
@@ -123,9 +118,7 @@ const ReplyMapUI = ({data}: IProps) => {
     setIsDelete((prev) => !prev)
   }
 
-  const [deletecomment] =
-    // useMutation<IMutation, IMutationDeleteBoardCommentArgs>(DELETEREPLY)
-    useMutation(DELETEREPLY)
+  const [deletecomment] = useMutation(DELETEREPLY)
 
   async function onClickReplyDelete(event) {
     // console.log('=============')
@@ -306,46 +299,3 @@ const ReplyMapUI = ({data}: IProps) => {
 }
 
 export default ReplyMapUI
-
-// {open ? (
-//   <>
-//     <Writer__Info__Wrapper>
-//       <ReplyWriter
-//         name="writer"
-//         type="text"
-//         onChange={onChangeReplyRewrite}
-//         placeholder="작성자"
-//       ></ReplyWriter>
-// <ReplyPassword
-//   name="password"
-//   type="password"
-//   placeholder="비밀번호"
-//   onChange={onChangeReplyRewrite}
-// ></ReplyPassword>
-//       <Star__Wrapper>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//         <Star src="/Star.png"></Star>
-//       </Star__Wrapper>
-//     </Writer__Info__Wrapper>
-//     <Content__textbox
-//       type="text"
-//       placeholder="개인정보 어쩌고고"
-//       name="contents"
-//       onChange={onChangeReplyRewrite}
-//     ></Content__textbox>
-//     <Reply__Text__Bottom__Wrapper>
-//       <TextCount type="text"></TextCount>
-//       <Reply__Rewrite__Post__Button
-//         id={data._id}
-//         onClick={onClickReplyDelete}
-//       >
-//         삭제하기
-//       </Reply__Rewrite__Post__Button>
-//     </Reply__Text__Bottom__Wrapper>
-//   </>
-// ) : (
-//   <></>
-// )}

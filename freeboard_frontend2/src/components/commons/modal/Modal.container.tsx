@@ -19,11 +19,7 @@ const Modal = () => {
 
   return (
     <>
-      <ModalUI
-        open={open}
-        handleClickOpen={handleClickOpen}
-        handleClose={handleClose}
-      />
+      <ModalUI open={open} handleClose={handleClose} />
     </>
   )
 }

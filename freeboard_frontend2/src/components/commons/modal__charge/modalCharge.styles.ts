@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
   width: 464px;
-  /* height: 394px; */
   max-height: 623px;
   height: 100%;
   display: flex;
@@ -36,9 +35,6 @@ export const ChargePiont__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  /* height: */
-  /* background-color: red; */
   padding-bottom: 10px;
   margin-top: 42px;
   width: 384px;
@@ -49,7 +45,6 @@ export const Input__Point = styled.input`
   border: 0px;
   height: 52px;
   padding: 16px;
-  /* border-bottom: 2px solid black; */
 `
 export const Select__Point__Button = styled.img`
   width: 24px;

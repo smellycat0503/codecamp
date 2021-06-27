@@ -9,9 +9,16 @@ import {
   SignUpButton__Disabled,
   Background,
   SignUpButton,
+  GoogleLoginButton,
 } from './Login.styles'
 
-const LoginUI = ({errorEmail, errorPassword, onClickLogin, onChangeInput}) => {
+const LoginUI = ({
+  errorEmail,
+  errorPassword,
+  onClickLogin,
+  onChangeInput,
+  onClickGoogleLogin,
+}) => {
   return (
     <Wrapper>
       <Background src="/BG.png" />
@@ -40,6 +47,10 @@ const LoginUI = ({errorEmail, errorPassword, onClickLogin, onChangeInput}) => {
         <SignUpButton disabled={false} onClick={onClickLogin}>
           로그인하기
         </SignUpButton>
+        <GoogleLoginButton
+          onClick={onClickGoogleLogin}
+          src="/btn_google_signin_dark_focus_web.png"
+        ></GoogleLoginButton>
       </Body__Wrapper>
     </Wrapper>
   )

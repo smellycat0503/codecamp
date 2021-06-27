@@ -1,5 +1,4 @@
 import {useContext} from 'react'
-
 import {LayoutContext} from '../../../../../pages/_app'
 import {
   Navi2,
@@ -26,16 +25,13 @@ import {
   Info__Wrapper,
 } from './Navigation2.styles'
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-
 import ModalChangeIndex from './../../modal__charge/'
 
-const Navigation2UI = (props) => {
-  const {accessToken, userInfo} = useContext(LayoutContext)
+import {IProps} from './Navigation2.types'
 
-  // console.log(userInfo, '유저 정보 보자')
+const Navigation2UI = (props: IProps) => {
+  const {accessToken, userInfo} = useContext(LayoutContext)
 
   return (
     <Navi2Wrapper>

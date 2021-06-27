@@ -85,3 +85,11 @@ export const SignUpButton = styled.button`
     color: #bdbdbd;
   }
 `
+export const GoogleLoginButton = styled.img`
+  width: 250px;
+  height: auto;
+  /* background: red; */
+  /* border-radius: 16px; */
+  cursor: pointer;
+  margin-top: 20px;
+`

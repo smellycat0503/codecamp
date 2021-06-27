@@ -34,8 +34,8 @@ import {
 } from './Query.Detail.Styles'
 
 interface IProps {
-  onClickUpdate: any
-  data: any
+  // onClickUpdate: any
+  // data: any
   // type: any;
 }
 // {data}:Iprops로 하면 안됬음.\
@@ -44,9 +44,8 @@ interface IProps {
 
 const Presenter = (props) => {
   console.log(props.data)
-  // console.log('asdfasdf', props.data?.fetchBoard._id)
+
   return (
-    // <All_Wrapper>
     <Wrapper>
       <FreeboardWrapper>
         <HeadWrapper>
@@ -110,7 +109,6 @@ const Presenter = (props) => {
         <ModifyButton onClick={props.onClickUpdate}>수정하기</ModifyButton>
       </Bottom__Button__Wrapper>
     </Wrapper>
-    // </All_Wrapper>
   )
 }
 

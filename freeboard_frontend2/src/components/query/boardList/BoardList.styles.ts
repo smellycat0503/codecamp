@@ -3,26 +3,15 @@ import styled from '@emotion/styled'
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
-  /* background-color: gold; */
+
   display: flex;
   flex-direction: column;
-  /* background-color: yellow; */
+
   justify-content: center;
   align-items: center;
 `
 
-// export const Body__Wrapper = styled.div`
-//   height: 100%;
-//   width: 100%;
-//   /* background-color: gold; */
-//   /* display: flex; */
-//   /* flex-direction: row; */
-//   /* background-color: yellow; */
-//   /* justify-content: center; */
-// `
-
 export const Title = styled.div`
-  /* margin-top: 80px; */
   font-size: 36px;
   font-weight: bold;
   display: flex;
@@ -34,7 +23,7 @@ export const Title = styled.div`
 export const Best__List__Wrapper = styled.div`
   height: 257px;
   width: 1200px;
-  /* background-color: gray; */
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -44,7 +33,7 @@ export const Best__List__Wrapper = styled.div`
 export const Best__Post__Wrapper = styled.div`
   height: 257px;
   width: 282px;
-  /* background-color: red; */
+
   border-radius: 30px;
   box-shadow: 5px 5px 5px silver;
 `
@@ -66,17 +55,16 @@ export const Best__Post__Title = styled.div`
 
 export const Best__Name__And__Icon__Wrapper = styled.div`
   height: 24px;
-  /* width: 70%; */
+
   display: flex;
   flex-direction: row;
-  /* background-color: gold; */
+
   margin-top: 22px;
   margin-left: 22px;
 `
 export const Best__Post__Icon = styled.img`
   height: 20px;
   width: 20px;
-  /* border-right: 23.5px; */
 `
 export const Best__Post__Name = styled.div`
   height: 24px;
@@ -87,29 +75,26 @@ export const Best__Post__Date = styled.div`
   height: 18px;
   margin-top: 8px;
   padding-left: 20px;
-  /* padding-right: 23.5px; */
+
   font-size: 12px;
   color: #828282;
-  /* background-color: blue; */
 `
 export const Best__Name__And__Icon__And__Date__Wrapper = styled.div`
   height: 70px;
   width: 85%;
   display: flex;
   flex-direction: column;
-  /* background-color: blue; */
 `
 export const Best__Post__Good__And__Counter__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: green; */
 `
 
 export const Best__Post__Bottom__Content__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  /* background-color: green; */
+
   width: 282px;
   height: 70px;
 `
@@ -128,7 +113,7 @@ export const Best__Post__GoodNumber = styled.div`
 export const Search__Wrapper = styled.div`
   height: 52px;
   width: 1200px;
-  /* background-color: gray; */
+
   margin-top: 80px;
   display: flex;
   flex-direction: row;
@@ -171,23 +156,20 @@ export const Search__Button = styled.button`
   background-color: black;
   border-radius: 10px;
   color: white;
-
-  /* align-self: flex-end; */
 `
 
 export const Board__Wrapper = styled.div`
   width: 1200px;
   height: 583px;
-  /* background-color: gray; */
+
   margin-top: 40px;
   border-top: 1px solid black;
-  /* border-bottom: 1px solid black; */
 `
 
 export const Board__Title__Wrapper = styled.div`
   height: 52px;
   width: 1200px;
-  /* background-color: green; */
+
   display: flex;
   flex: row;
   border-bottom: 1px solid silver;
@@ -196,7 +178,7 @@ export const Board__Title__Wrapper = styled.div`
 export const Board__Content__Wrapper = styled.div`
   height: 52px;
   width: 1200px;
-  /* background-color: green; */
+
   display: flex;
   flex: row;
   border-bottom: 1px solid silver;
@@ -205,7 +187,7 @@ export const Board__Content__Wrapper = styled.div`
 export const Board__Number = styled.div`
   height: 52px;
   width: 5%;
-  /* background-color: red; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -215,7 +197,7 @@ export const Board__Number = styled.div`
 export const Board__Title = styled.div`
   height: 52px;
   width: 65%;
-  /* background-color: yellow; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -235,7 +217,7 @@ export const Board__Writer = styled.div`
 export const Board__Date = styled.div`
   height: 52px;
   width: 15%;
-  /* background-color: yellow; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -246,7 +228,7 @@ export const Board__Date = styled.div`
 export const Board__Number__Content = styled.div`
   height: 52px;
   width: 5%;
-  /* background-color: red; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -256,7 +238,7 @@ export const Board__Number__Content = styled.div`
 export const Board__Title__Content = styled.div`
   height: 52px;
   width: 65%;
-  /* background-color: yellow; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -267,7 +249,7 @@ export const Board__Title__Content = styled.div`
 export const Board__Writer__Content = styled.div`
   height: 52px;
   width: 15%;
-  /* background-color: red; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -277,18 +259,16 @@ export const Board__Writer__Content = styled.div`
 export const Board__Date__Content = styled.div`
   height: 52px;
   width: 15%;
-  /* background-color: yellow; */
+
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  /* font-weight: bold; */
 `
 export const Page__And__Write__Wrapper = styled.div`
   height: 52px;
   width: 1200px;
-  /* background-color: gray; */
+
   margin-top: 40px;
   display: flex;
   flex-direction: row;
@@ -300,19 +280,14 @@ export const Prev__Page = styled.img`
   height: 12px;
   width: 7.41px;
   cursor: pointer;
-  /* background-color: yellow; */
-  margin-right: 28.59px;
 
-  /* font-weight: bold; */
-  /* font-size: 16px; */
+  margin-right: 28.59px;
 `
 
 export const Next_Page = styled.img`
   height: 12px;
   width: 7.41px;
   cursor: pointer;
-  /* background-color: yellow; */
-  /* margin-left: 28.59px; */
 `
 
 export const Write__Button = styled.button`
@@ -326,8 +301,7 @@ export const Write__Button = styled.button`
   align-items: center;
   border: 1px solid silver;
   cursor: pointer;
-  /* margin-left: 100px; */
-  /* align-self: flex-end; */
+
   margin-left: 100px;
 `
 interface IProps {
@@ -335,16 +309,15 @@ interface IProps {
 }
 
 export const Page = styled.div`
-  /* background-color: green; */
   height: 12px;
   width: 45px;
-  /* width:100% */
+
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
   align-self: center;
   color: ${(Props: IProps) => (Props.isActive ? 'red' : 'black')};
-  /* background-color: blue; */
+
   display: flex;
   flex-direction: row;
 `

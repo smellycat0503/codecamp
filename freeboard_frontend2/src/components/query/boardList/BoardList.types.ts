@@ -1,4 +1,3 @@
-import {ReactNativeFile} from 'extract-files'
 import React from 'react'
 import {IQuery} from '../../../commons/types/generated/types'
 
@@ -9,7 +8,6 @@ export interface IProps {
   onClickPageNumber: any
   currentPage: number
   isActive: boolean
-  // QueryUI: any;
   Page: String
   onClickPostButton: () => void
   bestPostList: any

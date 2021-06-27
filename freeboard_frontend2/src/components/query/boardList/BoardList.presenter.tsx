@@ -1,4 +1,3 @@
-import {fromPromise} from '@apollo/client'
 import {getDate} from '../../../commons/libraries/utils'
 import {
   Wrapper,
@@ -59,18 +58,8 @@ import {IProps} from './BoardList.types'
 // import {IProps} from './BoardList.types'
 
 const QueryUI = (Props: IProps) => {
-  // const commentNumber = () => {
-
-  //   if(Props.currentPage === 1){
-  //   } 글넘버 = index+1;
-  //   else if(Props.currentPage > 1){
-  //     글넘버 = String(currentPage-1) + String(index+1)
-  //   }
-  // }
-  // console.log(Props.nextPage)
   return (
     <Wrapper>
-      {/* <img src="/BG.png" /> */}
       <Title>베스트 게시글</Title>
       <Best__List__Wrapper>
         {Props.bestPostList?.fetchBoardsOfTheBest.map((bestfour) => (
@@ -121,12 +110,7 @@ const QueryUI = (Props: IProps) => {
           <Board__Writer>작성자</Board__Writer>
           <Board__Date>날짜</Board__Date>
         </Board__Title__Wrapper>
-        {/* <Board__Content__Wrapper>
-          <Board__Number__Content>10</Board__Number__Content>
-          <Board__Title__Content>{data.fetchBoards.title}</Board__Title__Content>
-          <Board__Writer__Content>{data.fetchBoards.writer}</Board__Writer__Content>
-          <Board__Date__Content>{data.fetchBoards.createdAt}</Board__Date__Content>
-        </Board__Content__Wrapper> */}
+
         {Props.dataComments?.fetchBoards.map((abc, index) => (
           <Board__Content__Wrapper key={abc._id}>
             <Board__Number__Content>
@@ -161,7 +145,6 @@ const QueryUI = (Props: IProps) => {
               )
               .map((_, index) => (
                 <>
-                  {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
                   <Page
                     id={String(index + 1)}
                     onClick={Props.onClickPageNumber}
@@ -180,7 +163,6 @@ const QueryUI = (Props: IProps) => {
               )
               .map((_, index) => (
                 <>
-                  {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
                   <Page
                     id={String(index + 1 + Props.nextPage * 10)}
                     onClick={Props.onClickPageNumber}
@@ -202,63 +184,3 @@ const QueryUI = (Props: IProps) => {
 }
 
 export default QueryUI
-
-// {new Array(10)
-//   .fill(1)
-//   .filter(
-//     (_, index) =>
-//       index + 1 + Props.nextPage * 10 <=
-//       Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
-//   )
-//   .map((_, index) => (
-//     <>
-//       {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
-//       <Page
-//         id={String(index + 1 + Props.nextPage * 10)}
-//         onClick={Props.onClickPageNumber}
-//         isActive={Props.currentPage === index + 1 + Props.nextPage * 10}
-//       >
-//         {index + Props.nextPage * 10 + 1}
-//       </Page>
-//     </>
-//   ))}
-
-// {
-//   Props.boardcount?.fetchBoardsCount / 10 < 10 ? new Array(10)
-//         .fill(1)
-//         .filter(
-//           (_, index) =>
-//             index + 1 <= Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
-//         )
-//         .map((_, index) => (
-//           <>
-//             {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
-//             <Page
-//               id={String(index + 1)}
-//               onClick={Props.onClickPageNumber}
-//               isActive={Props.currentPage === index + 1}
-//             >
-//               {index + 1}
-//             </Page>
-//           </>
-//         ))
-//     : new Array(10)
-//         .fill(1)
-//         .filter(
-//           (_, index) =>
-//             index + 1 + Props.nextPage * 10 <=
-//             Math.ceil(Props.boardcount?.fetchBoardsCount / 10)
-//         )
-//         .map((_, index) => (
-//           <>
-//             {/* {console.log(index + 1 + Props.nextPage * 10, 'INDEX')} */}
-//             <Page
-//               id={String(index + 1 + Props.nextPage * 10)}
-//               onClick={Props.onClickPageNumber}
-//               isActive={Props.currentPage === index + 1 + Props.nextPage * 10}
-//             >
-//               {index + Props.nextPage * 10 + 1}
-//             </Page>
-//           </>
-//         ))
-// }

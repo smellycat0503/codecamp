@@ -27,14 +27,6 @@ export const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
       name
       contents
       price
-      buyer {
-        _id
-        name
-      }
-      seller {
-        _id
-        name
-      }
     }
   }
 `

@@ -10,6 +10,7 @@ export const CREATE_USED_ITEM = gql`
       price
       tags
       createdAt
+      images
     }
   }
 `
@@ -49,6 +50,15 @@ export const UPDATE_USED_ITEM = gql`
       contents
       price
       tags
+      images
+    }
+  }
+`
+
+export const UPLOAD_FILE = gql`
+  mutation UPLOAD_FILE($file: Upload!) {
+    uploadFile(file: $file) {
+      url
     }
   }
 `

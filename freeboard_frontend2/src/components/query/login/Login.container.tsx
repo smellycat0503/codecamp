@@ -101,10 +101,12 @@ const Login = () => {
       },
     })
     setUserInfo(userInfo.data?.fetchUserLoggedIn)
-    console.log(userInfo.data?.fetchUserLoggedIn, '유저인포 확인해보자')
+    // console.log(userInfo.data?.fetchUserLoggedIn, '유저인포 확인해보자')
 
     router.push(`/board/marketmain/`)
   }
+
+  const onClickGoogleLogin = () => {}
 
   return (
     <LoginUI
@@ -112,6 +114,7 @@ const Login = () => {
       errorPassword={errorPassword}
       onClickLogin={onClickLogin}
       onChangeInput={onChangeInput}
+      onClickGoogleLogin={onClickGoogleLogin}
     />
   )
 }

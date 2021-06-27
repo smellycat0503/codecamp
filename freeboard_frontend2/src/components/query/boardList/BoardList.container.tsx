@@ -25,33 +25,11 @@ const Query = () => {
     //! 온클릭.
   }
 
-  // console.log('데이타 리스,트', data)
-
-  //   const aaavvvvv = "123123";
-  //   const bbbqqqqqq = {
-  //     name: "철수",
-  //     age: 13,
-  //   };
-
-  // const [pageArr, setPageArr] = useState([1,2,3,4,5,6,7,8,9,10])
-  // useEffect(() => {
-  //   if (count < 10) {
-  //     let newArr = []
-  //     for (let i = 1; i < count / 10; i++) {
-  //       newArr.push(i)
-  //     }
-  //     setPageArr(newArr)
-  //   }
-  // }, [count])
-
   //*페이지네이션 도전
 
   //! 기본값 1로 넣기? 어떻게 활용될지 작성하면서 알아보자.
   const [currentPage, setCurrentPage] = useState(1)
   const [nextPage, SetNextPage] = useState(0)
-  const [prevPage, setPrevPage] = useState(0)
-
-  // const clickNumber = 1
 
   //! 페이지 쿼리 만들기.  클릭 시의 경로를 넣어야 할 것 같음.  page의 경로 만들어보기.
   const {data: dataComments} = useQuery<IQuery>(COMMENTS, {
@@ -61,8 +39,6 @@ const Query = () => {
       //! 서치 두링 이름 같으니 생략 가능!!
     },
   })
-
-  // console.log('게시글목록', dataComments)
 
   const onClickPageNumber = (event) => {
     setCurrentPage(Number(event.target.id))
@@ -76,7 +52,6 @@ const Query = () => {
   //!베스트 도전
   const {data: bestPostList} =
     useQuery<IQuery, IQueryFetchBoardsArgs>(BEST_POST)
-  // console.log('bestPostList', bestPostList)
 
   //! 페이지네이션 도전
 
@@ -89,18 +64,12 @@ const Query = () => {
     }
   )
   //!검색 결과 찾기-> 쿼리를 처음에 보드카운트가 아닌 커맨츠를 불렀음. 글 수를 기준으로 계산해야 하므로 얘를 사용!!
-  // console.
-  // console.log('글몇개냐', boardcount?.fetchBoardsCount)
 
   //!페이지네이션 이전페이지 숫자 클릭 시 함수 작성
   const onClickPrevPage = () => {
     if (nextPage > 0) {
       SetNextPage(nextPage - 1)
     }
-    // if (prevPage * 10 >= 1) {
-    //   setPrevPage(prevPage - 1)
-    // }
-    // // console.log('prev잘되나', prevPage)
   }
 
   // useEffect(() => {
@@ -114,8 +83,6 @@ const Query = () => {
     if (nextPage * 10 < Math.ceil(boardcount?.fetchBoardsCount / 10)) {
       SetNextPage(nextPage + 1)
     }
-
-    // console.log(nextPage)
   }
 
   //! 검색 도전
@@ -133,8 +100,6 @@ const Query = () => {
     timer = setTimeout(() => {
       setSearch(event.target.value)
     }, 700)
-
-    // console.log(search)
   }
   //!디바운싱 범위
 
@@ -150,14 +115,13 @@ const Query = () => {
   return (
     <QueryUI
       data={data}
-      onClickBoard={onClickBoard} /*aaa={aaavvvvv} bbb={bbbqqqqqq}*/
+      onClickBoard={onClickBoard}
       dataComments={dataComments}
       onClickPageNumber={onClickPageNumber}
       currentPage={currentPage}
       onClickPostButton={onClickPostButton}
       bestPostList={bestPostList}
       onClickextPage={onClickextPage}
-      // clickNumber={clickNumber}
       nextPage={nextPage}
       boardcount={boardcount}
       onClickPrevPage={onClickPrevPage}
@@ -165,11 +129,6 @@ const Query = () => {
       onClickSearch={onClickSearch}
     />
   )
-  // {
-  //      data: data, // 서버에서 받은 객체
-  //      aaa: aaavvvvvv, // 문자열
-  //      bbb: bbbqqqqqq, // 직접만든 객체
-  // }
 }
 
 export default Query

@@ -11,12 +11,9 @@ const Layout = ({children}) => {
   return (
     <Wrapper>
       <Navigation2></Navigation2>
-      {/* <Welcome>폰트폰트폰트폰트폰트폰트폰트폰트폰트</Welcome> */}
-      {/* <Join>회원가입</Join> */}
       <Header />
       <Navigation />
       <Body>{children}</Body>
-      {/* <Footer>푸터영역</Footer> */}
     </Wrapper>
   )
 }

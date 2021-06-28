@@ -9,10 +9,11 @@ import GlobalStyles from '../src/commons/styles/globalStyles'
 import Layout from '../src/components/commons/layout'
 import {createUploadLink} from 'apollo-upload-client'
 import {config} from '@fortawesome/fontawesome-svg-core'
-import {createContext, useState} from 'react'
+import {createContext, useEffect, useState} from 'react'
 import {onError} from '@apollo/client/link/error'
 
 import getAccessToken from '../src/commons/libraries/getAccessToken'
+import {useRouter} from 'next/router'
 
 export const LayoutContext = createContext({
   accessToken: '',
@@ -24,6 +25,7 @@ export const LayoutContext = createContext({
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const App = ({Component, pageProps}) => {
+  const router = useRouter()
   const [accessToken, setAccessToken] = useState('')
 
   const [userInfo, setUserInfo] = useState({})
@@ -31,7 +33,8 @@ const App = ({Component, pageProps}) => {
   const uploadLink = createUploadLink({
     uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
-      authorization: `Bearer ${accessToken}`,
+      //* ||''는 undefined를 토큰으로 받지 않게 하기 위한 수단
+      authorization: `Bearer ${accessToken || ''}`,
     },
     credentials: 'include',
   })
@@ -48,7 +51,7 @@ const App = ({Component, pageProps}) => {
           operation.setContext({
             headers: {
               ...operation.getContext().headers,
-              authorization: `Baerer ${getAccessToken({setAccessToken})}`,
+              authorization: `Baerer ${getAccessToken({setAccessToken}) || ''}`,
             },
           })
           return forward(operation)
@@ -65,6 +68,23 @@ const App = ({Component, pageProps}) => {
 
     //* cache가 아폴로의 스테이트 데이터 저장 용도
   })
+
+  useEffect(() => {
+    // accessToken없고, refreshToken 없을때
+    if (!accessToken && !localStorage.getItem('refreshToken')) return
+
+    // accessToken있고,  refreshToken이 있을때
+    if (accessToken && !localStorage.getItem('refreshToken')) return
+
+    // accessToken없고, refreshToken 있을때
+    //*refreshToken으로 accessToken 재발급 받기
+    const restoreAccessToken = async () => {
+      const newAccessToken = await getAccessToken({setAccessToken})
+      if (!newAccessToken) router.push(`board/login`)
+    }
+    //?함수 실행시키기 위함
+    restoreAccessToken()
+  }, [])
 
   return (
     <>

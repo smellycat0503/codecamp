@@ -89,6 +89,7 @@ const Login = () => {
     })
 
     setAccessToken(data?.loginUser.accessToken)
+    localStorage.setItem('refreshToken', 'true')
     //!로긴설정10
 
     // !유저정보받기6
@@ -106,7 +107,9 @@ const Login = () => {
     router.push(`/board/marketmain/`)
   }
 
-  const onClickGoogleLogin = () => {}
+  const onClickGoogleLogin = () => {
+    window.open('https://backend.codebootcamp.co.kr/api/login/google/callback')
+  }
 
   return (
     <LoginUI

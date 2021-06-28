@@ -12,9 +12,9 @@ export const ItemRegist__Wrapper = styled.div`
   max-width: 1200px;
   padding: 80px 102px 80px 102px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  /* @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
     border: 10px solid blue;
-  } */
+  }
 `
 
 export const ItemRegist__Title = styled.div`
@@ -130,6 +130,7 @@ export const GPS__Address__Wrapper = styled.div`
 export const GPS__Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+
   @media only screen and (max-width: 600px) {
     margin-top: 60px;
   }

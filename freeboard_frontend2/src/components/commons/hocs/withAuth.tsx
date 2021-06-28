@@ -14,19 +14,9 @@ const withAuth = (Component) => {
 
     //토큰체크
     useEffect(() => {
-      // if (accessToken) return
-      //*refreshToken으로 accessToken 재발급 받기
-      const restoreAccessToken = async () => {
-        const newAccessToken = await getAccessToken({setAccessToken})
-        if (!newAccessToken) router.push(`board/login`)
+      if (!accessToken) {
+        router.push(`/board/login/`)
       }
-      //?함수 실행시키기 위함
-      restoreAccessToken()
-
-      //*그래도 없으면 로긴화면으로 돌려보내기
-      // if (!accessToken) {
-      //   router.push(`/board/login/`)
-      // }
     }, [])
 
     if (!accessToken) return <></>

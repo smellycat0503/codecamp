@@ -1,8 +1,7 @@
-import withAuth from '../../../src/components/commons/hocs/withAuth'
-import Mypage from '../../../src/components/query/mypage/Mypage.container'
+import MyMarketIndex from '../../../src/components/query/mypage/index'
 
-const MypageIndex = () => {
-  return <Mypage />
+const MyMarket = () => {
+  return <MyMarketIndex />
 }
 
-export default MypageIndex
+export default MyMarket

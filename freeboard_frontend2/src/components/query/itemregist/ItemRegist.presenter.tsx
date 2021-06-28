@@ -55,6 +55,9 @@ import {
 
 import Head from 'next/head'
 
+import React from 'react'
+import DaumPostcode from 'react-daum-postcode'
+
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 import {memo, useEffect} from 'react'
@@ -125,6 +128,8 @@ const ItemRegistUI = ({
     }, 100)
   }, [address])
   //!useEffect는 두번쨰 인자 []가 바뀔 때 실행됨!!
+
+  //?우편번호 도전
 
   return (
     <>

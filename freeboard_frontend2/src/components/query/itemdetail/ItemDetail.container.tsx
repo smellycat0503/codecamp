@@ -35,9 +35,9 @@ const ItemDetail = (props) => {
   //?구매하기 도전!!
 
   const {accessToken} = useContext(LayoutContext)
-  console.log(userInfo?.email, '유저정보')
-  console.log(accessToken, '엑세스토큰')
-  console.log(data?.fetchUseditem.name, '상품이름')
+  // console.log(userInfo?.email, '유저정보')
+  // console.log(accessToken, '엑세스토큰')
+  // console.log(data?.fetchUseditem.name, '상품이름')
 
   const [buyItem] = useMutation(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
 

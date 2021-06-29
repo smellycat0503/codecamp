@@ -166,11 +166,11 @@ const ItemRegistUI = ({
             <Item__Detail__Wrapper>
               <Item__Detail__Title>상품설명</Item__Detail__Title>
 
-              <ReactQuill
+              {/* <ReactQuill
                 name="contents"
                 placeholder="상품을 설명해주세요."
                 onChange={onChangeEditor}
-              />
+              /> */}
             </Item__Detail__Wrapper>
             <Sale__Price__Wrapper>
               <Sale__Price__Title>판매 가격</Sale__Price__Title>
@@ -247,10 +247,10 @@ const ItemRegistUI = ({
           <Main__IMG__Setting__Wrapper>
             <Main__IMG__Title>메인 사진 설정</Main__IMG__Title>
             <Main__IMG__Radio__Wrapper>
-              <IMG__Radio type="radio" name="option" value="사진1"></IMG__Radio>
+              {/* <IMG__Radio type="radio" name="option" value="사진1"></IMG__Radio>
               <Radio1 htmlFor="사진1">사진 1</Radio1>
               <IMG__Radio type="radio" name="option" value="사진2"></IMG__Radio>
-              <Radio2 htmlFor="사진2">사진 2</Radio2>
+              <Radio2 htmlFor="사진2">사진 2</Radio2> */}
             </Main__IMG__Radio__Wrapper>
           </Main__IMG__Setting__Wrapper>
           {!data ? (
@@ -276,13 +276,3 @@ const ItemRegistUI = ({
 }
 
 export default memo(ItemRegistUI)
-
-{
-  /* <IMG__Upload__Preview__Wrapper>
-                <IMG__Upload__Cancel__Button src="/img_del.png"></IMG__Upload__Cancel__Button>
-                <IMG__Upload__Preview src="/갤럭시 탭A140.png"></IMG__Upload__Preview>
-              </IMG__Upload__Preview__Wrapper> */
-}
-{
-  /* <IMG__Upload__Button src="/uploadimg.png"></IMG__Upload__Button> */
-}

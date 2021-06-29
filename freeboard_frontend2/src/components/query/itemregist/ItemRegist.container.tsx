@@ -23,7 +23,7 @@ const ItemRegist = (props) => {
   })
 
   const [updateData] = useMutation(UPDATE_USED_ITEM)
-
+  //@ts-ignore
   const isOwner = data?.fetchUseditem.seller._id === userInfo._id
 
   const [ItemRegist] = useMutation(CREATE_USED_ITEM)

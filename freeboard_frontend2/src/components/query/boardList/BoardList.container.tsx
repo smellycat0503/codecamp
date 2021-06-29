@@ -113,6 +113,7 @@ const Query = () => {
   //!뮤테이션은 어싱크어웨이트 써야함. 쿼리는 보통 옵셔널체에닝을 쓴다
 
   return (
+    //@ts-ignore
     <QueryUI
       data={data}
       onClickBoard={onClickBoard}

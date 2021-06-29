@@ -25,7 +25,7 @@ const ItemDetail = (props) => {
   }
 
   console.log(data?.fetchUseditem, ':상품정보')
-
+  //@ts-ignore
   const isOwner = data?.fetchUseditem.seller._id === userInfo._id
 
   const onClickEditPage = () => {
@@ -56,7 +56,9 @@ const ItemDetail = (props) => {
         //! merchant_uid이 아이디는 상품의 고유의 값!/ 원래 결제 서버에 중복이 있으면 바로 오류가 뜸. 지금은 백엔드에서 얘를 주는 게 없음
         name: data?.fetchUseditem.name,
         amount: data?.fetchUseditem.price,
+        //@ts-ignore
         buyer_email: userInfo?.email,
+        //@ts-ignore
         buyer_name: userInfo?.name,
         buyer_tel: '010-4242-4242',
         buyer_addr: '서울특별시 강남구 신사동',

@@ -173,7 +173,7 @@ const MarketMainUI = ({
               </InfiniteScroll>
             )}
           </Now__Sale__List__Wrapper>
-          <HaveSeen__Wrapper>
+          {/* <HaveSeen__Wrapper>
             <TodayIHaveSeen__Title>오늘 본 상품</TodayIHaveSeen__Title>
             <HaveSeen__Item__Wrapper>
               <HaveSeen__Item__Like__Wrapper>
@@ -198,7 +198,7 @@ const MarketMainUI = ({
                 </HaveSeen__Item__Detail__Tag>
               </HaveSeen__Item__Detail__Wrapper>
             </HaveSeen__Item__Wrapper>
-          </HaveSeen__Wrapper>
+          </HaveSeen__Wrapper> */}
         </Sale__List__Today__HaveSeen__Wrapper>
         <Regist__Item__Wrapper>
           <Regist__Button onClick={onClickItemRegist}>

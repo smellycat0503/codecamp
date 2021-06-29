@@ -74,8 +74,8 @@ const Navigation2UI = (props: IProps) => {
                         </Icon__Wrapper>
 
                         <Name__Point__Wrapper>
-                          <UserName>{userInfo?.name}</UserName>
-                          <UserPoint>{userInfo?.userPoint?.amount} P</UserPoint>
+                          {/* <UserName>{userInfo?.name}</UserName>
+                          <UserPoint>{userInfo?.userPoint?.amount} P</UserPoint> */}
                         </Name__Point__Wrapper>
                       </Icon__UserInfo__Wrapper>
                       <MyMenu__Sub__Wrapper>

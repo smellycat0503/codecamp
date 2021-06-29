@@ -12,6 +12,12 @@ export const Header__Wrapper = styled.div`
   justify-content: space-between;
 
   width: 792px;
+  @media screen and (max-width: 479px) {
+    /* border: 10px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export const User__Info__Wrapper = styled.div`

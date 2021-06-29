@@ -26,6 +26,12 @@ export const Best__List__Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 479px) {
+    /* border: 10px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export const Best__Item__Wrapper = styled.div`
@@ -250,6 +256,12 @@ export const Now__Sale__List__Wrapper = styled.div`
   border-top: 1px solid silver;
   border-bottom: 1px solid silver;
   overflow: auto;
+  @media screen and (max-width: 479px) {
+    /* border: 10px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 export const Item__Wrapper = styled.div`
   display: flex;

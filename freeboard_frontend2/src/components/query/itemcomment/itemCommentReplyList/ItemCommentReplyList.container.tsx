@@ -85,6 +85,8 @@ const Reply__List = ({data}) => {
 
   //?본인 글 권한 확인
   const {accessToken, userInfo} = useContext(LayoutContext)
+
+  //@ts-ignore
   const isOwner = data.user._id !== userInfo?._id
 
   // console.log(data.user._id, '댓글유저아이디')
@@ -96,6 +98,7 @@ const Reply__List = ({data}) => {
     IQueryFetchUseditemQuestionAnswersArgs
   >(FETCH_USED_ITEM_QUESTION_ANSWER, {
     variables: {
+      //@ts-ignore
       page: 0,
       useditemQuestionId: data._id,
     },

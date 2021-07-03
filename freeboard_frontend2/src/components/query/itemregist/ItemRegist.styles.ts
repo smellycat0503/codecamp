@@ -251,6 +251,7 @@ export const IMG__Upload__Button = styled.label`
   justify-content: center;
   align-items: center;
   margin-right: 24px;
+  margin-top: 10px;
 `
 export const PhotoInput = styled.input`
   position: absolute;
@@ -282,11 +283,11 @@ export const IMG__Radio = styled.input`
   background-color: gold;
 `
 
-export const Radio1 = styled.div`
+export const Radio1: any = styled.div`
   margin-right: 24px;
 `
 
-export const Radio2 = styled.div``
+export const Radio2: any = styled.div``
 
 export const Regist__Button__Wrapper = styled.div`
   display: flex;

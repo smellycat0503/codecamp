@@ -24,9 +24,11 @@ const ItemDetail = (props) => {
     router.push(`/board/marketmain/`)
   }
 
-  console.log(data?.fetchUseditem, ':상품정보')
-  //@ts-ignore
+  // console.log(data?.fetchUseditem, ':상품정보')
+
   const isOwner = data?.fetchUseditem.seller._id === userInfo._id
+
+  console.log(userInfo, '상세페이지유저정보')
 
   const onClickEditPage = () => {
     router.push(`/board/${data?.fetchUseditem._id}/edit_item/`)

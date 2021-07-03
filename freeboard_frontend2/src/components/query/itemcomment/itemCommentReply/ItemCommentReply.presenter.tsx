@@ -20,6 +20,8 @@ const ItemCommentUI = ({
   readReply,
   onLoadMore,
 }) => {
+  console.log(readReply, 'readReply')
+
   return (
     <Wrapper>
       <ReplyWrapper>
@@ -37,7 +39,8 @@ const ItemCommentUI = ({
           <Regist__Button onClick={onClickReply}>문의하기</Regist__Button>
         </ReplyCount__Regint__Button__Wrapper>
       </ReplyWrapper>
-      {readReply?.fetchUseditemQuestions.length && (
+
+      {readReply?.fetchUseditemQuestions.length > 0 && (
         <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
           {readReply?.fetchUseditemQuestions.map((data, index) => (
             <Reply__List data={data} key={index}></Reply__List>

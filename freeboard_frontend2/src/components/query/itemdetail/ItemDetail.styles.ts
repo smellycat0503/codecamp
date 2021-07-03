@@ -11,13 +11,13 @@ export const Header__Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  width: 792px;
-  @media screen and (max-width: 479px) {
-    /* border: 10px solid blue; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  /* width: 792px; */
+  /* @media screen and (max-width: 479px) { */
+  /* border: 10px solid blue; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* } */
 `
 
 export const User__Info__Wrapper = styled.div`
@@ -58,7 +58,8 @@ export const Map__Icon = styled.img``
 
 export const Item__Detail__Body__Wrapper = styled.div`
   border-top: 1px solid #bdbdbd;
-  width: 792px;
+  max-width: 792px;
+  width: 100%;
   margin-top: 22px;
 
   .slick-initialized .slick-slide {
@@ -121,8 +122,7 @@ export const Item__Carousel__Wrapper = styled.div`
 
 export const Item__Main__Img = styled.img`
   margin: 44px;
-  width: 296px;
-  height: 296px;
+  /* width: 100%; */
 `
 
 export const Item__Sub__Img__Wrapper = styled.div`
@@ -131,6 +131,7 @@ export const Item__Sub__Img__Wrapper = styled.div`
 
 export const Item__Sub__Img = styled.img`
   margin-right: 24px;
+  /* width: 100%; */
 `
 
 export const Item__Detail__Contents = styled.div`
@@ -150,12 +151,17 @@ export const Map__Wrapper = styled.div`
 export const Map = styled.img`
   margin-top: 80px;
   margin-bottom: 80px;
+  max-width: 100%;
 `
 export const Menu__Button__Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 84px;
   margin-bottom: 80px;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `
 export const ToList__Button = styled.div`
   width: 179px;
@@ -188,4 +194,7 @@ export const Edit__Button = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+    margin-top: 15px;
+  }
 `

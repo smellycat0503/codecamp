@@ -15,7 +15,7 @@ import {onError} from '@apollo/client/link/error'
 import getAccessToken from '../src/commons/libraries/getAccessToken'
 import {useRouter} from 'next/router'
 
-export const LayoutContext = createContext({
+export const LayoutContext: any = createContext({
   accessToken: '',
   setAccessToken: (__) => {},
   setUserInfo: (_: string) => {},
@@ -78,12 +78,12 @@ const App = ({Component, pageProps}) => {
 
     // accessToken없고, refreshToken 있을때
     //*refreshToken으로 accessToken 재발급 받기
-    const restoreAccessToken = async () => {
-      const newAccessToken = await getAccessToken({setAccessToken})
-      if (!newAccessToken) router.push(`board/login`)
-    }
+    // const restoreAccessToken = async () => {
+    // const newAccessToken = await getAccessToken({setAccessToken})
+    // if (!newAccessToken) router.push(`board/login`)
+    // }
     //?함수 실행시키기 위함
-    restoreAccessToken()
+    // restoreAccessToken()
   }, [])
 
   return (

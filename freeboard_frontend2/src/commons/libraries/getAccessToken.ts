@@ -22,7 +22,7 @@ const getAccessToken = async ({setAccessToken}) => {
     }
   )
   //*리프레시토큰을 통해 새 액세스토큰을 발급받음
-  if (response.data.data === null) return null
+  // if (response.data.data === null) return null
   const newAccessToken = response.data?.data.restoreAccessToken.accessToken
 
   setAccessToken(newAccessToken)

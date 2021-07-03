@@ -93,12 +93,8 @@ const Reply__List = ({data}) => {
   // console.log(userInfo, '로긴유저정보')
 
   //*대댓글 쿼리
-  const {data: answerData} = useQuery<
-    IQuery,
-    IQueryFetchUseditemQuestionAnswersArgs
-  >(FETCH_USED_ITEM_QUESTION_ANSWER, {
+  const {data: answerData} = useQuery(FETCH_USED_ITEM_QUESTION_ANSWER, {
     variables: {
-      //@ts-ignore
       page: 0,
       useditemQuestionId: data._id,
     },

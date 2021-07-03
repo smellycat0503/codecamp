@@ -48,7 +48,7 @@ const ItemDetailUI = ({
     customPaging: function (i) {
       return (
         <a>
-          <Item__Sub__Img src={`${baseURL}/${data?.fetchBoard?.images[i]}`} />
+          <Item__Sub__Img src={`${baseURL}/${data?.fetchUseditem.images[i]}`} />
         </a>
       )
     },
@@ -88,7 +88,8 @@ const ItemDetailUI = ({
   `
 
   console.log(baseURL, 'baseURL')
-  console.log(data?.fetchUseditem.images[0], 'data?.fetchUseditem.images')
+  console.log(data?.fetchUseditem.images, 'data?.fetchUseditem.images')
+  console.log(data?.fetchBoard?.images)
 
   return (
     <Wrapper>
@@ -121,22 +122,22 @@ const ItemDetailUI = ({
         <StyledSlider {...settings}>
           <div>
             <Item__Main__Img
-              src={`${baseURL}/${data?.fetchBoard?.images[0]}`}
+              src={`${baseURL}/${data?.fetchUseditem.images[0]}`}
             />
           </div>
           <div>
             <Item__Main__Img
-              src={`${baseURL}/${data?.fetchBoard?.images[1]}`}
+              src={`${baseURL}/${data?.fetchUseditem.images[1]}`}
             />
           </div>
           <div>
             <Item__Main__Img
-              src={`${baseURL}/${data?.fetchBoard?.images[2]}`}
+              src={`${baseURL}/${data?.fetchUseditem.images[2]}`}
             />
           </div>
           <div>
             <Item__Main__Img
-              src={`${baseURL}/${data?.fetchBoard?.images[3]}`}
+              src={`${baseURL}/${data?.fetchUseditem.images[3]}`}
             />
           </div>
         </StyledSlider>

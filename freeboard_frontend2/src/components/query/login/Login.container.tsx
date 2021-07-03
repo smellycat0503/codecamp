@@ -101,6 +101,7 @@ const Login = () => {
         //!여기가 액세스토큰을 유저정보쿼리에서도 넣기 위함?
       },
     })
+    // console.log(userInfo, '유저정보를보자')
     setUserInfo(userInfo.data?.fetchUserLoggedIn)
     // console.log(userInfo.data?.fetchUserLoggedIn, '유저인포 확인해보자')
 

@@ -57,7 +57,7 @@ import {IProps} from './BoardList.types'
 
 // import {IProps} from './BoardList.types'
 
-const QueryUI = (Props: IProps) => {
+const QueryUI: any = (Props: IProps) => {
   return (
     <Wrapper>
       <Title>베스트 게시글</Title>

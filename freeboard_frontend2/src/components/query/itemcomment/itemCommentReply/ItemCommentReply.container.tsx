@@ -9,7 +9,7 @@ import {
 } from './ItemCommentReply.queries'
 
 //* 댓글 입력 및 댓글 불러오기
-const ItemComment = () => {
+const ItemComment: any = () => {
   const router = useRouter()
 
   const [currentPage, setCurrentPage] = useState(1)

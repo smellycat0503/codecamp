@@ -8,6 +8,7 @@ const withAuth = (Component) => {
   //컴포넌트
   return function TokenCheck(props) {
     //props
+    console.log(props, 'props')
 
     const router = useRouter()
     const {accessToken, setAccessToken} = useContext(LayoutContext)
@@ -19,7 +20,7 @@ const withAuth = (Component) => {
       }
     }, [])
 
-    if (!accessToken) return <></>
+    if (!accessToken) return null
 
     return <Component {...props} /> //컴포넌트 리턴
     //! {...props}형태는 이미 한번 다른컴포넌트를 거쳐서 오므로 중괄호가 없을 시 객체안에 객체가 들어가게 된다.
